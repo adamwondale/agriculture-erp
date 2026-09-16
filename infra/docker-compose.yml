@@ -1,0 +1,374 @@
+version: '3.8'
+
+networks:
+  agri-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  rabbitmq_data:
+
+services:
+  # ---------------------------------------------------------------------------
+  # Shared Infrastructure
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: agri-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres-init-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - agri-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: agri-rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - agri-network
+
+  # ---------------------------------------------------------------------------
+  # API Gateway
+  # ---------------------------------------------------------------------------
+  api-gateway:
+    build:
+      context: ../
+      dockerfile: gateway/api-gateway/Dockerfile
+    container_name: agri-api-gateway
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  # ---------------------------------------------------------------------------
+  # Frontend Web ERP (Next.js 14)
+  # ---------------------------------------------------------------------------
+  web-erp:
+    build:
+      context: ../frontend/web-erp
+      dockerfile: Dockerfile
+    container_name: agri-web-erp
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_GATEWAY_URL=http://localhost:8080
+    networks:
+      - agri-network
+
+  # ---------------------------------------------------------------------------
+  # Python AI/ML Service
+  # ---------------------------------------------------------------------------
+  smart-agriculture-risk-service:
+    build:
+      context: ../services/smart-agriculture-risk-service
+      dockerfile: Dockerfile
+    container_name: agri-smart-agriculture-risk-service
+    ports:
+      - "5013:5013"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@postgres:5432/agri_smart_agriculture_risk_db
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  core-admin-service:
+    build:
+      context: ../
+      dockerfile: services/core-admin-service/Dockerfile
+    container_name: agri-core-admin-service
+    ports:
+      - "5001:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_core_admin_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  master-data-service:
+    build:
+      context: ../
+      dockerfile: services/master-data-service/Dockerfile
+    container_name: agri-master-data-service
+    ports:
+      - "5002:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_master_data_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  hr-service:
+    build:
+      context: ../
+      dockerfile: services/hr-service/Dockerfile
+    container_name: agri-hr-service
+    ports:
+      - "5003:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_hr_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  farmer-partner-service:
+    build:
+      context: ../
+      dockerfile: services/farmer-partner-service/Dockerfile
+    container_name: agri-farmer-partner-service
+    ports:
+      - "5004:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_farmer_partner_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  farm-land-agronomy-service:
+    build:
+      context: ../
+      dockerfile: services/farm-land-agronomy-service/Dockerfile
+    container_name: agri-farm-land-agronomy-service
+    ports:
+      - "5005:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_farm_land_agronomy_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  contract-farming-service:
+    build:
+      context: ../
+      dockerfile: services/contract-farming-service/Dockerfile
+    container_name: agri-contract-farming-service
+    ports:
+      - "5006:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_contract_farming_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  procurement-service:
+    build:
+      context: ../
+      dockerfile: services/procurement-service/Dockerfile
+    container_name: agri-procurement-service
+    ports:
+      - "5007:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_procurement_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  warehouse-inventory-service:
+    build:
+      context: ../
+      dockerfile: services/warehouse-inventory-service/Dockerfile
+    container_name: agri-warehouse-inventory-service
+    ports:
+      - "5008:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_warehouse_inventory_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  buyers-sales-logistics-service:
+    build:
+      context: ../
+      dockerfile: services/buyers-sales-logistics-service/Dockerfile
+    container_name: agri-buyers-sales-logistics-service
+    ports:
+      - "5009:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_buyers_sales_logistics_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  finance-service:
+    build:
+      context: ../
+      dockerfile: services/finance-service/Dockerfile
+    container_name: agri-finance-service
+    ports:
+      - "5010:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_finance_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  customer-investor-portal-service:
+    build:
+      context: ../
+      dockerfile: services/customer-investor-portal-service/Dockerfile
+    container_name: agri-customer-investor-portal-service
+    ports:
+      - "5011:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_customer_investor_portal_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  mobile-sync-gateway-service:
+    build:
+      context: ../
+      dockerfile: services/mobile-sync-gateway-service/Dockerfile
+    container_name: agri-mobile-sync-gateway-service
+    ports:
+      - "5012:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_mobile_sync_gateway_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  reporting-bi-service:
+    build:
+      context: ../
+      dockerfile: services/reporting-bi-service/Dockerfile
+    container_name: agri-reporting-bi-service
+    ports:
+      - "5014:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_reporting_bi_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  automation-workflow-service:
+    build:
+      context: ../
+      dockerfile: services/automation-workflow-service/Dockerfile
+    container_name: agri-automation-workflow-service
+    ports:
+      - "5015:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_automation_workflow_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  integration-gateway-service:
+    build:
+      context: ../
+      dockerfile: services/integration-gateway-service/Dockerfile
+    container_name: agri-integration-gateway-service
+    ports:
+      - "5016:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_integration_gateway_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network
+
+  compliance-traceability-service:
+    build:
+      context: ../
+      dockerfile: services/compliance-traceability-service/Dockerfile
+    container_name: agri-compliance-traceability-service
+    ports:
+      - "5017:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_compliance_traceability_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - agri-network

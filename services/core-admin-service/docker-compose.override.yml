@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  core-admin-service:
+    build:
+      context: ../../
+      dockerfile: services/core-admin-service/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_core_admin_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    ports:
+      - "5001:8080"

@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  hr-service:
+    build:
+      context: ../../
+      dockerfile: services/hr-service/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_hr_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    ports:
+      - "5003:8080"

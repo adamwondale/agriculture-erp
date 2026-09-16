@@ -1,0 +1,86 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Shared.Auth;
+using ContractFarming.Application.Interfaces;
+using ContractFarming.Infrastructure.Messaging.Consumers;
+using ContractFarming.Infrastructure.Messaging.Publishers;
+using ContractFarming.Infrastructure.Persistence;
+using ContractFarming.Infrastructure.Repositories;
+using ContractFarming.API.Middleware;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// 1. Add Controllers and HealthChecks
+builder.Services.AddControllers();
+builder.Services.AddHealthChecks();
+builder.Services.AddEndpointsApiExplorer();
+
+// 2. Swagger / OpenAPI configuration
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "ContractFarming Service API",
+        Version = "v1",
+        Description = "Clean Architecture Microservice for ContractFarming"
+    });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
+
+// 3. PostgreSQL EF Core DbContext
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+    ?? "Host=localhost;Port=5432;Database=agri_contract_farming_db;Username=postgres;Password=postgres";
+
+builder.Services.AddDbContext<ContractFarmingDbContext>(options =>
+    options.UseNpgsql(connectionString, b => b.MigrationsAssembly(typeof(ContractFarmingDbContext).Assembly.FullName)));
+
+// 4. JWT Bearer Auth from Shared.Auth
+builder.Services.AddSharedJwtAuthentication(builder.Configuration);
+
+// 5. Dependency Injection (Clean Architecture)
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddSingleton<IEventPublisher, RabbitMqEventPublisher>();
+builder.Services.AddHostedService<EventConsumerStub>();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ContractFarming API v1"));
+}
+
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
+app.MapHealthChecks("/health");
+
+app.Run();

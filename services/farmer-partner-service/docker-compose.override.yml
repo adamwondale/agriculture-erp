@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  farmer-partner-service:
+    build:
+      context: ../../
+      dockerfile: services/farmer-partner-service/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_farmer_partner_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    ports:
+      - "5004:8080"

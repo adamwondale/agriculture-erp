@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  warehouse-inventory-service:
+    build:
+      context: ../../
+      dockerfile: services/warehouse-inventory-service/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_warehouse_inventory_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    ports:
+      - "5008:8080"

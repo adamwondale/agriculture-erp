@@ -1,0 +1,118 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0B3D2E",
+            "primary-dark": "#062A20",
+            "emerald-action": "#146B45",
+            "warm-earth": "#F7F4EC",
+            "text-main": "#17231D",
+            "text-muted": "#66736C",
+            "light-green": "#E8F1EA",
+            "border-clean": "#DDE4DE",
+            "surface-white": "#FFFFFF"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            'xl': '14px',
+            '2xl': '16px'
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      html, body {
+        width: 100vw;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      body {
+        overscroll-behavior-y: none;
+        background-color: #F7F4EC;
+        font-family: 'Inter', sans-serif;
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 12px);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+    }
+  </style>
+</head>
+<body class="h-full w-full bg-warm-earth text-text-main flex flex-col justify-between select-none">
+<main class="relative w-full h-full flex flex-col justify-between overflow-hidden">
+<!-- Top Half: Warm Earth Canvas Background -->
+<div class="absolute inset-x-0 top-0 h-[52%] bg-warm-earth z-0"></div>
+<!-- Bottom Half: Lush Crop Field with Organic Fade Gradient -->
+<div class="absolute inset-x-0 bottom-0 top-[32%] z-0 overflow-hidden">
+<!-- Crop Field Image -->
+<img alt="Lush green agricultural crop field rows with morning sunrise" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVEBxAqaiWMrUMiuWUGnnnmF9qv9vPR5xqC7sDig-McowhBTwSKJtLJoxp27Ecct2cw67xcWp9kKSkX64cV-JUs61S1xt3lSNfIuVDLJmRkWPUGR6MCQsJZoVkwwyH7vMVbdKzabxZKar5DKwr7UFUSGsxXkechdSORhCoikdzX9i2IfvpIVZ6xJvLNvtvPblxGcElx75SEhTryJxbtnK94ucf0l-V8-SM18lBapbs7SYiZfWjaGIq">
+<!-- Soft Gradient Transition from Warm Earth (#F7F4EC) to Landscape -->
+<div class="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#F7F4EC] via-[#F7F4EC]/75 to-transparent pointer-events-none"></div>
+<!-- Vignette and Dark Tint over lower field for high text contrast -->
+<div class="absolute inset-x-0 bottom-0 h-96 bg-gradient-to-t from-black/85 via-black/45 to-transparent pointer-events-none"></div>
+</div>
+<!-- Top Section: iOS Status Bar & Brand Mark -->
+<div class="relative z-10 w-full flex flex-col items-center pt-safe">
+<!-- iOS Status Bar & Dynamic Island -->
+
+<!-- Brand Identity Group (as displayed in reference image) -->
+<div class="flex flex-col items-center text-center mt-3 sm:mt-5 px-6">
+<!-- Logo Emblem -->
+<div class="w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center mb-1">
+<img alt="Z•ORISIS Brand Mark" class="w-full h-full object-contain filter drop-shadow-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1VoR6ysvIophABKR7fyMNYvMRtbmp8bXsotlYcfqembfP4C6N7649CvJQkCatBA2H1FlA1IJoAxiwufFyubADlLjX7rcTujR_DJJYr-9QXwrwDbN6dQFPYEUfrjZJt1v84kG6ZBgSz3ZUI9VTFe_dgSrz7ukeTgXNry2nJSfzKN4y_iLKVTX0RIWTJQff6u46SilBftqv_bCwNVf-6Y9lQS4KggcZHnIaQ1zGMfMc1t_Z5utLumMOLiOg">
+</div>
+<!-- Wordmark -->
+<h1 class="text-[30px] sm:text-[32px] font-bold text-primary tracking-tight leading-none">
+          Z<span class="text-emerald-action mx-0.5">•</span>ORISIS
+        </h1>
+<!-- Motto / Tagline -->
+<p class="text-[11px] sm:text-[12px] font-semibold text-text-muted tracking-[0.25em] uppercase mt-1.5">
+          Together We Grow
+        </p>
+</div>
+</div>
+<!-- Bottom Half: Welcome Overlay & Action Buttons -->
+<div class="relative z-10 w-full px-6 pb-safe flex flex-col items-center">
+<!-- Text Copy -->
+<div class="w-full text-center mb-6">
+<h2 class="text-[24px] font-bold text-surface-white tracking-tight leading-tight [text-shadow:0_2px_8px_rgba(0,0,0,0.5)]">
+          Welcome Back!
+        </h2>
+<p class="text-[14px] text-light-green/95 font-normal mt-1.5 leading-snug [text-shadow:0_1px_4px_rgba(0,0,0,0.6)] max-w-[280px] mx-auto">
+          Sign in to continue managing your farm efficiently.
+        </p>
+</div>
+<!-- Interactive Action Buttons -->
+<div class="w-full max-w-sm space-y-3">
+<!-- Primary Action: Sign In -->
+<button class="w-full h-[52px] rounded-xl bg-primary hover:bg-[#062A20] active:scale-[0.99] text-surface-white font-semibold text-[16px] tracking-tight border border-white/15 shadow-lg flex items-center justify-center transition-all duration-200" type="button">
+          Sign In
+        </button>
+<!-- Secondary Action: Create Account -->
+<button class="w-full h-[52px] rounded-xl bg-surface-white hover:bg-light-green active:scale-[0.99] text-primary font-semibold text-[16px] tracking-tight border border-border-clean shadow-md flex items-center justify-center transition-all duration-200" type="button">Request for Partnership</button>
+</div>
+<!-- iOS Home Indicator Bar -->
+<div class="w-full flex justify-center pt-5 pb-1">
+<div class="w-36 h-1 bg-white/60 rounded-full"></div>
+</div>
+</div>
+</main>
+
+
+</body></html>

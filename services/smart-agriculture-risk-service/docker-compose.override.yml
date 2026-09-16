@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  smart-agriculture-risk-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@postgres:5432/agri_smart_agriculture_risk_db
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+    ports:
+      - "5013:5013"

@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  contract-farming-service:
+    build:
+      context: ../../
+      dockerfile: services/contract-farming-service/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_contract_farming_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    ports:
+      - "5006:8080"

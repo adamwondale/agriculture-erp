@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  farm-land-agronomy-service:
+    build:
+      context: ../../
+      dockerfile: services/farm-land-agronomy-service/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_farm_land_agronomy_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    ports:
+      - "5005:8080"

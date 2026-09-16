@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  buyers-sales-logistics-service:
+    build:
+      context: ../../
+      dockerfile: services/buyers-sales-logistics-service/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_buyers_sales_logistics_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    ports:
+      - "5009:8080"

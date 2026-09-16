@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  customer-investor-portal-service:
+    build:
+      context: ../../
+      dockerfile: services/customer-investor-portal-service/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_customer_investor_portal_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    ports:
+      - "5011:8080"

@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  compliance-traceability-service:
+    build:
+      context: ../../
+      dockerfile: services/compliance-traceability-service/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=agri_compliance_traceability_db;Username=postgres;Password=postgres
+      - RabbitMQ__HostName=rabbitmq
+    ports:
+      - "5017:8080"
