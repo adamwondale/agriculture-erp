@@ -51,9 +51,7 @@ const COMMAND_ITEMS: CommandItem[] = [
 export default function Header({ title, subtitle }: HeaderProps) {
   const router = useRouter();
   const { toggleSidebar } = useSidebar();
-  const [lang, setLang] = useState<"EN" | "AM">("EN");
   const [notificationsOpen, setNotificationsOpen] = useState(false);
-  const [appLauncherOpen, setAppLauncherOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -81,7 +79,6 @@ export default function Header({ title, subtitle }: HeaderProps) {
       if (e.key === "Escape") {
         setPaletteOpen(false);
         setNotificationsOpen(false);
-        setAppLauncherOpen(false);
         setUserMenuOpen(false);
       }
     };
@@ -143,126 +140,11 @@ export default function Header({ title, subtitle }: HeaderProps) {
 
         {/* Right Controls */}
         <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
-          {/* Live Sync Status */}
-          <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#E8F1EA] text-[#146B45] text-xs font-medium">
-            <span className="w-2 h-2 rounded-full bg-[#146B45] animate-pulse"></span>
-            <span>East Africa Hub Live</span>
-          </div>
-
-          {/* Language Switcher */}
-          <div className="hidden sm:flex items-center bg-[#F7F4EC] rounded-lg p-0.5 border border-[#DDE4DE]">
-            <button
-              onClick={() => setLang("EN")}
-              className={`px-2 py-0.5 rounded text-xs transition-colors ${
-                lang === "EN" ? "bg-white text-[#17231D] font-bold shadow-xs" : "text-[#66736C]"
-              }`}
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setLang("AM")}
-              className={`px-2 py-0.5 rounded text-xs transition-colors ${
-                lang === "AM" ? "bg-white text-[#17231D] font-bold shadow-xs" : "text-[#66736C]"
-              }`}
-            >
-              አማ
-            </button>
-          </div>
-
-          {/* 9-Dots App Launcher */}
-          <div className="relative">
-            <button
-              onClick={() => {
-                setAppLauncherOpen(!appLauncherOpen);
-                setNotificationsOpen(false);
-                setUserMenuOpen(false);
-              }}
-              title="All ERP Modules"
-              className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all active:scale-95 shadow-xs ${
-                appLauncherOpen
-                  ? "bg-[#0B3D2E] text-white border-[#0B3D2E]"
-                  : "bg-white border-[#DDE4DE] text-[#66736C] hover:text-[#0B3D2E] hover:bg-[#F7F4EC]"
-              }`}
-            >
-              <span className="material-symbols-outlined text-[20px]">apps</span>
-            </button>
-
-            {/* App Launcher Popover */}
-            {appLauncherOpen && (
-              <div className="absolute right-0 top-12 w-[calc(100vw-2rem)] sm:w-96 max-w-sm bg-white rounded-2xl border border-[#DDE4DE] shadow-floating p-4 z-50 animate-in fade-in zoom-in-95 duration-150">
-                <div className="flex items-center justify-between pb-2.5 border-b border-[#DDE4DE] mb-3">
-                  <span className="font-bold text-xs text-[#00261B] uppercase tracking-wider">Z•ORISIS Modules</span>
-                  <button
-                    onClick={() => setAppLauncherOpen(false)}
-                    className="text-xs text-[#66736C] hover:text-[#00261B]"
-                  >
-                    ✕
-                  </button>
-                </div>
-
-                <div className="space-y-3 text-xs">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase text-[#66736C] tracking-wider block mb-1.5">
-                      Core Administration
-                    </span>
-                    <div className="grid grid-cols-3 gap-1.5">
-                      {[
-                        { name: "Dashboard", href: "/dashboard", icon: "dashboard" },
-                        { name: "Hierarchy", href: "/organization", icon: "corporate_fare" },
-                        { name: "Users", href: "/users", icon: "group" },
-                        { name: "Roles RBAC", href: "/roles", icon: "admin_panel_settings" },
-                        { name: "Approvals", href: "/approvals", icon: "verified" },
-                        { name: "Audit Logs", href: "/audit-logs", icon: "receipt_long" },
-                      ].map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={() => setAppLauncherOpen(false)}
-                          className="p-2 rounded-xl bg-[#F7F4EC]/70 hover:bg-[#E8F1EA] text-[#00261B] flex flex-col items-center gap-1 text-center transition-all"
-                        >
-                          <span className="material-symbols-outlined text-[20px] text-[#146B45]">{item.icon}</span>
-                          <span className="text-[10px] font-semibold">{item.name}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="pt-2 border-t border-[#DDE4DE]/60">
-                    <span className="text-[10px] font-bold uppercase text-[#66736C] tracking-wider block mb-1.5">
-                      Field Agritech Suite
-                    </span>
-                    <div className="grid grid-cols-3 gap-1.5">
-                      {[
-                        { name: "Field App", href: "/mobile", icon: "smartphone" },
-                        { name: "Inspection", href: "/mobile/inspection", icon: "assignment_turned_in" },
-                        { name: "Payment", href: "/mobile/payment", icon: "payments" },
-                        { name: "Delegation", href: "/mobile/delegation", icon: "sync_alt" },
-                        { name: "Field Audit", href: "/mobile/audit", icon: "fact_check" },
-                        { name: "Profile", href: "/mobile/profile", icon: "person" },
-                      ].map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={() => setAppLauncherOpen(false)}
-                          className="p-2 rounded-xl bg-[#F7F4EC]/70 hover:bg-[#E8F1EA] text-[#00261B] flex flex-col items-center gap-1 text-center transition-all"
-                        >
-                          <span className="material-symbols-outlined text-[20px] text-[#0B3D2E]">{item.icon}</span>
-                          <span className="text-[10px] font-semibold">{item.name}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
           {/* Notifications Dropdown Toggle */}
           <div className="relative">
             <button
               onClick={() => {
                 setNotificationsOpen(!notificationsOpen);
-                setAppLauncherOpen(false);
                 setUserMenuOpen(false);
               }}
               className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all active:scale-95 relative shadow-xs ${
@@ -328,26 +210,12 @@ export default function Header({ title, subtitle }: HeaderProps) {
             )}
           </div>
 
-          {/* Active Role Pill in Header Bar */}
-          <div
-            className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-bold border shrink-0"
-            style={{
-              backgroundColor: roleConfig.badgeBg,
-              color: roleConfig.badgeColor,
-              borderColor: roleConfig.badgeBorder,
-            }}
-          >
-            <span className="material-symbols-outlined text-[13px]">{roleConfig.icon}</span>
-            <span>{roleConfig.shortLabel}</span>
-          </div>
-
           {/* User Profile Avatar & Menu */}
           <div className="relative">
             <button
               onClick={() => {
                 setUserMenuOpen(!userMenuOpen);
                 setNotificationsOpen(false);
-                setAppLauncherOpen(false);
               }}
               className="flex items-center gap-2 pl-2 border-l border-[#DDE4DE] active:scale-95 transition-transform"
             >

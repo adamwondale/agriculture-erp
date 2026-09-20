@@ -124,21 +124,6 @@ export default function LoginPage() {
               Z•ORISIS brings together multi-stage authorization, immutable audit trails, and hierarchical RBAC — designed for East Africa&apos;s most demanding agricultural enterprises.
             </p>
 
-            {/* Feature list with frosted glass pill containers */}
-            <div className="space-y-2.5 sm:space-y-3 mt-6 sm:mt-8">
-              {[
-                { icon: "verified_user", text: "Zero-trust RBAC with field-level permissions" },
-                { icon: "receipt_long", text: "Cryptographically signed immutable audit chain" },
-                { icon: "account_tree", text: "Multi-tier organizational hierarchy management" },
-              ].map((f) => (
-                <div key={f.icon} className="flex items-center gap-3 bg-black/30 backdrop-blur-md border border-white/15 px-3 py-2 rounded-xl shadow-xs">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/15 border border-white/20 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-[15px] sm:text-[16px] text-[#A3F4C3]">{f.icon}</span>
-                  </div>
-                  <span className="text-xs sm:text-[13px] text-white/95 font-medium drop-shadow-xs">{f.text}</span>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Bottom Trust Signals */}
