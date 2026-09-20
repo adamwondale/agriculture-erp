@@ -1,0 +1,852 @@
+<!DOCTYPE html><html lang="en" class="min-h-screen"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link rel="stylesheet" href="../design-tokens.css"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"primary":"#00261b","error-container":"#ffdad6","secondary-fixed":"#a3f4c3","on-primary-fixed":"#002116","primary-fixed-dim":"#a0d1bc","primary-fixed":"#bcedd7","secondary":"#156c46","secondary-container":"#a3f4c3","danger-red":"#C94B4B","surface-tint":"#E8F1EA","inverse-on-surface":"#e6f4ea","on-tertiary-fixed":"#0a2009","canvas-warm":"#F7F4EC","border-light":"#DDE4DE","danger-light":"#FDE8E8","on-tertiary-container":"#8ba584","inverse-primary":"#a0d1bc","surface-container":"#e3f1e7","on-secondary":"#ffffff","surface-bright":"#effdf3","inverse-surface":"#27332d","on-secondary-container":"#1e724b","on-primary":"#ffffff","info-light":"#E8F2FA","on-primary-container":"#79a894","tertiary-fixed-dim":"#b3ceab","outline":"#717974","tertiary":"#0f250e","on-tertiary":"#ffffff","on-background":"#121e18","tertiary-fixed":"#ceeac5","on-primary-fixed-variant":"#214f3f","on-secondary-fixed-variant":"#005232","error":"#ba1a1a","warning-light":"#FFF3D6","info-blue":"#3978A8","on-secondary-fixed":"#002111","surface-container-low":"#e9f7ed","surface-container-lowest":"#ffffff","on-surface-variant":"#414944","primary-container":"#0b3d2e","surface-variant":"#d8e6dc","on-tertiary-fixed-variant":"#354d31","on-error":"#ffffff","secondary-fixed-dim":"#87d7a8","surface-container-highest":"#d8e6dc","background":"#effdf3","on-surface":"#121e18","tertiary-container":"#243b21","on-error-container":"#93000a","text-muted":"#66736C","surface-container-high":"#ddece2","surface-dim":"#cfddd4","outline-variant":"#c0c8c3","surface":"#effdf3","primary-dark":"#062A20","surface-white":"#FFFFFF","warning-amber":"#D79A19"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1.5rem","space-sm":"0.5rem","space-xl":"1.5rem","space-xs":"0.25rem","gutter-sm":"1rem","margin-sm":"1rem","space-md":"1rem","space-lg":"1.25rem","margin":"1.5rem"},"fontFamily":{"body-md":["Inter"],"headline-sm":["Inter"],"label-sm":["Inter"],"headline-md":["Inter"],"body-lg":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"],"label-md":["Inter"],"headline-lg-mobile":["Inter"]},"fontSize":{"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"400"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.005em","fontWeight":"600"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}}</script></head><body class="bg-canvas-warm font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col justify-between"><header class="w-full bg-surface-white/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="max-w-7xl mx-auto h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Z•ORISIS Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UTMR57eg5erZv5ymtesinv1Wu9OPG4FKeEGIPVXFPiobBiiRIVx1Vu3WxqkltXUumqKM0R57cmvOtRPYlgEXDcN_D_Xdbt0lZQ_nBoH0SG4zuPiV1JiZJH_y1Kr0FDpNGdjps04nTyJ5TLkolCxqwWeJeTbVs9nXNMhzvwXUEqZy6MEBxc7LABoVevzcpeqgBHIZB4szF-UVtYjPGjnjVgITdDFzR73EgVpe0MdSbMASKyfuQbGjvIwkGg"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none">Z•ORISIS</span><span class="font-label-sm text-label-sm text-text-muted">Enterprise Gateway</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-tint"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-secondary">Portal Active</span></div><div class="flex items-center bg-canvas-warm rounded-lg p-0.5"><button class="px-space-sm py-0.5 rounded text-on-surface font-label-sm text-label-sm bg-surface-white shadow-[0_1px_2px_rgba(0,0,0,0.05)]">EN</button><button class="px-space-sm py-0.5 rounded text-text-muted hover:text-on-surface font-label-sm text-label-sm transition-colors">አማ</button></div></div></div></header><main class="w-full flex-1 flex items-center justify-center px-gutter-sm py-margin"><div class="flex flex-col w-full">
+<div class="w-full max-w-7xl mx-auto space-y-space-lg">
+<!-- Top System Context Bar -->
+<div class="bg-surface-white rounded-xl shadow-sm p-space-md flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<!-- Search & Quick Navigation -->
+<div class="flex items-center gap-space-md flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-text-muted text-[20px]">search</span>
+<input class="w-full pl-9 pr-space-md py-2 text-body-md font-body-md text-on-surface bg-surface-container-low rounded-xl placeholder:text-text-muted focus:outline-none focus:bg-surface-white transition-colors" placeholder="Search users, roles, audits... ⌘K" type="text">
+</div>
+</div>
+<!-- Environment, Security & Identity Chips -->
+<div class="flex flex-wrap items-center gap-space-sm sm:gap-space-md">
+<!-- Live Node Pill -->
+<div class="inline-flex items-center gap-1.5 px-space-sm py-1 bg-surface-container rounded-full text-secondary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+
+</div>
+<!-- Security Tier Compliance Badge -->
+<div class="inline-flex items-center gap-1 px-space-sm py-1 bg-info-light text-info-blue rounded-full font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+
+</div>
+<!-- Notifications -->
+<button aria-label="Notifications" class="relative p-2 rounded-xl text-text-muted hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-danger-red"></span>
+</button>
+<!-- User Profile Chip -->
+<div class="flex items-center gap-space-xs pl-space-sm bg-surface-container-low rounded-xl py-1 pr-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-headline-sm text-label-sm">
+            AT
+          </div>
+<div class="flex flex-col text-left pr-1">
+<span class="font-label-sm text-label-sm text-primary leading-tight">Abebe Tesfaye</span>
+<span class="font-body-sm text-body-sm text-text-muted leading-tight">System Admin</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Breadcrumb & Compliance Sub-Bar -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs text-text-muted px-space-xs">
+<nav aria-label="Breadcrumb" class="flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="text-text-muted">Core &amp; Administration</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-text-muted">Identity &amp; Access</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Users</span>
+</nav>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<span class="inline-flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[15px]">verified</span>
+          ISO/IEC 27001 Certified Directory
+        </span>
+<span class="inline-flex items-center gap-1 text-text-muted">
+<span class="material-symbols-outlined text-[15px]">shield</span>
+          ET-PRIVACY-ACT Compliant
+        </span>
+</div>
+</div>
+<!-- Page Header & Action Strip -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
+<div class="space-y-1">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Users</h1>
+<p class="font-body-md text-body-md text-text-muted max-w-2xl">
+          Manage users, roles, access and account status across all regional hubs and field stations.
+        </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="inline-flex items-center gap-1.5 px-space-md py-2.5 bg-surface-white text-secondary font-label-md text-label-md rounded-xl shadow-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+          Export Registry
+        </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2.5 bg-surface-white text-on-surface-variant font-label-md text-label-md rounded-xl shadow-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">layers</span>
+          Bulk Actions
+        </button>
+<button class="inline-flex items-center gap-1.5 px-space-lg py-2.5 bg-primary-container text-on-primary font-label-md text-label-md rounded-xl shadow-sm hover:bg-primary-dark transition-colors">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+          Add User
+        </button>
+</div>
+</div>
+<!-- KPI / Quick Stats Summary Row -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-space-md">
+<!-- Total Users -->
+<div class="bg-surface-white rounded-xl shadow-sm p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between text-text-muted mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Total Users</span>
+<span class="material-symbols-outlined text-[18px]">group</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-primary">1,248</span>
+</div>
+<span class="mt-2 font-label-sm text-label-sm text-secondary inline-flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12 this month
+        </span>
+</div>
+<!-- Active Accounts -->
+<div class="bg-surface-white rounded-xl shadow-sm p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between text-text-muted mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Active</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-secondary">1,180</span>
+</div>
+<span class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm w-fit">
+          94.5% Healthy Rate
+        </span>
+</div>
+<!-- Pending Provisioning -->
+<div class="bg-surface-white rounded-xl shadow-sm p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between text-text-muted mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Pending</span>
+<span class="material-symbols-outlined text-[18px] text-warning-amber">hourglass_top</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface">24</span>
+</div>
+<span class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-warning-light text-warning-amber font-label-sm text-label-sm w-fit">
+          Needs Verification
+        </span>
+</div>
+<!-- Suspended / Locked -->
+<div class="bg-surface-white rounded-xl shadow-sm p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between text-text-muted mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Suspended</span>
+<span class="material-symbols-outlined text-[18px] text-danger-red">lock_clock</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-danger-red">16</span>
+</div>
+<span class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-danger-light text-danger-red font-label-sm text-label-sm w-fit">
+          MFA/Security Holds
+        </span>
+</div>
+<!-- Inactive / Offboarded -->
+<div class="bg-surface-white rounded-xl shadow-sm p-space-md flex flex-col justify-between col-span-2 md:col-span-1">
+<div class="flex items-center justify-between text-text-muted mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Inactive</span>
+<span class="material-symbols-outlined text-[18px]">archive</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-text-muted">28</span>
+</div>
+<span class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-low text-text-muted font-label-sm text-label-sm w-fit">
+          Archived / Exited
+        </span>
+</div>
+</div>
+<!-- Filter & Toolbar Panel -->
+<div class="bg-surface-white rounded-xl shadow-sm p-space-md space-y-space-md">
+<!-- Search and Core Action Controls -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md">
+<div class="md:col-span-5 relative">
+<span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span>
+<input class="w-full pl-9 pr-space-md py-2.5 text-body-md font-body-md bg-canvas-warm rounded-xl text-on-surface placeholder:text-text-muted focus:outline-none focus:bg-surface-container-low transition-colors" placeholder="Search by name, email, employee ID, or username..." type="text">
+</div>
+<div class="md:col-span-7 flex flex-wrap items-center justify-start md:justify-end gap-space-sm">
+<button class="inline-flex items-center gap-1.5 px-space-md py-2.5 bg-surface-container-low text-secondary font-label-sm text-label-sm rounded-xl hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+            Filter &amp; Sort
+          </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2.5 text-text-muted hover:text-on-surface font-label-sm text-label-sm rounded-xl hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+            Reset Filters
+          </button>
+<div class="h-6 w-[1px] bg-surface-variant hidden sm:block"></div>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2.5 bg-surface-container-high text-primary font-label-sm text-label-sm rounded-xl hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[16px]">table_view</span>
+            Export View
+          </button>
+</div>
+</div>
+<!-- Secondary Structured Filter Rows -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-space-sm pt-space-xs">
+<!-- Organization -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-muted">Organization</label>
+<div class="relative">
+<select class="w-full appearance-none bg-canvas-warm rounded-lg px-3 py-2 text-body-sm font-body-sm text-on-surface pr-8 focus:outline-none focus:bg-surface-container-low">
+<option>All Organizations</option>
+<option>Z•ORISIS Holding</option>
+<option>East Africa Ag Division</option>
+<option>Regional Agronomy</option>
+<option>Amhara Regional</option>
+<option>Rift Valley Silos</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[16px] text-text-muted pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Branch / Hub -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-muted">Branch / Hub</label>
+<div class="relative">
+<select class="w-full appearance-none bg-canvas-warm rounded-lg px-3 py-2 text-body-sm font-body-sm text-on-surface pr-8 focus:outline-none focus:bg-surface-container-low">
+<option>All Hubs &amp; Stations</option>
+<option>Oromia HQ (Central Hub)</option>
+<option>Bishoftu IoT Station</option>
+<option>Adama Regional Depot</option>
+<option>Bahir Dar Hub</option>
+<option>Rift Valley Station</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[16px] text-text-muted pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Role -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-muted">Assigned Role</label>
+<div class="relative">
+<select class="w-full appearance-none bg-canvas-warm rounded-lg px-3 py-2 text-body-sm font-body-sm text-on-surface pr-8 focus:outline-none focus:bg-surface-container-low">
+<option>All Roles</option>
+<option>System Admin</option>
+<option>Finance Officer</option>
+<option>Farm Manager</option>
+<option>Field Officer</option>
+<option>Regional Admin</option>
+<option>Inventory Clerk</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[16px] text-text-muted pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Status -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-muted">Account Status</label>
+<div class="relative">
+<select class="w-full appearance-none bg-canvas-warm rounded-lg px-3 py-2 text-body-sm font-body-sm text-on-surface pr-8 focus:outline-none focus:bg-surface-container-low">
+<option>All Statuses</option>
+<option>Active</option>
+<option>Pending</option>
+<option>Suspended</option>
+<option>Inactive</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[16px] text-text-muted pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Security / MFA -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-muted">Security Policy</label>
+<div class="relative">
+<select class="w-full appearance-none bg-canvas-warm rounded-lg px-3 py-2 text-body-sm font-body-sm text-on-surface pr-8 focus:outline-none focus:bg-surface-container-low">
+<option>MFA Enforced (Default)</option>
+<option>FIDO2 Hardware Key</option>
+<option>TOTP Authenticator</option>
+<option>Grace Period Active</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[16px] text-text-muted pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Data Table Container -->
+<div class="bg-surface-white rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-canvas-warm text-text-muted font-label-sm text-label-sm uppercase tracking-wider select-none">
+<th class="py-3 px-4 w-10" scope="col">
+<input class="rounded text-secondary focus:ring-0 w-4 h-4 cursor-pointer" type="checkbox">
+</th>
+<th class="py-3 px-4 min-w-[240px]" scope="col">User &amp; Identification</th>
+<th class="py-3 px-4 min-w-[200px]" scope="col">Corporate Email</th>
+<th class="py-3 px-4 min-w-[160px]" scope="col">Organization</th>
+<th class="py-3 px-4 min-w-[170px]" scope="col">Branch / Station</th>
+<th class="py-3 px-4 min-w-[150px]" scope="col">Role</th>
+<th class="py-3 px-4 min-w-[130px]" scope="col">Status</th>
+<th class="py-3 px-4 min-w-[170px]" scope="col">Last Login</th>
+<th class="py-3 px-4 text-right min-w-[110px]" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-body-md font-body-md">
+<!-- Row 1: Abebe Tesfaye -->
+<tr class="hover:bg-canvas-warm/50 transition-colors group">
+<td class="py-3.5 px-4">
+<input class="rounded text-secondary focus:ring-0 w-4 h-4 cursor-pointer" type="checkbox">
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-headline-sm text-label-sm flex-shrink-0">
+                    AT
+                  </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-label-md text-primary truncate">Abebe Tesfaye</span>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-text-muted">
+<span class="">@atesfaye</span>
+<span class="text-surface-variant">•</span>
+<span class="bg-surface-container-low px-1.5 py-0.2 rounded text-[11px] font-mono">EMP-ETH-2024-0091</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1.5 text-on-surface font-body-sm text-body-sm">
+<span class="truncate">abebe.tesfaye@zorisis.com</span>
+<span class="material-symbols-outlined text-[15px] text-secondary flex-shrink-0" title="Verified Identity">verified</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant font-body-sm text-body-sm">
+                Z•ORISIS Holding
+              </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-text-muted">location_on</span>
+<span class="">Oromia HQ (Central Hub)</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">admin_panel_settings</span>
+                  System Admin
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Active
+                </span>
+</td>
+<td class="py-3.5 px-4 text-text-muted font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-on-surface">Today, 09:14 EAT</span>
+<span class="text-[11px] text-text-muted">ET-ADD-04 (HQ Core)</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-text-muted hover:text-primary hover:bg-surface-container-low transition-colors" title="View Audit Trail">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-secondary hover:bg-surface-container-low transition-colors" title="Edit Privileges">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-on-surface hover:bg-surface-container-low transition-colors" title="More Actions">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Selamawit Bekele -->
+<tr class="hover:bg-canvas-warm/50 transition-colors group bg-canvas-warm/20">
+<td class="py-3.5 px-4">
+<input class="rounded text-secondary focus:ring-0 w-4 h-4 cursor-pointer" type="checkbox">
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-headline-sm text-label-sm flex-shrink-0">
+                    SB
+                  </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-label-md text-primary truncate">Selamawit Bekele</span>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-text-muted">
+<span class="">@sbekele</span>
+<span class="text-surface-variant">•</span>
+<span class="bg-surface-container-low px-1.5 py-0.2 rounded text-[11px] font-mono">EMP-ETH-2024-0144</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1.5 text-on-surface font-body-sm text-body-sm">
+<span class="truncate">selamawit.b@zorisis.com</span>
+<span class="material-symbols-outlined text-[15px] text-secondary flex-shrink-0" title="Verified Identity">verified</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant font-body-sm text-body-sm">
+                Z•ORISIS Holding
+              </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-text-muted">corporate_fare</span>
+<span class="">Finance &amp; Accounting</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">account_balance</span>
+                  Finance Officer
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Active
+                </span>
+</td>
+<td class="py-3.5 px-4 text-text-muted font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-on-surface">Today, 08:30 EAT</span>
+<span class="text-[11px] text-text-muted">ET-FIN-01 (Treasury)</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-text-muted hover:text-primary hover:bg-surface-container-low transition-colors" title="View Audit Trail">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-secondary hover:bg-surface-container-low transition-colors" title="Edit Privileges">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-on-surface hover:bg-surface-container-low transition-colors" title="More Actions">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Kinde Gudeta -->
+<tr class="hover:bg-canvas-warm/50 transition-colors group">
+<td class="py-3.5 px-4">
+<input class="rounded text-secondary focus:ring-0 w-4 h-4 cursor-pointer" type="checkbox">
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-primary font-headline-sm text-label-sm flex items-center justify-center flex-shrink-0">
+                    KG
+                  </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-label-md text-primary truncate">Kinde Gudeta</span>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-text-muted">
+<span class="">@kgudeta</span>
+<span class="text-surface-variant">•</span>
+<span class="bg-surface-container-low px-1.5 py-0.2 rounded text-[11px] font-mono">EMP-ETH-2023-0882</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1.5 text-on-surface font-body-sm text-body-sm">
+<span class="truncate">kinde.gudeta@zorisis.com</span>
+<span class="material-symbols-outlined text-[15px] text-secondary flex-shrink-0" title="Verified Identity">verified</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant font-body-sm text-body-sm">
+                East Africa Primary
+              </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-text-muted">local_shipping</span>
+<span class="">Logistics &amp; Distribution</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-info-light text-info-blue font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                  Logistics Officer
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Active
+                </span>
+</td>
+<td class="py-3.5 px-4 text-text-muted font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-on-surface">Yesterday, 16:40 EAT</span>
+<span class="text-[11px] text-text-muted">ET-LOG-02 (Mobile)</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-text-muted hover:text-primary hover:bg-surface-container-low transition-colors" title="View Audit Trail">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-secondary hover:bg-surface-container-low transition-colors" title="Edit Privileges">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-on-surface hover:bg-surface-container-low transition-colors" title="More Actions">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Yonas Teka (Pending) -->
+<tr class="hover:bg-canvas-warm/50 transition-colors group bg-canvas-warm/20">
+<td class="py-3.5 px-4">
+<input class="rounded text-secondary focus:ring-0 w-4 h-4 cursor-pointer" type="checkbox">
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-warning-light text-warning-amber flex items-center justify-center font-headline-sm text-label-sm flex-shrink-0">
+                    YT
+                  </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-label-md text-primary truncate">Yonas Teka</span>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-text-muted">
+<span class="">@yteka</span>
+<span class="text-surface-variant">•</span>
+<span class="bg-surface-container-low px-1.5 py-0.2 rounded text-[11px] font-mono">EMP-ETH-2024-0312</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1.5 text-text-muted font-body-sm text-body-sm">
+<span class="truncate">yonas.teka@zorisis.com</span>
+<span class="material-symbols-outlined text-[15px] text-warning-amber flex-shrink-0" title="Pending Verification">hourglass_empty</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant font-body-sm text-body-sm">
+                Regional Agronomy
+              </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-text-muted">sensors</span>
+<span class="">Bishoftu IoT Station</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">agriculture</span>
+                  Farm Manager
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-warning-light text-warning-amber font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-warning-amber"></span>
+                  Pending (Step 4 Security)
+                </span>
+</td>
+<td class="py-3.5 px-4 text-text-muted font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-on-surface">May 28, 2025</span>
+<span class="text-[11px] text-text-muted">Provisioning Queue</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-text-muted hover:text-primary hover:bg-surface-container-low transition-colors" title="Complete Provisioning">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-secondary hover:bg-surface-container-low transition-colors" title="Edit Registration">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-on-surface hover:bg-surface-container-low transition-colors" title="More Actions">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Mahlet Hale (Suspended) -->
+<tr class="hover:bg-canvas-warm/50 transition-colors group">
+<td class="py-3.5 px-4">
+<input class="rounded text-secondary focus:ring-0 w-4 h-4 cursor-pointer" type="checkbox">
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-danger-light text-danger-red flex items-center justify-center font-headline-sm text-label-sm flex-shrink-0">
+                    MH
+                  </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-label-md text-primary truncate">Mahlet Hale</span>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-text-muted">
+<span class="">@mhale</span>
+<span class="text-surface-variant">•</span>
+<span class="bg-surface-container-low px-1.5 py-0.2 rounded text-[11px] font-mono">EMP-ETH-2024-0205</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1.5 text-on-surface font-body-sm text-body-sm">
+<span class="truncate">mahlet.hale@zorisis.com</span>
+<span class="material-symbols-outlined text-[15px] text-danger-red flex-shrink-0" title="Security Hold">gpp_maybe</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant font-body-sm text-body-sm">
+                East Africa Primary
+              </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-text-muted">warehouse</span>
+<span class="">Adama Regional Depot</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">nature_people</span>
+                  Field Officer
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-danger-light text-danger-red font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-danger-red"></span>
+                  Suspended (Failed MFA)
+                </span>
+</td>
+<td class="py-3.5 px-4 text-text-muted font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-on-surface">May 25, 2025</span>
+<span class="text-[11px] text-danger-red">Audit Flag #9942</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-text-muted hover:text-danger-red hover:bg-danger-light transition-colors" title="Unlock / Reset MFA">
+<span class="material-symbols-outlined text-[18px]">lock_reset</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-secondary hover:bg-surface-container-low transition-colors" title="Audit Incident">
+<span class="material-symbols-outlined text-[18px]">policy</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-on-surface hover:bg-surface-container-low transition-colors" title="More Actions">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 6: Daniel Kebede -->
+<tr class="hover:bg-canvas-warm/50 transition-colors group bg-canvas-warm/20">
+<td class="py-3.5 px-4">
+<input class="rounded text-secondary focus:ring-0 w-4 h-4 cursor-pointer" type="checkbox">
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-primary font-headline-sm text-label-sm flex items-center justify-center flex-shrink-0">
+                    DK
+                  </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-label-md text-primary truncate">Daniel Kebede</span>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-text-muted">
+<span class="">@dkebede</span>
+<span class="text-surface-variant">•</span>
+<span class="bg-surface-container-low px-1.5 py-0.2 rounded text-[11px] font-mono">EMP-ETH-2023-0491</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1.5 text-on-surface font-body-sm text-body-sm">
+<span class="truncate">daniel.kebede@zorisis.com</span>
+<span class="material-symbols-outlined text-[15px] text-secondary flex-shrink-0" title="Verified Identity">verified</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant font-body-sm text-body-sm">
+                Regional Agronomy
+              </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-text-muted">landscape</span>
+<span class="">Rift Valley Station</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">agriculture</span>
+                  Farm Manager
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Active
+                </span>
+</td>
+<td class="py-3.5 px-4 text-text-muted font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-on-surface">Today, 07:15 EAT</span>
+<span class="text-[11px] text-text-muted">ET-AGR-08 (Telemetry)</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-text-muted hover:text-primary hover:bg-surface-container-low transition-colors" title="View Audit Trail">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-secondary hover:bg-surface-container-low transition-colors" title="Edit Privileges">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-on-surface hover:bg-surface-container-low transition-colors" title="More Actions">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 7: Dawit Mengistu -->
+<tr class="hover:bg-canvas-warm/50 transition-colors group">
+<td class="py-3.5 px-4">
+<input class="rounded text-secondary focus:ring-0 w-4 h-4 cursor-pointer" type="checkbox">
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-headline-sm text-label-sm flex-shrink-0">
+                    DM
+                  </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-label-md text-primary truncate">Dawit Mengistu</span>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-text-muted">
+<span class="">@dmengistu</span>
+<span class="text-surface-variant">•</span>
+<span class="bg-surface-container-low px-1.5 py-0.2 rounded text-[11px] font-mono">EMP-ETH-2023-0102</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1.5 text-on-surface font-body-sm text-body-sm">
+<span class="truncate">dawit.m@zorisis.com</span>
+<span class="material-symbols-outlined text-[15px] text-secondary flex-shrink-0" title="Verified Identity">verified</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant font-body-sm text-body-sm">
+                Amhara Regional
+              </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-text-muted">hub</span>
+<span class="">Bahir Dar Hub</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">supervisor_account</span>
+                  Regional Admin
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Active
+                </span>
+</td>
+<td class="py-3.5 px-4 text-text-muted font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-on-surface">May 27, 2025</span>
+<span class="text-[11px] text-text-muted">ET-BHR-01 (Station)</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-text-muted hover:text-primary hover:bg-surface-container-low transition-colors" title="View Audit Trail">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-secondary hover:bg-surface-container-low transition-colors" title="Edit Privileges">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-on-surface hover:bg-surface-container-low transition-colors" title="More Actions">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 8: Tadesse Gemechu (Inactive) -->
+<tr class="hover:bg-canvas-warm/50 transition-colors group bg-canvas-warm/20">
+<td class="py-3.5 px-4">
+<input class="rounded text-secondary focus:ring-0 w-4 h-4 cursor-pointer" type="checkbox">
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-space-sm opacity-70 group-hover:opacity-100 transition-opacity">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-text-muted flex items-center justify-center font-headline-sm text-label-sm flex-shrink-0">
+                    TG
+                  </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-label-md text-on-surface truncate">Tadesse Gemechu</span>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-text-muted">
+<span class="">@tgemechu</span>
+<span class="text-surface-variant">•</span>
+<span class="bg-surface-container-low px-1.5 py-0.2 rounded text-[11px] font-mono">EMP-ETH-2022-0941</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 text-text-muted">
+<div class="inline-flex items-center gap-1.5 font-body-sm text-body-sm">
+<span class="truncate">tadesse.g@zorisis.com</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-text-muted font-body-sm text-body-sm">
+                Rift Valley Silos
+              </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>
+<span class="">Grain Storage Division</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-low text-text-muted font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">inventory</span>
+                  Inventory Clerk
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-text-muted font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-text-muted"></span>
+                  Inactive (Archived)
+                </span>
+</td>
+<td class="py-3.5 px-4 text-text-muted font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-text-muted">April 12, 2025</span>
+<span class="text-[11px] text-text-muted">De-provisioned</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-text-muted hover:text-primary hover:bg-surface-container-low transition-colors" title="View Historical Audit">
+<span class="material-symbols-outlined text-[18px]">history</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-secondary hover:bg-surface-container-low transition-colors" title="Reactivate Account">
+<span class="material-symbols-outlined text-[18px]">settings_backup_restore</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-muted hover:text-on-surface hover:bg-surface-container-low transition-colors" title="More Actions">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Bottom Pagination Strip -->
+<div class="px-space-md py-space-sm bg-surface-white border-t-0 flex flex-col md:flex-row items-center justify-between gap-space-md">
+<!-- Pagination Metadata & Page size selector -->
+<div class="flex flex-wrap items-center gap-space-md font-body-sm text-body-sm text-text-muted">
+<span class="">Showing <strong class="text-on-surface font-semibold">1–8</strong> of <strong class="text-on-surface font-semibold">1,248</strong> users (Filtered from 1,248 total)</span>
+<div class="flex items-center gap-1.5">
+<span class="">Items per page:</span>
+<div class="flex items-center bg-canvas-warm rounded-lg p-0.5">
+<button class="px-2 py-0.5 rounded text-primary font-semibold bg-surface-white shadow-sm">10</button>
+<button class="px-2 py-0.5 rounded hover:text-on-surface">25</button>
+<button class="px-2 py-0.5 rounded hover:text-on-surface">50</button>
+</div>
+</div>
+</div>
+<!-- Page Numbers & Prev/Next Controls -->
+<div class="flex items-center gap-space-xs">
+<button aria-label="Previous Page" class="inline-flex items-center justify-center p-1.5 rounded-lg text-text-muted hover:bg-canvas-warm hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm">1</button>
+<button class="w-8 h-8 rounded-lg text-text-muted hover:bg-canvas-warm hover:text-on-surface font-label-sm text-label-sm transition-colors">2</button>
+<button class="w-8 h-8 rounded-lg text-text-muted hover:bg-canvas-warm hover:text-on-surface font-label-sm text-label-sm transition-colors">3</button>
+<span class="w-6 text-center text-text-muted">...</span>
+<button class="w-8 h-8 rounded-lg text-text-muted hover:bg-canvas-warm hover:text-on-surface font-label-sm text-label-sm transition-colors">156</button>
+<button aria-label="Next Page" class="inline-flex items-center justify-center p-1.5 rounded-lg text-text-muted hover:bg-canvas-warm hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+<div class="hidden sm:flex items-center gap-1.5 pl-space-sm text-text-muted font-label-sm text-label-sm">
+<span class="">Go to:</span>
+<input class="w-10 py-1 text-center bg-canvas-warm rounded-lg text-on-surface focus:outline-none" placeholder="1" type="text">
+</div>
+</div>
+</div>
+</div>
+<!-- Legal & Security Compliance Governance Notice -->
+
+</div>
+</div></main><footer class="w-full bg-surface-white py-space-md px-gutter shadow-[0_-1px_8px_rgba(0,0,0,0.02)]"></footer>
+
+</body></html>

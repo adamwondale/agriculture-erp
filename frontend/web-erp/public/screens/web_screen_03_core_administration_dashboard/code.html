@@ -1,0 +1,618 @@
+<!DOCTYPE html><html lang="en" class="min-h-screen"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link rel="stylesheet" href="../design-tokens.css"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"><style>
+@layer base {
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; min-height: 100vh; }
+}
+/* Accessible cross-browser scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #F7F4EC; }
+::-webkit-scrollbar-thumb { background: #A8C3A0; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #146B45; }
+* { scrollbar-width: thin; scrollbar-color: #A8C3A0 #F7F4EC; }
+</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-container": "#a3f4c3", "on-secondary": "#ffffff", "surface": "#effdf3", "outline": "#717974", "inverse-surface": "#27332d", "inverse-primary": "#a0d1bc", "primary-fixed": "#bcedd7", "surface-container-high": "#ddece2", "on-tertiary-fixed-variant": "#354d31", "surface-container-low": "#e9f7ed", "on-error": "#ffffff", "on-surface": "#121e18", "border-light": "#DDE4DE", "on-surface-variant": "#414944", "error-container": "#ffdad6", "tertiary-container": "#243b21", "primary-dark": "#062A20", "danger-red": "#C94B4B", "on-secondary-fixed-variant": "#005232", "surface-white": "#FFFFFF", "background": "#effdf3", "error": "#ba1a1a", "inverse-on-surface": "#e6f4ea", "on-error-container": "#93000a", "on-primary": "#ffffff", "surface-container-highest": "#d8e6dc", "surface-tint": "#396756", "on-tertiary": "#ffffff", "tertiary": "#0f250e", "secondary": "#156c46", "secondary-fixed-dim": "#87d7a8", "warning-light": "#FFF3D6", "info-blue": "#3978A8", "warning-amber": "#D79A19", "on-primary-fixed-variant": "#214f3f", "on-secondary-container": "#1e724b", "on-tertiary-container": "#8ba584", "tertiary-fixed-dim": "#b3ceab", "surface-container": "#e3f1e7", "secondary-fixed": "#a3f4c3", "primary-container": "#0b3d2e", "surface-dim": "#cfddd4", "on-primary-fixed": "#002116", "primary": "#00261b", "outline-variant": "#c0c8c3", "info-light": "#E8F2FA", "surface-bright": "#effdf3", "on-tertiary-fixed": "#0a2009", "surface-container-lowest": "#ffffff", "surface-variant": "#d8e6dc", "danger-light": "#FDE8E8", "primary-fixed-dim": "#a0d1bc", "text-muted": "#66736C", "on-secondary-fixed": "#002111", "canvas-warm": "#F7F4EC", "tertiary-fixed": "#ceeac5", "on-primary-container": "#79a894", "on-background": "#121e18" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "space-sm": "0.5rem", "space-xl": "1.5rem", "gutter-sm": "1rem", "margin-sm": "1rem", "space-lg": "1.25rem", "gutter": "1.5rem", "space-md": "1rem", "margin": "1.5rem" }, "fontFamily": { "headline-lg": ["Inter"], "headline-md": ["Inter"], "body-sm": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Inter"], "label-sm": ["Inter"], "headline-lg-mobile": ["Inter"], "body-lg": ["Inter"], "label-md": ["Inter"] }, "fontSize": { "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.005em", "fontWeight": "600" }] } } } };</script></head><body class="bg-canvas-warm font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-screen w-72 bg-primary-container z-50 flex flex-col justify-between shadow-[0_2px_8px_rgba(11,61,46,0.04)]"><div class="flex flex-col flex-1 overflow-y-auto px-space-md pt-space-lg"><div class="flex items-start gap-space-sm pb-space-lg px-space-xs"><img alt="Brand logo. - Primary color: #0b3d2e
+- Font: inter
+- Mode: light
+- Roundness: rounded-md
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UTMR57eg5erZv5ymtesinv1Wu9OPG4FKeEGIPVXFPiobBiiRIVx1Vu3WxqkltXUumqKM0R57cmvOtRPYlgEXDcN_D_Xdbt0lZQ_nBoH0SG4zuPiV1JiZJH_y1Kr0FDpNGdjps04nTyJ5TLkolCxqwWeJeTbVs9nXNMhzvwXUEqZy6MEBxc7LABoVevzcpeqgBHIZB4szF-UVtYjPGjnjVgITdDFzR73EgVpe0MdSbMASKyfuQbGjvIwkGg"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-primary tracking-tight">Z•ORISIS</span></div><span class="font-body-sm text-body-sm text-on-primary-container">Together We Grow</span><div class="mt-space-xs"></div></div></div><nav class="flex flex-col gap-space-xs mt-space-sm" data-active-classes="bg-secondary text-on-secondary font-label-md"><a aria-current="page" class="flex items-center justify-between px-space-md py-2.5 rounded-xl transition-colors bg-secondary text-on-secondary font-label-md" data-path="dashboard" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="">Dashboard</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="organization" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">corporate_fare</span><span class="">Organization</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="users" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">group</span><span class="">Users</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="roles-and-permissions" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">admin_panel_settings</span><span class="">Roles &amp; Permissions</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="delegation" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">swap_horiz</span><span class="">Delegation</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="approvals" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">verified</span><span class="">Approvals</span></div><span class="px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-secondary text-on-secondary">8</span></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="audit-logs" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="">Audit Logs</span></div></a></nav><div class="mt-space-lg pt-space-md"><span class="px-space-md font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Preferences</span><nav class="flex flex-col gap-space-xs mt-space-xs" data-active-classes="bg-secondary text-on-secondary font-label-md"><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="settings" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">settings</span><span class="">Settings</span></div></a></nav></div></div><div class="p-space-md m-space-sm rounded-xl bg-primary-dark"><div class="flex items-center gap-space-sm"><div class="relative"><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-secondary-fixed"></span></div><div class="flex flex-col min-w-0 flex-1"><div class="flex items-center justify-between"><span class="font-label-md text-label-md text-on-primary truncate">Abebe Tesfaye</span><span class="font-label-sm text-label-sm text-secondary-fixed-dim">Verified</span></div><span class="font-body-sm text-body-sm text-on-primary-container truncate">System Admin</span><span class="font-body-sm text-body-sm text-text-muted truncate mt-0.5">Z•ORISIS Holding • Oromia Hub</span></div></div></div></aside><div class="pl-72"><header class="sticky top-0 z-40 h-16 w-full bg-surface-white/95 backdrop-blur-md border-b border-border-light flex items-center justify-between px-margin shadow-sm"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative flex-1"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span><input class="w-full h-10 pl-10 pr-12 bg-canvas-warm rounded-xl font-body-sm text-body-sm text-on-surface placeholder:text-text-muted focus:outline-none transition-colors hover:bg-surface-container-low" placeholder="Search users, roles, organizations or audit logs (⌘K)..." type="text"><kbd class="absolute right-3 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded text-[11px] font-mono bg-surface-white text-text-muted shadow-sm">⌘K</kbd></div></div><div class="flex items-center gap-space-sm"><div class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span></div><div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[15px] text-secondary-fixed">verified_user</span></div><button class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-text-muted hover:text-primary hover:bg-surface-container transition-colors font-label-sm text-label-sm" type="button"><span class="material-symbols-outlined text-[18px]">language</span><span class="">EN / አማ</span></button><button class="w-9 h-9 rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-surface-container transition-colors" title="Documentation &amp; Help" type="button"><span class="material-symbols-outlined text-[20px]">help</span></button><button class="relative w-9 h-9 rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-surface-container transition-colors" title="Notifications" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-danger-red ring-2 ring-surface-white"></span></button><div class="h-5 w-px bg-outline-variant mx-1 hidden sm:block"></div><button class="flex items-center gap-2 pl-1 pr-2 py-1 rounded-xl hover:bg-surface-container transition-colors" type="button"><div class="w-8 h-8 rounded-full bg-primary-container text-on-primary font-label-sm flex items-center justify-center text-[12px] font-semibold">AT</div><span class="material-symbols-outlined text-text-muted text-[16px]">expand_more</span></button></div></header><main class="w-full pt-6 pb-space-xl bg-canvas-warm px-margin min-h-screen"><div class="flex flex-col w-full pb-space-xl">
+<!-- Top Operational Header Bar -->
+<div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-space-md pt-2 pb-space-lg">
+<div class="flex flex-col gap-space-xs min-w-0">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight whitespace-nowrap">Good morning, Abebe</h1>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm shadow-sm whitespace-nowrap">
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed">shield_person</span>
+          System Administrator • Super Admin Context
+        </span>
+</div>
+<p class="font-body-md text-body-md text-text-muted">
+        Here is what is happening across your enterprise nodes, security credentials, and workflows today.
+      </p>
+</div>
+<!-- Quick Actions Group -->
+<div class="flex items-center gap-2 sm:gap-space-sm flex-wrap">
+<div class="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-surface-white text-text-muted font-body-sm text-body-sm shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="">Last synced: 2 mins ago</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-secondary">Auto-refresh ON</span>
+</div>
+<button class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-surface-white text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors shadow-sm font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="">Security Audit Export</span>
+</button>
+<button class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-surface-white text-primary-container hover:bg-surface-container-low transition-colors shadow-sm font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+<span class="">Create Delegation</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary-container text-on-primary hover:bg-primary-dark transition-all shadow-md hover:shadow-lg font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+<span class="">Provision User</span>
+</button>
+</div>
+</div>
+<!-- Row of 5 Enterprise KPI Metric Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md mb-space-lg">
+<!-- Card 1: Total Users -->
+<div class="bg-surface-white p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Total Users</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">group</span>
+</span>
+</div>
+<div class="my-space-sm flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-primary tracking-tight">4,820</span>
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>+3.2%
+        </span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted truncate">+148 this month across 6 regions</span>
+</div>
+<!-- Card 2: Active Users -->
+<div class="bg-surface-white p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Active Users (30d)</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</span>
+</div>
+<div class="my-space-sm flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-primary tracking-tight">4,295</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">89.1% Rate</span>
+</div>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-text-muted">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface font-medium">312</span> active online now
+      </div>
+</div>
+<!-- Card 3: Pending Approvals -->
+<div class="bg-surface-white p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Pending Approvals</span>
+<span class="w-8 h-8 rounded-lg bg-warning-light flex items-center justify-center text-warning-amber">
+<span class="material-symbols-outlined text-[18px]">pending_actions</span>
+</span>
+</div>
+<div class="my-space-sm flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-primary tracking-tight">14</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-warning-light text-warning-amber font-label-sm text-label-sm">
+          Action Required
+        </span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted truncate">3 high-value payment workflows</span>
+</div>
+<!-- Card 4: Active Roles -->
+<div class="bg-surface-white p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">RBAC Roles</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">policy</span>
+</span>
+</div>
+<div class="my-space-sm flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-primary tracking-tight">28</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">
+          All Enforced
+        </span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted truncate">8 System Default • 20 Custom</span>
+</div>
+<!-- Card 5: Recent Audit Events -->
+<div class="bg-surface-white p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Audit Events (24h)</span>
+<span class="w-8 h-8 rounded-lg bg-info-light flex items-center justify-center text-info-blue">
+<span class="material-symbols-outlined text-[18px]">security</span>
+</span>
+</div>
+<div class="my-space-sm flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-primary tracking-tight">1,248</span>
+<span class="inline-flex items-center gap-1 text-info-blue font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>Verified
+        </span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted truncate">0 critical security anomalies</span>
+</div>
+</div>
+<!-- Asymmetric Master 2-Column Work Grid (7 cols / 5 cols) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- LEFT WIDER COLUMN (~7 Cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- SECTION 1: Organization Hierarchy Overview -->
+<div class="bg-surface-white p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">account_tree</span>
+<h2 class="font-headline-md text-headline-md text-primary">Organization Hierarchy Summary</h2>
+</div>
+<a class="font-label-md text-label-md text-secondary hover:text-primary-container inline-flex items-center gap-1 transition-colors" href="#">
+            View Full Hierarchy
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<!-- Metric Aggregation Pills -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs p-space-sm bg-canvas-warm rounded-xl text-center">
+<div class="flex flex-col py-1">
+<span class="font-headline-sm text-headline-sm text-primary">4</span>
+<span class="font-body-sm text-body-sm text-text-muted">Regions</span>
+</div>
+<div class="flex flex-col py-1">
+<span class="font-headline-sm text-headline-sm text-primary">22</span>
+<span class="font-body-sm text-body-sm text-text-muted">Branches</span>
+</div>
+<div class="flex flex-col py-1">
+<span class="font-headline-sm text-headline-sm text-primary">86</span>
+<span class="font-body-sm text-body-sm text-text-muted">Field Stations</span>
+</div>
+<div class="flex flex-col py-1">
+<span class="font-headline-sm text-headline-sm text-primary">340</span>
+<span class="font-body-sm text-body-sm text-text-muted">Cooperatives</span>
+</div>
+</div>
+<!-- Structured Nested Visual Tree -->
+<div class="flex flex-col gap-space-xs mt-space-xs font-body-md text-body-md">
+<!-- Root Holding Node -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-md bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">domain</span>
+</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">Z•ORISIS Holding (HQ)</span>
+<span class="font-body-sm text-body-sm text-text-muted">Primary Enterprise Root Node</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-primary font-label-sm text-label-sm">1,240 Users</span>
+<span class="material-symbols-outlined text-text-muted text-[18px]">expand_less</span>
+</div>
+</div>
+<!-- Level 1 Branch A: East Africa Hub -->
+<div class="ml-6 pl-4 flex flex-col gap-space-xs">
+<div class="p-space-sm rounded-lg bg-surface-white hover:bg-canvas-warm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-6 h-6 rounded bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]">hub</span>
+</span>
+<div>
+<span class="font-label-md text-label-md text-primary">East Africa Regional Hub (Addis Ababa)</span>
+<span class="font-body-sm text-body-sm text-text-muted ml-2">14 Branches • 48 Field Stations</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">2,410 Users</span>
+</div>
+<!-- Level 2 Sub-branches -->
+<div class="ml-6 flex flex-col gap-1.5">
+<div class="flex items-center justify-between py-1.5 px-space-sm rounded-md hover:bg-canvas-warm">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-body-md text-body-md text-on-surface">Oromia Central Branch</span>
+<span class="font-body-sm text-body-sm text-text-muted">(18 Co-op Hubs)</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted">890 Users</span>
+</div>
+<div class="flex items-center justify-between py-1.5 px-space-sm rounded-md hover:bg-canvas-warm">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-body-md text-body-md text-on-surface">Amhara Regional Station</span>
+<span class="font-body-sm text-body-sm text-text-muted">(12 Field Units)</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted">640 Users</span>
+</div>
+<div class="flex items-center justify-between py-1.5 px-space-sm rounded-md hover:bg-canvas-warm">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-body-md text-body-md text-on-surface">SNNPR Agricultural Cluster</span>
+<span class="font-body-sm text-body-sm text-text-muted">(8 Field Units)</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted">520 Users</span>
+</div>
+</div>
+</div>
+<!-- Level 1 Branch B: West Africa Expansion -->
+<div class="ml-6 pl-4 flex flex-col gap-space-xs mt-1">
+<div class="p-space-sm rounded-lg bg-surface-white hover:bg-canvas-warm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-6 h-6 rounded bg-surface-container text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]">hub</span>
+</span>
+<div>
+<span class="font-label-md text-label-md text-primary">West Africa Expansion (Accra Hub)</span>
+<span class="font-body-sm text-body-sm text-text-muted ml-2">6 Operating Branches</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">1,170 Users</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Pending Approvals (High Priority Queue) -->
+<div class="bg-surface-white p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-warning-amber text-[20px]">assignment_late</span>
+<h2 class="font-headline-md text-headline-md text-primary">Pending Approvals</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-warning-light text-warning-amber font-label-sm text-label-sm">
+              14 Pending
+            </span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted">SLA Filter: High Risk</span>
+</div>
+<div class="flex flex-col gap-space-md">
+<!-- Item 1: Payment Request -->
+<div class="p-space-md rounded-xl bg-canvas-warm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-surface-white flex items-center justify-center text-primary-container shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-primary">Payment Request #PR-8821</span>
+<span class="font-label-sm text-label-sm text-primary px-2 py-0.5 rounded bg-surface-container font-mono">450,000 ETB (~$3,800)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Fertiliser Distribution Batch • Requested by <strong class="text-on-surface">Selamawit Bekele</strong> (Finance Officer)
+                </p>
+<div class="flex items-center gap-2 text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px]">linear_scale</span>
+<span class="">Stage: Stage 2/3 (Finance Manager Review)</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 self-end md:self-center shrink-0">
+<button class="px-3 py-1.5 rounded-lg bg-surface-white text-on-surface-variant hover:text-primary font-label-sm text-label-sm shadow-sm transition-colors" type="button">
+                Review
+              </button>
+<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-primary-dark font-label-sm text-label-sm shadow-sm transition-colors" type="button">
+                Approve
+              </button>
+</div>
+</div>
+<!-- Item 2: Permission Override -->
+<div class="p-space-md rounded-xl bg-canvas-warm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-surface-white flex items-center justify-center text-warning-amber shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[22px]">lock_reset</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-primary">Role Permission Override</span>
+<span class="font-label-sm text-label-sm text-warning-amber bg-warning-light px-2 py-0.5 rounded font-mono">Write: inventory.seed_stocks</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Applicant: <strong class="text-on-surface">Kinde Gudeta</strong> • Reason: Seasonal Planting Peak Operations
+                </p>
+<div class="flex items-center gap-2 text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span class="">Requested duration: 7 days</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 self-end md:self-center shrink-0">
+<button class="px-3 py-1.5 rounded-lg bg-surface-white text-on-surface-variant hover:text-primary font-label-sm text-label-sm shadow-sm transition-colors" type="button">
+                Review
+              </button>
+<button class="px-3 py-1.5 rounded-lg bg-danger-light text-danger-red hover:bg-error-container font-label-sm text-label-sm shadow-sm transition-colors" type="button">
+                Deny
+              </button>
+</div>
+</div>
+<!-- Item 3: Branch Provisioning -->
+<div class="p-space-md rounded-xl bg-canvas-warm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-surface-white flex items-center justify-center text-secondary shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[22px]">add_business</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-primary">New Branch Provisioning</span>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded">Jimma Specialized Coffee Hub</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Initiator: <strong class="text-on-surface">Daniel Kebede</strong> (Regional Expansion Director)
+                </p>
+<div class="flex items-center gap-2 text-danger-red font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+<span class="">SLA: 4 hours remaining to fulfill target deployment</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 self-end md:self-center shrink-0">
+<button class="px-3 py-1.5 rounded-lg bg-surface-white text-on-surface-variant hover:text-primary font-label-sm text-label-sm shadow-sm transition-colors" type="button">
+                Review
+              </button>
+<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-primary-dark font-label-sm text-label-sm shadow-sm transition-colors" type="button">
+                Approve
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Recently Provisioned Users -->
+<div class="bg-surface-white p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary-container text-[20px]">badge</span>
+<h2 class="font-headline-md text-headline-md text-primary">Recently Provisioned Users</h2>
+</div>
+<button class="font-label-sm text-label-sm text-primary-container hover:text-secondary inline-flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+            Add User
+          </button>
+</div>
+<div class="overflow-x-auto -mx-space-lg px-space-lg">
+<table class="w-full text-left">
+<thead>
+<tr class="text-text-muted font-label-sm text-label-sm uppercase tracking-wider bg-canvas-warm rounded-lg">
+<th class="py-3 px-3 rounded-l-lg">User &amp; Email</th>
+<th class="py-3 px-3">Organization / Branch</th>
+<th class="py-3 px-3">Role</th>
+<th class="py-3 px-3">Status</th>
+<th class="py-3 px-3 rounded-r-lg">Provisioned</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 font-body-sm text-body-sm">
+<tr class="hover:bg-canvas-warm transition-colors">
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary">Abeba Haile</span>
+<span class="text-text-muted font-mono">a.haile@zorisis.com</span>
+</div>
+</td>
+<td class="py-3 px-3 text-on-surface">East Africa • Oromia HQ</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-primary font-medium">Farm Manager</span>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Active
+                  </span>
+</td>
+<td class="py-3 px-3 text-text-muted">2 hours ago</td>
+</tr>
+<tr class="hover:bg-canvas-warm transition-colors">
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary">Dawit Yohannes</span>
+<span class="text-text-muted font-mono">d.yohannes@zorisis.com</span>
+</div>
+</td>
+<td class="py-3 px-3 text-on-surface">West Africa • Accra Hub</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-primary font-medium">Logistics Officer</span>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-warning-light text-warning-amber font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-warning-amber"></span>Pending MFA
+                  </span>
+</td>
+<td class="py-3 px-3 text-text-muted">Today, 08:30</td>
+</tr>
+<tr class="hover:bg-canvas-warm transition-colors">
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary">Tigist Alemu</span>
+<span class="text-text-muted font-mono">t.alemu@zorisis.com</span>
+</div>
+</td>
+<td class="py-3 px-3 text-on-surface">East Africa • Amhara</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-primary font-medium">HR Officer</span>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Active
+                  </span>
+</td>
+<td class="py-3 px-3 text-text-muted">Yesterday</td>
+</tr>
+<tr class="hover:bg-canvas-warm transition-colors">
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary">Samuel Chane</span>
+<span class="text-text-muted font-mono">s.chane@zorisis.com</span>
+</div>
+</td>
+<td class="py-3 px-3 text-on-surface">East Africa • Oromia</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-primary font-medium">Field Officer</span>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Active
+                  </span>
+</td>
+<td class="py-3 px-3 text-text-muted">May 24, 2024</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- RIGHT NARROWER COLUMN (~5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- SECTION 4: Delegations Expiring Soon -->
+<div class="bg-surface-white rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Amber Alert Header Banner -->
+<div class="bg-warning-light p-space-md flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-warning-amber text-[22px]">alarm</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">3 Delegations Expire in &lt; 48h</span>
+</div>
+<a class="font-label-sm text-label-sm text-warning-amber hover:underline" href="#">Manage All</a>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<!-- Delegation Item 1 -->
+<div class="flex flex-col gap-2 p-space-sm rounded-xl bg-canvas-warm">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-md text-label-md text-primary">Finance Manager → Finance Officer</span>
+<span class="block font-mono text-body-sm text-secondary font-medium">scope: payment.approve</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-danger-light text-danger-red font-label-sm text-label-sm">Tomorrow 18:00</span>
+</div>
+<div class="text-text-muted font-body-sm text-body-sm flex items-center gap-1.5">
+<span class="">Aster Mamo</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+<span class="text-on-surface font-medium">Yonas Teka</span>
+<span class="text-text-muted">• Oromia Hub</span>
+</div>
+<div class="flex items-center justify-end gap-2 pt-1">
+<button class="px-2.5 py-1 rounded bg-surface-white text-danger-red hover:bg-error-container font-label-sm text-label-sm shadow-sm transition-colors" type="button">
+                Revoke Now
+              </button>
+<button class="px-2.5 py-1 rounded bg-primary-container text-on-primary hover:bg-primary-dark font-label-sm text-label-sm shadow-sm transition-colors" type="button">
+                Extend
+              </button>
+</div>
+</div>
+<!-- Delegation Item 2 -->
+<div class="flex flex-col gap-2 p-space-sm rounded-xl bg-canvas-warm">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-md text-label-md text-primary">Field Station Lead → Senior Agronomist</span>
+<span class="block font-mono text-body-sm text-secondary font-medium">scope: audit.station_signoff</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-warning-light text-warning-amber font-label-sm text-label-sm">In 36 hours</span>
+</div>
+<div class="text-text-muted font-body-sm text-body-sm flex items-center gap-1.5">
+<span class="">Binyam T.</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+<span class="text-on-surface font-medium">Chaltu D.</span>
+<span class="text-text-muted">• Amhara Region</span>
+</div>
+<div class="flex items-center justify-end gap-2 pt-1">
+<button class="px-2.5 py-1 rounded bg-surface-white text-danger-red hover:bg-error-container font-label-sm text-label-sm shadow-sm transition-colors" type="button">
+                Revoke Now
+              </button>
+<button class="px-2.5 py-1 rounded bg-primary-container text-on-primary hover:bg-primary-dark font-label-sm text-label-sm shadow-sm transition-colors" type="button">
+                Extend
+              </button>
+</div>
+</div>
+<!-- Delegation Item 3 -->
+<div class="flex flex-col gap-2 p-space-sm rounded-xl bg-surface-container-low">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-md text-label-md text-primary">Warehouse Dispatch Approver</span>
+<span class="block font-mono text-body-sm text-secondary font-medium">scope: warehouse.dispatch</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-white text-text-muted font-label-sm text-label-sm">Expires in 4d</span>
+</div>
+<div class="text-text-muted font-body-sm text-body-sm flex items-center gap-1.5">
+<span class="">Gemechu K.</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+<span class="text-on-surface font-medium">Fitsum A.</span>
+<span class="text-text-muted">• Standard status</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 5: Recent Administrative Activity Timeline -->
+<div class="bg-surface-white p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary-container text-[20px]">history</span>
+<h2 class="font-headline-md text-headline-md text-primary">Recent Admin Activity</h2>
+</div>
+<a class="font-label-sm text-label-sm text-secondary hover:text-primary-container inline-flex items-center gap-0.5" href="#">
+            View All Audit Logs
+            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+<!-- Vertical Timeline Flow -->
+<div class="relative pl-6 flex flex-col gap-space-md">
+<div class="absolute left-2.5 top-2 bottom-2 w-0.5 bg-surface-container-high"></div>
+<!-- Event 1 -->
+<div class="relative flex flex-col gap-1">
+<span class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-secondary ring-4 ring-surface-white"></span>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase">GRANT: Permission Assigned</span>
+<span class="font-body-sm text-body-sm text-text-muted">10:14 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+              Abebe Tesfaye granted <code class="px-1 py-0.5 bg-surface-container text-primary rounded font-mono text-[11px]">reports.export_ndpr</code> to <strong>Selamawit Bekele</strong>.
+            </p>
+<span class="font-body-sm text-body-sm text-text-muted">Reason: Annual Regulatory Audit Compliance</span>
+</div>
+<!-- Event 2 -->
+<div class="relative flex flex-col gap-1">
+<span class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-primary-container ring-4 ring-surface-white"></span>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary font-semibold uppercase">UPDATE: RBAC Policy</span>
+<span class="font-body-sm text-body-sm text-text-muted">09:42 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+              Role <strong>Farm Manager</strong> policy modified: added read telemetry telemetry endpoints.
+            </p>
+</div>
+<!-- Event 3 -->
+<div class="relative flex flex-col gap-1">
+<span class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-info-blue ring-4 ring-surface-white"></span>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-info-blue font-semibold uppercase">MFA RESET: Security Auto</span>
+<span class="font-body-sm text-body-sm text-text-muted">08:15 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+              Automated OTP security challenge re-issued for <strong>Dawit Yohannes</strong> via backup SMS.
+            </p>
+</div>
+<!-- Event 4 -->
+<div class="relative flex flex-col gap-1">
+<span class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-outline-variant ring-4 ring-surface-white"></span>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-muted font-semibold uppercase">DELEGATION CREATED</span>
+<span class="font-body-sm text-body-sm text-text-muted">Yesterday 17:30</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+              Aster Mamo assigned payment authorization powers to Yonas Teka valid through May 28.
+            </p>
+</div>
+<!-- Event 5 -->
+<div class="relative flex flex-col gap-1">
+<span class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-danger-red ring-4 ring-surface-white"></span>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-danger-red font-semibold uppercase">USER SUSPENDED</span>
+<span class="font-body-sm text-body-sm text-text-muted">Yesterday 14:10</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+              Seasonal contract expired: Account <span class="font-mono text-[12px] font-semibold">#USR-9941</span> temporarily transitioned to dormant state.
+            </p>
+</div>
+</div>
+</div>
+<!-- SECTION 6: Security & System Health Status -->
+
+</div>
+</div>
+</div></main></div>
+
+
+
+
+
+
+
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

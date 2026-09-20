@@ -1,0 +1,881 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link rel="stylesheet" href="../design-tokens.css"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"><style>
+@layer base {
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; min-height: 100vh; }
+}
+/* Accessible cross-browser scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #F7F4EC; }
+::-webkit-scrollbar-thumb { background: #A8C3A0; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #146B45; }
+* { scrollbar-width: thin; scrollbar-color: #A8C3A0 #F7F4EC; }
+</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-container": "#a3f4c3", "on-secondary": "#ffffff", "surface": "#effdf3", "outline": "#717974", "inverse-surface": "#27332d", "inverse-primary": "#a0d1bc", "primary-fixed": "#bcedd7", "surface-container-high": "#ddece2", "on-tertiary-fixed-variant": "#354d31", "surface-container-low": "#e9f7ed", "on-error": "#ffffff", "on-surface": "#121e18", "border-light": "#DDE4DE", "on-surface-variant": "#414944", "error-container": "#ffdad6", "tertiary-container": "#243b21", "primary-dark": "#062A20", "danger-red": "#C94B4B", "on-secondary-fixed-variant": "#005232", "surface-white": "#FFFFFF", "background": "#effdf3", "error": "#ba1a1a", "inverse-on-surface": "#e6f4ea", "on-error-container": "#93000a", "on-primary": "#ffffff", "surface-container-highest": "#d8e6dc", "surface-tint": "#396756", "on-tertiary": "#ffffff", "tertiary": "#0f250e", "secondary": "#156c46", "secondary-fixed-dim": "#87d7a8", "warning-light": "#FFF3D6", "info-blue": "#3978A8", "warning-amber": "#D79A19", "on-primary-fixed-variant": "#214f3f", "on-secondary-container": "#1e724b", "on-tertiary-container": "#8ba584", "tertiary-fixed-dim": "#b3ceab", "surface-container": "#e3f1e7", "secondary-fixed": "#a3f4c3", "primary-container": "#0b3d2e", "surface-dim": "#cfddd4", "on-primary-fixed": "#002116", "primary": "#00261b", "outline-variant": "#c0c8c3", "info-light": "#E8F2FA", "surface-bright": "#effdf3", "on-tertiary-fixed": "#0a2009", "surface-container-lowest": "#ffffff", "surface-variant": "#d8e6dc", "danger-light": "#FDE8E8", "primary-fixed-dim": "#a0d1bc", "text-muted": "#66736C", "on-secondary-fixed": "#002111", "canvas-warm": "#F7F4EC", "tertiary-fixed": "#ceeac5", "on-primary-container": "#79a894", "on-background": "#121e18" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "space-sm": "0.5rem", "space-xl": "1.5rem", "gutter-sm": "1rem", "margin-sm": "1rem", "space-lg": "1.25rem", "gutter": "1.5rem", "space-md": "1rem", "margin": "1.5rem" }, "fontFamily": { "headline-lg": ["Inter"], "headline-md": ["Inter"], "body-sm": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Inter"], "label-sm": ["Inter"], "headline-lg-mobile": ["Inter"], "body-lg": ["Inter"], "label-md": ["Inter"] }, "fontSize": { "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.005em", "fontWeight": "600" }] } } } };</script></head><body class="bg-canvas-warm font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-screen w-72 bg-primary-container z-50 flex flex-col justify-between shadow-[0_2px_8px_rgba(11,61,46,0.04)]"><div class="flex flex-col flex-1 overflow-y-auto px-space-md pt-space-lg"><div class="flex items-start gap-space-sm pb-space-lg px-space-xs"><img alt="Brand logo. - Primary color: #0b3d2e
+- Font: inter
+- Mode: light
+- Roundness: rounded-md
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UTMR57eg5erZv5ymtesinv1Wu9OPG4FKeEGIPVXFPiobBiiRIVx1Vu3WxqkltXUumqKM0R57cmvOtRPYlgEXDcN_D_Xdbt0lZQ_nBoH0SG4zuPiV1JiZJH_y1Kr0FDpNGdjps04nTyJ5TLkolCxqwWeJeTbVs9nXNMhzvwXUEqZy6MEBxc7LABoVevzcpeqgBHIZB4szF-UVtYjPGjnjVgITdDFzR73EgVpe0MdSbMASKyfuQbGjvIwkGg"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-primary tracking-tight">Z•ORISIS</span></div><span class="font-body-sm text-body-sm text-on-primary-container">Together We Grow</span><div class="mt-space-xs"></div></div></div><nav class="flex flex-col gap-space-xs mt-space-sm" data-active-classes="bg-secondary text-on-secondary font-label-md"><a aria-current="page" class="flex items-center justify-between px-space-md py-2.5 rounded-xl transition-colors bg-secondary text-on-secondary font-label-md" data-path="dashboard" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="">Dashboard</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="organization" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">corporate_fare</span><span class="">Organization</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="users" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">group</span><span class="">Users</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="roles-and-permissions" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">admin_panel_settings</span><span class="">Roles &amp; Permissions</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="delegation" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">swap_horiz</span><span class="">Delegation</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="approvals" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">verified</span><span class="">Approvals</span></div><span class="px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-secondary text-on-secondary">8</span></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="audit-logs" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="">Audit Logs</span></div></a></nav><div class="mt-space-lg pt-space-md"><span class="px-space-md font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Preferences</span><nav class="flex flex-col gap-space-xs mt-space-xs" data-active-classes="bg-secondary text-on-secondary font-label-md"><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="settings" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">settings</span><span class="">Settings</span></div></a></nav></div></div><div class="p-space-md m-space-sm rounded-xl bg-primary-dark"><div class="flex items-center gap-space-sm"><div class="relative"><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-secondary-fixed"></span></div><div class="flex flex-col min-w-0 flex-1"><div class="flex items-center justify-between"><span class="font-label-md text-label-md text-on-primary truncate">Abebe Tesfaye</span><span class="font-label-sm text-label-sm text-secondary-fixed-dim">Verified</span></div><span class="font-body-sm text-body-sm text-on-primary-container truncate">System Admin</span><span class="font-body-sm text-body-sm text-text-muted truncate mt-0.5">Z•ORISIS Holding • Oromia Hub</span></div></div></div></aside><div class="pl-72"><header class="sticky top-0 z-40 h-16 w-full bg-canvas-warm/90 backdrop-blur-xl z-40 flex items-center justify-between px-margin shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-lg flex-1 max-w-2xl"><img alt="Brand logo. - Primary color: #0b3d2e
+- Font: inter
+- Mode: light
+- Roundness: rounded-md
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UTMR57eg5erZv5ymtesinv1Wu9OPG4FKeEGIPVXFPiobBiiRIVx1Vu3WxqkltXUumqKM0R57cmvOtRPYlgEXDcN_D_Xdbt0lZQ_nBoH0SG4zuPiV1JiZJH_y1Kr0FDpNGdjps04nTyJ5TLkolCxqwWeJeTbVs9nXNMhzvwXUEqZy6MEBxc7LABoVevzcpeqgBHIZB4szF-UVtYjPGjnjVgITdDFzR73EgVpe0MdSbMASKyfuQbGjvIwkGg"><div class="relative flex-1"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span><input class="w-full h-11 pl-10 pr-4 bg-surface-white rounded-xl font-body-sm text-body-sm text-on-surface placeholder:text-text-muted focus:outline-none" placeholder="Search users, roles, organizations or audit logs (⌘K)..." type="text"></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-info-light text-info-blue font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">shield</span></div><button class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-white font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface" type="button"><span class="material-symbols-outlined text-[16px]">language</span><span class="">EN / አማ</span></button><a class="p-2 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-white transition-colors" data-path="documentation" href="#"><span class="material-symbols-outlined text-[20px]">help</span></a><button class="relative p-2 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-white transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-6 pb-space-xl bg-canvas-warm px-margin min-h-screen"><div class="flex flex-col w-full pb-margin">
+<!-- BREADCRUMBS & CONTEXT BAR -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm mb-space-lg">
+<div class="flex items-center gap-space-xs font-body-sm text-text-muted">
+<span class="hover:text-primary transition-colors cursor-pointer">Core &amp; Administration</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Access Governance</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="font-label-sm text-primary font-semibold">Delegation Management</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-white shadow-sm font-label-sm text-label-sm text-on-surface">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="">Dual-Auth Guardrail: Active</span>
+</span>
+<div class="hidden lg:flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-text-muted">
+<span class="material-symbols-outlined text-[15px] text-primary">verified_user</span>
+<span class="">Standard ISO/IEC 27001</span>
+</div>
+</div>
+</div>
+<!-- TITLE & HERO ACTION BAR -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md mb-space-lg bg-surface-white p-space-lg rounded-xl shadow-[0_2px_8px_rgba(11,61,46,0.04)]">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Delegation Management</h1>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container-high text-primary-container">
+<span class="material-symbols-outlined text-[16px] text-secondary">encrypted</span>
+<span class="">Dual-Custody Audited Protocol</span>
+</span>
+</div>
+<p class="font-body-md text-body-md text-text-muted max-w-2xl">
+        Temporarily delegate signatory, operational, and administrative authorities across agricultural regional stations with real-time audit logging and automatic chronological revocation.
+      </p>
+</div>
+<div class="flex items-center gap-space-sm self-start lg:self-auto">
+<button class="flex items-center gap-2 px-space-md py-2.5 rounded-xl bg-surface-container-lowest text-primary font-label-md text-label-md hover:bg-surface-tint transition-colors shadow-sm" onclick="document.getElementById('export-modal').classList.toggle('hidden')" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="">Export Registry</span>
+</button>
+<button class="flex items-center gap-2 px-space-lg py-2.5 rounded-xl bg-primary-container text-surface-white font-label-md text-label-md hover:bg-primary-dark transition-colors shadow-md" onclick="document.getElementById('delegation-form-panel').scrollIntoView({behavior: 'smooth'})" type="button">
+<span class="material-symbols-outlined text-[18px]">add_moderator</span>
+<span class="">+ Create Delegation</span>
+</button>
+</div>
+</div>
+<!-- METRIC TILES / STAT CARDS -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-gutter mb-space-lg">
+<!-- Active Delegations Card -->
+<div class="bg-surface-white p-space-lg rounded-xl shadow-[0_2px_8px_rgba(11,61,46,0.04)] flex flex-col justify-between">
+<div class="flex items-start justify-between mb-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Active Delegations</span>
+<div class="flex items-baseline gap-space-xs mt-space-xs">
+<span class="font-headline-lg text-headline-lg text-primary">04</span>
+<span class="font-body-sm text-body-sm text-text-muted">in force</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-tint flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">swap_horiz</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-space-xs">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-warning-light text-warning-amber">
+<span class="w-1.5 h-1.5 rounded-full bg-warning-amber"></span>
+          2 expiring &lt; 48h
+        </span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">Oromia &amp; Bishoftu</span>
+</div>
+</div>
+<!-- Scheduled Delegations -->
+<div class="bg-surface-white p-space-lg rounded-xl shadow-[0_2px_8px_rgba(11,61,46,0.04)] flex flex-col justify-between">
+<div class="flex items-start justify-between mb-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Scheduled</span>
+<div class="flex items-baseline gap-space-xs mt-space-xs">
+<span class="font-headline-lg text-headline-lg text-primary">02</span>
+<span class="font-body-sm text-body-sm text-text-muted">queued</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-info-light flex items-center justify-center text-info-blue">
+<span class="material-symbols-outlined text-[22px]">event_upcoming</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-space-xs">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-info-light text-info-blue">
+          Next: Jun 01
+        </span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">Seed Stock Custodian</span>
+</div>
+</div>
+<!-- Expired / Concluded -->
+<div class="bg-surface-white p-space-lg rounded-xl shadow-[0_2px_8px_rgba(11,61,46,0.04)] flex flex-col justify-between">
+<div class="flex items-start justify-between mb-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Historic Concluded</span>
+<div class="flex items-baseline gap-space-xs mt-space-xs">
+<span class="font-headline-lg text-headline-lg text-primary">38</span>
+<span class="font-body-sm text-body-sm text-text-muted">settled</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[22px]">history</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-space-xs">
+<span class="font-body-sm text-body-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+          100% Audit logged
+        </span>
+</div>
+</div>
+<!-- Revoked / Intercepted -->
+<div class="bg-surface-white p-space-lg rounded-xl shadow-[0_2px_8px_rgba(11,61,46,0.04)] flex flex-col justify-between">
+<div class="flex items-start justify-between mb-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Audit Intercepts</span>
+<div class="flex items-baseline gap-space-xs mt-space-xs">
+<span class="font-headline-lg text-headline-lg text-danger-red">03</span>
+<span class="font-body-sm text-body-sm text-text-muted">revoked</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-danger-light flex items-center justify-center text-danger-red">
+<span class="material-symbols-outlined text-[22px]">gavel</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-space-xs">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-danger-light text-danger-red">
+          Policy Intercept
+        </span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">Manual revocation</span>
+</div>
+</div>
+</div>
+<!-- 2-COLUMN LANDSCAPE WORKFLOW LAYOUT -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter items-start">
+<!-- LEFT & CENTER (8 COLUMNS): TABLE & ADVANCED CONTROLS -->
+<section class="xl:col-span-8 flex flex-col gap-space-md">
+<!-- Filter Bar Card -->
+<div class="bg-surface-white p-space-md rounded-xl shadow-[0_2px_8px_rgba(11,61,46,0.04)] flex flex-col gap-space-md">
+<!-- Status tabs -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="inline-flex p-1 bg-surface-container-low rounded-xl gap-1" id="filter-tabs">
+<button class="px-3 py-1.5 rounded-lg bg-surface-white text-primary font-label-sm text-label-sm shadow-sm transition-all" onclick="setFilter(this, 'all')" type="button">
+              All (47)
+            </button>
+<button class="px-3 py-1.5 rounded-lg text-text-muted hover:text-primary font-label-sm text-label-sm transition-all" onclick="setFilter(this, 'active')" type="button">
+              Active (4)
+            </button>
+<button class="px-3 py-1.5 rounded-lg text-text-muted hover:text-primary font-label-sm text-label-sm transition-all" onclick="setFilter(this, 'scheduled')" type="button">
+              Scheduled (2)
+            </button>
+<button class="px-3 py-1.5 rounded-lg text-text-muted hover:text-primary font-label-sm text-label-sm transition-all" onclick="setFilter(this, 'expired')" type="button">
+              Expired (38)
+            </button>
+<button class="px-3 py-1.5 rounded-lg text-text-muted hover:text-primary font-label-sm text-label-sm transition-all" onclick="setFilter(this, 'revoked')" type="button">
+              Revoked (3)
+            </button>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-sm text-label-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span class="">Advanced Filters</span>
+</button>
+</div>
+</div>
+<!-- Filter Search & Scope Selector Row -->
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-space-sm pt-space-xs">
+<div class="sm:col-span-7 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span>
+<input class="w-full h-11 pl-10 pr-4 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface placeholder:text-text-muted focus:outline-none focus:bg-surface-white focus:ring-1 focus:ring-secondary transition-all" id="delegation-search" onkeyup="searchTable()" placeholder="Search delegations, actors, scopes, or approval roles..." type="text">
+</div>
+<div class="sm:col-span-5 relative">
+<select class="w-full h-11 px-3 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-white focus:ring-1 focus:ring-secondary transition-all appearance-none cursor-pointer">
+<option value="all">All Scopes / Regional Hubs</option>
+<option value="oromia">Oromia Regional Hub</option>
+<option value="amhara">Amhara Regional Hub</option>
+<option value="east-africa">East Africa Primary Hub</option>
+<option value="bishoftu">Bishoftu Station</option>
+<option value="rift-valley">Rift Valley Silos</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- MAIN DATA TABLE -->
+<div class="bg-surface-white rounded-xl shadow-[0_2px_8px_rgba(11,61,46,0.04)] overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left" id="delegations-table">
+<thead>
+<tr class="bg-surface-container-low text-text-muted font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-space-md">Delegator</th>
+<th class="py-3 px-space-sm text-center w-8"></th>
+<th class="py-3 px-space-md">Delegate</th>
+<th class="py-3 px-space-md">Delegated Role</th>
+<th class="py-3 px-space-md">Operational Scope</th>
+<th class="py-3 px-space-md">Tenure &amp; Validity</th>
+<th class="py-3 px-space-md">Status</th>
+<th class="py-3 px-space-md text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-md text-body-md text-on-surface" id="delegations-tbody">
+<!-- ROW 1: Active -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group" data-status="active">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-primary-container text-primary-fixed flex items-center justify-center font-label-sm text-label-sm font-semibold shrink-0">
+                      AT
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-primary truncate">Abebe Tesfaye</span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">Finance Manager</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center text-text-muted">
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 transition-transform text-secondary">trending_flat</span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center font-label-sm text-label-sm font-semibold shrink-0">
+                      SB
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-primary truncate">Selamawit Bekele</span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">Finance Officer</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary">Payment Approver</span>
+<span class="font-body-sm text-body-sm text-text-muted">Tier 2 Signing Limit</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-text-muted">location_on</span>
+<span class="font-body-sm text-body-sm">Oromia Region</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col gap-0.5">
+<span class="font-body-sm text-body-sm text-on-surface">May 20, 2025 → May 30, 2025</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-[11px] text-warning-amber">
+<span class="w-1.5 h-1.5 rounded-full bg-warning-amber"></span>
+                      2 days remaining
+                    </span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-surface-tint text-secondary">
+                    Active
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg bg-danger-light text-danger-red hover:bg-danger-red hover:text-surface-white font-label-sm text-label-sm transition-colors" onclick="confirmRevoke('Abebe Tesfaye', 'Selamawit Bekele')" type="button">
+                      Revoke
+                    </button>
+<button class="p-1.5 text-text-muted hover:text-primary rounded-lg hover:bg-surface-container transition-colors" onclick="viewAuditLog('DEL-84019')" title="Audit Detail" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 2: Active -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group" data-status="active">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-primary flex items-center justify-center font-label-sm text-label-sm font-semibold shrink-0">
+                      DK
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-primary truncate">Daniel Kebede</span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">Farm Manager</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center text-text-muted">
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 transition-transform text-secondary">trending_flat</span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center font-label-sm text-label-sm font-semibold shrink-0">
+                      YT
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-primary truncate">Yonas Teka</span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">Agronomist Lead</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary">Farm Operations Lead</span>
+<span class="font-body-sm text-body-sm text-text-muted">Harvester &amp; Crew Dispatch</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-text-muted">location_on</span>
+<span class="font-body-sm text-body-sm">Bishoftu Station</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col gap-0.5">
+<span class="font-body-sm text-body-sm text-on-surface">May 22, 2025 → Jun 05, 2025</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-[11px] text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                      8 days remaining
+                    </span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-surface-tint text-secondary">
+                    Active
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg bg-danger-light text-danger-red hover:bg-danger-red hover:text-surface-white font-label-sm text-label-sm transition-colors" onclick="confirmRevoke('Daniel Kebede', 'Yonas Teka')" type="button">
+                      Revoke
+                    </button>
+<button class="p-1.5 text-text-muted hover:text-primary rounded-lg hover:bg-surface-container transition-colors" onclick="viewAuditLog('DEL-84020')" title="Audit Detail" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 3: Scheduled -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group" data-status="scheduled">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-primary flex items-center justify-center font-label-sm text-label-sm font-semibold shrink-0">
+                      KG
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-primary truncate">Kinde Gudeta</span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">Logistics Director</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center text-text-muted">
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 transition-transform text-info-blue">trending_flat</span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-info-light text-info-blue flex items-center justify-center font-label-sm text-label-sm font-semibold shrink-0">
+                      MH
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-primary truncate">Mahlet Hale</span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">Logistics Officer</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary">Seed Stock Custodian</span>
+<span class="font-body-sm text-body-sm text-text-muted">Regional Silo Vault Key</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-text-muted">location_on</span>
+<span class="font-body-sm text-body-sm">East Africa Primary Hub</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col gap-0.5">
+<span class="font-body-sm text-body-sm text-on-surface">Jun 01, 2025 → Jun 15, 2025</span>
+<span class="font-label-sm text-[11px] text-info-blue">Starts in 3 days</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-warning-light text-warning-amber">
+                    Scheduled
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-low text-primary hover:bg-surface-tint font-label-sm text-label-sm transition-colors" type="button">
+                      Edit
+                    </button>
+<button class="p-1.5 text-text-muted hover:text-primary rounded-lg hover:bg-surface-container transition-colors" onclick="viewAuditLog('DEL-84021')" title="Audit Detail" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 4: Expired -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group opacity-85" data-status="expired">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-surface-container text-text-muted flex items-center justify-center font-label-sm text-label-sm font-semibold shrink-0">
+                      DM
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-primary truncate">Dawit Mengistu</span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">Regional Admin</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center text-text-muted">
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 transition-transform text-text-muted">trending_flat</span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-primary-container text-primary-fixed flex items-center justify-center font-label-sm text-label-sm font-semibold shrink-0">
+                      AT
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-primary truncate">Abebe Tesfaye</span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">System Admin</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary">Regional Auditor</span>
+<span class="font-body-sm text-body-sm text-text-muted">Q1 Financial Cross-Check</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-text-muted">location_on</span>
+<span class="font-body-sm text-body-sm">Amhara Regional Hub</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col gap-0.5">
+<span class="font-body-sm text-body-sm text-on-surface">Apr 10, 2025 → Apr 25, 2025</span>
+<span class="font-label-sm text-[11px] text-text-muted">Terminated by Schedule</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-surface-container text-text-muted">
+                    Expired
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-low text-text-muted hover:text-primary font-label-sm text-label-sm transition-colors" onclick="viewAuditLog('DEL-84008')" type="button">
+                      Audit Log
+                    </button>
+<button class="p-1.5 text-text-muted hover:text-primary rounded-lg hover:bg-surface-container transition-colors" onclick="viewAuditLog('DEL-84008')" title="Audit Detail" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 5: Revoked -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group" data-status="revoked">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-danger-light text-danger-red flex items-center justify-center font-label-sm text-label-sm font-semibold shrink-0">
+                      TG
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-primary truncate">Tadesse Gemechu</span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">Procurement Lead</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center text-text-muted">
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 transition-transform text-danger-red">trending_flat</span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center font-label-sm text-label-sm font-semibold shrink-0">
+                      SB
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-primary truncate">Selamawit Bekele</span>
+<span class="font-body-sm text-body-sm text-text-muted truncate">Finance Officer</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary">PO Authorization</span>
+<span class="font-body-sm text-body-sm text-text-muted">Grain Inventory Bulk</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-text-muted">location_on</span>
+<span class="font-body-sm text-body-sm">Rift Valley Silos</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col gap-0.5">
+<span class="font-body-sm text-body-sm line-through text-text-muted">May 02, 2025 → May 12, 2025</span>
+<span class="font-label-sm text-[11px] text-danger-red">Revoked May 04 (Security Flag)</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-danger-light text-danger-red">
+                    Revoked
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-low text-text-muted hover:text-danger-red font-label-sm text-label-sm transition-colors" onclick="viewAuditLog('DEL-83991')" type="button">
+                      Audit Log
+                    </button>
+<button class="p-1.5 text-text-muted hover:text-primary rounded-lg hover:bg-surface-container transition-colors" onclick="viewAuditLog('DEL-83991')" title="Audit Detail" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- TABLE FOOTER / PAGINATION -->
+<div class="p-space-md bg-surface-container-low flex items-center justify-between flex-wrap gap-space-sm">
+<span class="font-body-sm text-body-sm text-text-muted">
+            Showing <strong class="text-primary font-semibold">1-5</strong> of <strong class="text-primary font-semibold">47</strong> active &amp; historical delegations
+          </span>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-lg bg-surface-white text-text-muted opacity-50 cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">first_page</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-white text-text-muted opacity-50 cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<span class="px-3 py-1 bg-primary text-surface-white rounded-lg font-label-sm text-label-sm">1</span>
+<button class="px-3 py-1 bg-surface-white hover:bg-surface-tint text-primary rounded-lg font-label-sm text-label-sm transition-colors" type="button">2</button>
+<button class="px-3 py-1 bg-surface-white hover:bg-surface-tint text-primary rounded-lg font-label-sm text-label-sm transition-colors" type="button">3</button>
+<button class="p-1.5 rounded-lg bg-surface-white text-primary hover:bg-surface-tint transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-white text-primary hover:bg-surface-tint transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">last_page</span>
+</button>
+</div>
+</div>
+</div>
+<!-- AUDIT OVERVIEW BANNER -->
+<div class="p-space-md rounded-xl bg-surface-white shadow-[0_2px_8px_rgba(11,61,46,0.04)] flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-surface-tint text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">policy</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-primary block">Automated Agricultural Compliance Trigger</span>
+<span class="font-body-sm text-body-sm text-text-muted">All seed disbursement &amp; payment authority transfers trigger instantaneous push notifications to the Internal Audit Council.</span>
+</div>
+</div>
+<button class="px-3 py-1.5 rounded-xl bg-surface-container-low hover:bg-surface-container text-primary font-label-sm text-label-sm whitespace-nowrap" onclick="alert('Viewing comprehensive governance logs')" type="button">
+          View Governance Rules
+        </button>
+</div>
+</section>
+<!-- RIGHT SIDE (4 COLUMNS): CREATE DELEGATION PANEL -->
+<aside class="xl:col-span-4 flex flex-col gap-space-md" id="delegation-form-panel">
+<div class="bg-surface-white p-space-lg rounded-xl shadow-[0_2px_8px_rgba(11,61,46,0.04)]">
+<!-- Panel Header -->
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-tint text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">security</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">New Delegation Authorization</h2>
+<span class="font-body-sm text-body-sm text-text-muted">Assign temporary operational authority</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full font-label-sm text-[11px] bg-secondary-fixed text-on-secondary-fixed-variant">
+            Tier-1 Auth
+          </span>
+</div>
+<!-- FORM -->
+<form class="flex flex-col gap-space-md" id="createDelegationForm" onsubmit="handleCreateDelegation(event)">
+<!-- Delegator Selector -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-primary font-medium flex items-center justify-between">
+<span class="">Delegator (Source Principal)</span>
+<span class="text-text-muted font-normal">Self or Supervised</span>
+</label>
+<div class="relative">
+<select class="w-full h-11 pl-3 pr-8 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-white focus:ring-1 focus:ring-secondary transition-all appearance-none cursor-pointer" required="">
+<option selected="" value="abebe-tesfaye">Abebe Tesfaye (Finance Manager - Self)</option>
+<option value="daniel-kebede">Daniel Kebede (Farm Operations Manager)</option>
+<option value="kinde-gudeta">Kinde Gudeta (Logistics Director)</option>
+<option value="dawit-mengistu">Dawit Mengistu (Regional Administrator)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Delegate Selector -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-primary font-medium flex items-center justify-between">
+<span class="">Delegate (Authorized Assignee)</span>
+<span class="text-secondary font-medium text-[11px]">Identity Verified</span>
+</label>
+<div class="relative">
+<select class="w-full h-11 pl-3 pr-8 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-white focus:ring-1 focus:ring-secondary transition-all appearance-none cursor-pointer" required="">
+<option disabled="" value="">Choose verified personnel...</option>
+<option selected="" value="selamawit-bekele">Selamawit Bekele (Finance Officer - FIN-094)</option>
+<option value="yonas-teka">Yonas Teka (Agronomist Lead - AGR-312)</option>
+<option value="mahlet-hale">Mahlet Hale (Logistics Officer - LOG-440)</option>
+<option value="almaz-chala">Almaz Chala (Senior Storekeeper - STO-119)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Role to Delegate -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-primary font-medium">Role Authority</label>
+<div class="relative">
+<select class="w-full h-11 pl-3 pr-8 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-white focus:ring-1 focus:ring-secondary transition-all appearance-none cursor-pointer" required="">
+<option selected="" value="payment-approver-tier2">Payment Approver - Tier 2 (Up to ETB 2.5M)</option>
+<option value="farm-operations-lead">Farm Operations Lead &amp; Resource Release</option>
+<option value="seed-stock-custodian">Seed Stock Custodian &amp; Silo Verification</option>
+<option value="po-authorization">Purchase Order Authorization (Fertilizer/Supplies)</option>
+<option value="regional-auditor">Interim Regional Compliance Auditor</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Operational Scope -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-primary font-medium">Operational Scope</label>
+<div class="relative">
+<select class="w-full h-11 pl-3 pr-8 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-white focus:ring-1 focus:ring-secondary transition-all appearance-none cursor-pointer" required="">
+<option selected="" value="oromia-all">Oromia Region &amp; Regional Field Stations</option>
+<option value="amhara-all">Amhara Regional Hub</option>
+<option value="east-africa-hq">East Africa Primary Hub (HQ Silos)</option>
+<option value="bishoftu-station">Bishoftu Agronomy Station Only</option>
+<option value="rift-valley-silos">Rift Valley Silos &amp; Cold Storage</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Date Range (Grid 2 columns) -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-primary font-medium">Start Date</label>
+<input class="h-11 px-3 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-white focus:ring-1 focus:ring-secondary transition-all cursor-pointer" required="" type="date" value="2025-05-20">
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-primary font-medium">End Date</label>
+<input class="h-11 px-3 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-white focus:ring-1 focus:ring-secondary transition-all cursor-pointer" required="" type="date" value="2025-05-30">
+</div>
+</div>
+<!-- Reason & Statutory Justification -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-primary font-medium flex items-center justify-between">
+<span class="">Reason &amp; Statutory Justification</span>
+<span class="text-[11px] text-text-muted">Mandatory for Audit</span>
+</label>
+<textarea class="p-3 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-white focus:ring-1 focus:ring-secondary transition-all resize-none" placeholder="Detail the business justification (e.g. Leave, Field deployment, Disaster contingency)..." required="" rows="3">Covering annual leave and emergency seasonal fertilizer procurement approvals for Oromia farmers union.</textarea>
+</div>
+<!-- Prominent Security Audit Note Banner -->
+<div class="p-space-sm rounded-xl bg-info-light flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-info-blue shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-[12px] text-info-blue leading-snug">
+              Delegations automatically expire at 23:59 EAT on the end date. All authorization alterations are cryptographically logged under protocol <strong class="font-semibold">SEC-AUDIT-2025</strong>.
+            </p>
+</div>
+<!-- Dual-Custody Checkbox -->
+<label class="flex items-start gap-2.5 cursor-pointer select-none">
+<input checked="" class="mt-1 w-4 h-4 rounded text-primary focus:ring-secondary accent-primary" required="" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+              I certify this assignment conforms with the Z•ORISIS Separation of Duties policy and accept supervisory liability.
+            </span>
+</label>
+<!-- Form action buttons -->
+<div class="flex items-center gap-space-sm pt-space-xs">
+<button class="w-1/3 h-11 rounded-xl bg-surface-white text-primary font-label-md text-label-md hover:bg-surface-tint transition-colors shadow-sm text-center" onclick="resetDelegationForm()" type="button">
+              Cancel
+            </button>
+<button class="w-2/3 h-11 rounded-xl bg-primary-container hover:bg-primary-dark text-surface-white font-label-md text-label-md transition-colors flex items-center justify-center gap-2 shadow-md" type="submit">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span class="">Authorize &amp; Create</span>
+</button>
+</div>
+</form>
+</div>
+<!-- QUICK AUDIT / DELEGATION INTEL CARD -->
+<div class="bg-surface-white p-space-md rounded-xl shadow-[0_2px_8px_rgba(11,61,46,0.04)] flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Security Policy Highlights</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+</div>
+<div class="space-y-2 font-body-sm text-body-sm text-on-surface">
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<span class="text-text-muted">Max Delegation Tenure</span>
+<span class="font-semibold text-primary">30 Days</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<span class="text-text-muted">Disallowed Cascade</span>
+<span class="font-semibold text-primary">No Re-Delegation</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<span class="text-text-muted">Revocation Delay</span>
+<span class="font-semibold text-secondary">Instantaneous (0s)</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- SLIDE-OVER AUDIT DETAIL MODAL / DRAWER (HIDDEN BY DEFAULT) -->
+<div class="fixed inset-0 z-50 bg-primary-dark/40 backdrop-blur-sm hidden items-center justify-end transition-opacity" id="audit-modal">
+<div class="bg-surface-white w-full max-w-lg h-full p-space-lg shadow-[0_12px_32px_rgba(6,42,32,0.12)] flex flex-col justify-between overflow-y-auto">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-tint text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Delegation Audit Trace</h3>
+<span class="font-body-sm text-body-sm text-text-muted" id="audit-record-id">DEL-84019</span>
+</div>
+</div>
+<button class="p-2 text-text-muted hover:text-primary rounded-lg hover:bg-surface-container transition-colors" onclick="closeAuditModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-2">
+<div class="flex justify-between text-body-sm">
+<span class="text-text-muted">Transaction Stamp</span>
+<span class="font-semibold text-primary font-mono text-[11px]">2025-05-20T08:14:22.091Z</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-text-muted">Originating IP</span>
+<span class="font-semibold text-primary font-mono text-[11px]">196.188.12.77 (Addis Ababa Hub)</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-text-muted">Cryptographic Digest</span>
+<span class="font-semibold text-primary font-mono text-[11px] truncate max-w-[200px]">SHA256:7f83b1657ff1...</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-primary">Sequential Event Log</span>
+<div class="space-y-3 pl-2 border-l-2 border-surface-container">
+<div class="relative pl-4">
+<span class="absolute -left-[9px] top-1 w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-primary block">Authorized by Abebe Tesfaye</span>
+<span class="font-body-sm text-[12px] text-text-muted">Dual-factor OTP signature verified.</span>
+</div>
+<div class="relative pl-4">
+<span class="absolute -left-[9px] top-1 w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-primary block">Delegate Acceptance</span>
+<span class="font-body-sm text-[12px] text-text-muted">Selamawit Bekele accepted terms of delegated authority.</span>
+</div>
+<div class="relative pl-4">
+<span class="absolute -left-[9px] top-1 w-3 h-3 rounded-full bg-info-blue"></span>
+<span class="font-label-sm text-label-sm text-primary block">Active Operational Window</span>
+<span class="font-body-sm text-[12px] text-text-muted">Scheduled expiry active. Remaining 2 days.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-space-lg flex items-center justify-end gap-space-sm">
+<button class="px-4 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md transition-colors" onclick="closeAuditModal()" type="button">
+          Close Window
+        </button>
+<button class="px-4 py-2 rounded-xl bg-primary-container text-surface-white font-label-md text-label-md hover:bg-primary-dark transition-colors flex items-center gap-1.5" onclick="alert('Downloading signed forensic bundle...')" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span class="">Download Audit Pack</span>
+</button>
+</div>
+</div>
+</div>
+<!-- EXPORT QUICK TOAST MODAL (POPUP) -->
+<div class="fixed inset-0 z-50 bg-primary-dark/40 backdrop-blur-sm hidden items-center justify-center p-4" id="export-modal">
+<div class="bg-surface-white rounded-xl max-w-md w-full p-space-lg shadow-xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-primary">Export Delegation Registry</h3>
+<button class="p-1 rounded-lg text-text-muted hover:text-primary hover:bg-surface-container" onclick="document.getElementById('export-modal').classList.add('hidden')" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted">
+        Select format to export the filtered delegation data set along with full cryptographic sign-off metadata.
+      </p>
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="p-3 rounded-xl bg-surface-container-low hover:bg-surface-tint text-primary flex flex-col items-center gap-1 transition-colors" onclick="executeExport('CSV')" type="button">
+<span class="material-symbols-outlined text-[24px] text-secondary">table_chart</span>
+<span class="font-label-sm text-label-sm">CSV / Excel Format</span>
+</button>
+<button class="p-3 rounded-xl bg-surface-container-low hover:bg-surface-tint text-primary flex flex-col items-center gap-1 transition-colors" onclick="executeExport('PDF')" type="button">
+<span class="material-symbols-outlined text-[24px] text-danger-red">picture_as_pdf</span>
+<span class="font-label-sm text-label-sm">Official PDF Report</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- INTERACTIVE SCRIPTS FOR REAL-TIME SEARCH, TAB SWITCHING, MODALS -->
+<script>
+  function setFilter(button, status) {
+    // Update button states
+    const tabs = document.querySelectorAll('#filter-tabs button');
+    tabs.forEach(btn => {
+      btn.className = 'px-3 py-1.5 rounded-lg text-text-muted hover:text-primary font-label-sm text-label-sm transition-all';
+    });
+    button.className = 'px-3 py-1.5 rounded-lg bg-surface-white text-primary font-label-sm text-label-sm shadow-sm transition-all';
+
+    // Filter table rows
+    const rows = document.querySelectorAll('#delegations-tbody tr');
+    rows.forEach(row => {
+      if (status === 'all' || row.getAttribute('data-status') === status) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  function searchTable() {
+    const input = document.getElementById('delegation-search').value.toLowerCase();
+    const rows = document.querySelectorAll('#delegations-tbody tr');
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = text.includes(input) ? '' : 'none';
+    });
+  }
+
+  function confirmRevoke(delegator, delegate) {
+    if (confirm(`IMMEDIATE REVOCATION NOTICE:\n\nAre you sure you want to revoke temporary permissions granted from ${delegator} to ${delegate}?\n\nThis will instantly terminate all session tokens and notify compliance.`)) {
+      alert(`Delegation between ${delegator} and ${delegate} has been terminated immediately. Audit log event generated.`);
+    }
+  }
+
+  function viewAuditLog(id) {
+    document.getElementById('audit-record-id').innerText = id;
+    const modal = document.getElementById('audit-modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeAuditModal() {
+    const modal = document.getElementById('audit-modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+
+  function resetDelegationForm() {
+    document.getElementById('createDelegationForm').reset();
+  }
+
+  function handleCreateDelegation(e) {
+    e.preventDefault();
+    alert('Security Verification Successful:\n\nNew Delegation created and registered under SEC-AUDIT-2025. Notifications dispatched to delegator and delegate.');
+    resetDelegationForm();
+  }
+
+  function executeExport(type) {
+    alert(`Exporting official delegation audit logs in ${type} format with active digital certificates.`);
+    document.getElementById('export-modal').classList.add('hidden');
+  }
+</script></main></div>
+
+</body></html>

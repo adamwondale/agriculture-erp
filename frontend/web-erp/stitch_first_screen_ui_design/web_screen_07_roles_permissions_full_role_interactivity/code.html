@@ -1,0 +1,1509 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link rel="stylesheet" href="../design-tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+    }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #c0c8c3; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #717974; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00261b",
+            "primary-container": "#0b3d2e",
+            "primary-dark": "#062A20",
+            "primary-fixed": "#bcedd7",
+            "primary-fixed-dim": "#a0d1bc",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#79a894",
+            "secondary": "#156c46",
+            "secondary-container": "#a3f4c3",
+            "secondary-fixed": "#a3f4c3",
+            "secondary-fixed-dim": "#87d7a8",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#1e724b",
+            "surface": "#effdf3",
+            "surface-white": "#FFFFFF",
+            "surface-container": "#e3f1e7",
+            "surface-container-low": "#e9f7ed",
+            "surface-container-high": "#ddece2",
+            "surface-container-highest": "#d8e6dc",
+            "surface-tint": "#396756",
+            "canvas-warm": "#F7F4EC",
+            "on-surface": "#121e18",
+            "on-surface-variant": "#414944",
+            "text-muted": "#66736C",
+            "outline": "#717974",
+            "outline-variant": "#c0c8c3",
+            "border-light": "#DDE4DE",
+            "warning-light": "#FFF3D6",
+            "warning-amber": "#D79A19",
+            "danger-light": "#FDE8E8",
+            "danger-red": "#C94B4B",
+            "info-light": "#E8F2FA",
+            "info-blue": "#3978A8",
+            "error": "#ba1a1a"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            "headline-lg": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"],
+            "label-sm": ["Inter", "sans-serif"]
+          },
+          fontSize: {
+            "headline-lg": ["24px", { lineHeight: "30px", letterSpacing: "-0.02em", fontWeight: "600" }],
+            "headline-md": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "headline-sm": ["15px", { lineHeight: "20px", letterSpacing: "-0.005em", fontWeight: "600" }],
+            "body-lg": ["15px", { lineHeight: "22px", fontWeight: "400" }],
+            "body-md": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+            "body-sm": ["11.5px", { lineHeight: "15px", fontWeight: "400" }],
+            "label-md": ["13px", { lineHeight: "18px", fontWeight: "600" }],
+            "label-sm": ["11px", { lineHeight: "14px", fontWeight: "600" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-canvas-warm font-sans text-on-surface antialiased overflow-x-hidden">
+<!-- FIXED SIDEBAR -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-primary-container z-50 flex flex-col justify-between shadow-[0_2px_8px_rgba(11,61,46,0.06)] border-r border-primary-dark/30">
+<div class="flex flex-col flex-1 overflow-y-auto px-3.5 pt-4">
+<!-- Brand Logo & Header -->
+<div class="flex items-start gap-2.5 pb-4 px-1 border-b border-primary-dark/40">
+<img alt="Z•ORISIS Logo" class="h-7 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UTMR57eg5erZv5ymtesinv1Wu9OPG4FKeEGIPVXFPiobBiiRIVx1Vu3WxqkltXUumqKM0R57cmvOtRPYlgEXDcN_D_Xdbt0lZQ_nBoH0SG4zuPiV1JiZJH_y1Kr0FDpNGdjps04nTyJ5TLkolCxqwWeJeTbVs9nXNMhzvwXUEqZy6MEBxc7LABoVevzcpeqgBHIZB4szF-UVtYjPGjnjVgITdDFzR73EgVpe0MdSbMASKyfuQbGjvIwkGg">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="text-[15px] font-semibold text-on-primary tracking-tight">Z•ORISIS</span>
+
+</div>
+<span class="text-[11px] text-on-primary-container leading-tight">Together We Grow</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1 mt-3">
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="dashboard" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">dashboard</span>
+<span class="">Dashboard</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="organization" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">corporate_fare</span>
+<span class="">Organization</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="users" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span class="">Users</span>
+</div>
+</a>
+<!-- Active: Roles & Permissions -->
+<a aria-current="page" class="flex items-center justify-between px-3 py-2 rounded-lg bg-secondary text-on-secondary font-medium shadow-sm" data-path="roles-and-permissions" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+<span class="text-body-md font-semibold">Roles &amp; Permissions</span>
+</div>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="delegation" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+<span class="">Delegation</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="approvals" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="">Approvals</span>
+</div>
+<span class="px-1.5 py-0.2 rounded-full text-[10px] font-semibold bg-secondary-container text-on-secondary-container">8</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="audit-logs" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+<span class="">Audit Logs</span>
+</div>
+</a>
+</nav>
+<!-- Preferences Section -->
+<div class="mt-4 pt-3 border-t border-primary-dark/40">
+<span class="px-3 text-[10px] font-semibold uppercase tracking-wider text-on-primary-container/70">Preferences</span>
+<nav class="flex flex-col gap-1 mt-1.5">
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="settings" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span class="">Settings</span>
+</div>
+</a>
+</nav>
+</div>
+</div>
+<!-- User Profile Badge in Sidebar -->
+<div class="p-2.5 m-2.5 rounded-xl bg-primary-dark/80 border border-primary-fixed/10">
+<div class="flex items-center gap-2.5">
+<div class="relative shrink-0">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center border border-primary-fixed/20">
+<span class="material-symbols-outlined text-on-primary text-[17px]">person</span>
+</div>
+<span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-secondary-fixed ring-1 ring-primary-dark"></span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center justify-between">
+<span class="text-[12px] font-semibold text-on-primary truncate">Abebe Tesfaye</span>
+<span class="text-[9px] px-1 rounded bg-secondary-fixed/20 text-secondary-fixed-dim font-medium">Verified</span>
+</div>
+<span class="text-[10.5px] text-on-primary-container truncate">System Admin</span>
+<span class="text-[9.5px] text-on-primary-container/60 truncate leading-tight">Oromia Regional Hub</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- MAIN VIEW CONTAINER (Pl-64 for sidebar offset) -->
+<div class="pl-64 flex flex-col min-h-screen">
+<!-- COMPACT TOP NAVBAR FOR 16:9 LANDSCAPE -->
+<header class="fixed top-0 left-64 right-0 h-14 bg-canvas-warm/95 backdrop-blur-md z-40 flex items-center justify-between px-5 border-b border-border-light/80 shadow-[0_1px_4px_rgba(0,0,0,0.03)]">
+<!-- Search & Scope -->
+<div class="flex items-center gap-3 flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-text-muted text-[17px]">search</span>
+<input class="w-full h-8.5 pl-8 pr-3 bg-surface-white border border-border-light rounded-lg text-body-sm text-on-surface placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-secondary focus:border-secondary transition-all" placeholder="Search roles, entitlements, or scopes (⌘K)..." type="text">
+</div>
+</div>
+<!-- Header Actions & Meta -->
+<div class="flex items-center gap-2.5">
+<div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container border border-surface-container-high text-[11px] font-medium text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="">Production • East Africa Primary</span>
+</div>
+<div class="flex items-center gap-1 px-2 py-1 rounded-full bg-info-light text-info-blue text-[11px] font-medium border border-info-blue/20">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+<span class="">Security Tier 1</span>
+</div>
+<button class="flex items-center gap-1 px-2 py-1 rounded-md bg-surface-white border border-border-light text-[11px] font-medium text-on-surface-variant hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]">language</span>
+<span class="">EN / አማ</span>
+</button>
+<a class="p-1.5 text-on-surface-variant hover:text-on-surface rounded-md hover:bg-surface-white transition-colors" data-path="documentation" href="#" title="Documentation">
+<span class="material-symbols-outlined text-[18px]">help</span>
+</a>
+<button class="relative p-1.5 text-on-surface-variant hover:text-on-surface rounded-md hover:bg-surface-white transition-colors" title="Notifications" type="button">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+<span class="absolute top-1 right-1 w-1.5 h-1.5 bg-error rounded-full"></span>
+</button>
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center ml-0.5">
+<span class="material-symbols-outlined text-on-primary text-[15px]">person</span>
+</div>
+</div>
+</header>
+<!-- CONTENT WRAPPER -->
+<main class="w-full pt-14 pb-20 px-5 flex-1 flex flex-col">
+<!-- PAGE HEADER BAR -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 py-3 border-b border-border-light/70 mb-3">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 flex-wrap">
+<h1 class="text-[20px] font-bold text-on-surface tracking-tight">Roles &amp; Permissions (RBAC)</h1>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-surface-container text-on-surface-variant border border-border-light">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              8 Active Roles • Standard Enterprise Schema
+            </span>
+</div>
+<p class="text-body-sm text-text-muted mt-0.5 max-w-2xl">
+            Configure role entitlements, resource boundaries, and multi-tier authorization matrix for cooperatives and stations.
+          </p>
+</div>
+<div class="flex items-center gap-2 shrink-0 self-start sm:self-auto">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-label-md bg-surface-white border border-border-light text-on-surface hover:bg-surface-container-low transition-colors shadow-xs" type="button">
+<span class="material-symbols-outlined text-[16px] text-text-muted">history</span>
+<span class="">Audit Role Changes</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-label-md bg-primary-container text-on-primary hover:bg-primary-dark transition-all shadow-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span class="">Create Role</span>
+</button>
+</div>
+</div>
+<!-- 2-COLUMN LANDSCAPE WORKSPACE (Optimized for 16:9) -->
+<div class="grid grid-cols-12 gap-3.5 items-start flex-1">
+<!-- LEFT PANEL: ROLE DIRECTORY -->
+<aside class="col-span-12 xl:col-span-4 bg-surface-white rounded-xl border border-border-light p-3 flex flex-col gap-2.5 shadow-xs">
+<!-- Role Search & Category Tabs -->
+<div class="flex flex-col gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-text-muted text-[16px]">search</span>
+<input class="w-full h-8 pl-8 pr-2.5 rounded-lg bg-surface-container-low border border-border-light/60 text-body-sm text-on-surface placeholder:text-text-muted focus:bg-surface-white focus:outline-none focus:ring-1 focus:ring-secondary text-[12px]" id="role-search-input" placeholder="Filter roles..." type="text">
+</div>
+<div class="flex items-center p-0.5 bg-surface-container-low rounded-lg text-[11px] font-medium border border-border-light/40" id="role-category-filter">
+<button class="role-filter-tab flex-1 py-1 rounded text-center bg-surface-white text-primary-container shadow-xs font-semibold" data-type="all" type="button">All (8)</button>
+<button class="role-filter-tab flex-1 py-1 rounded text-center text-text-muted hover:text-on-surface transition-colors" data-type="system" type="button">System (5)</button>
+<button class="role-filter-tab flex-1 py-1 rounded text-center text-text-muted hover:text-on-surface transition-colors" data-type="custom" type="button">Custom (3)</button>
+</div>
+</div>
+<!-- Role Cards List (Compact for Landscape viewport) -->
+<div class="flex flex-col gap-1.5 max-h-[calc(100vh-275px)] overflow-y-auto pr-0.5" id="roles-list">
+<!-- Role 1: Super Admin -->
+<div class="role-card p-2.5 rounded-lg cursor-pointer bg-surface-white hover:bg-surface-container-low border border-transparent hover:border-border-light transition-all" data-role-id="super-admin" data-role-type="system">
+<div class="flex items-center justify-between gap-1.5">
+<div class="flex items-center gap-1.5">
+<span class="role-indicator hidden w-2 h-2 rounded-full bg-secondary"></span>
+<span class="role-card-title text-[13px] font-semibold text-on-surface">Super Admin</span>
+</div>
+<span class="role-tag px-1.5 py-0.2 rounded text-[10px] font-medium bg-surface-container text-on-surface-variant">System</span>
+</div>
+<p class="text-[11px] text-text-muted truncate mt-0.5">Unrestricted enterprise root access</p>
+<div class="role-card-footer flex items-center justify-between mt-1 text-[11px] text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[13px]">group</span>
+<span class="">3 users</span>
+</div>
+<span class="role-selected-badge hidden text-[10px] font-semibold px-1 rounded bg-secondary-fixed text-on-secondary-container">Active Selection</span>
+</div>
+</div>
+<!-- Role 2: System Admin -->
+<div class="role-card p-2.5 rounded-lg cursor-pointer bg-surface-white hover:bg-surface-container-low border border-transparent hover:border-border-light transition-all" data-role-id="system-admin" data-role-type="system">
+<div class="flex items-center justify-between gap-1.5">
+<div class="flex items-center gap-1.5">
+<span class="role-indicator hidden w-2 h-2 rounded-full bg-secondary"></span>
+<span class="role-card-title text-[13px] font-semibold text-on-surface">System Admin</span>
+</div>
+<span class="role-tag px-1.5 py-0.2 rounded text-[10px] font-medium bg-surface-container text-on-surface-variant">System</span>
+</div>
+<p class="text-[11px] text-text-muted truncate mt-0.5">Core platform, SCIM &amp; identity configuration</p>
+<div class="role-card-footer flex items-center justify-between mt-1 text-[11px] text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[13px]">group</span>
+<span class="">12 users</span>
+</div>
+<span class="role-selected-badge hidden text-[10px] font-semibold px-1 rounded bg-secondary-fixed text-on-secondary-container">Active Selection</span>
+</div>
+</div>
+<!-- Role 3: HR Officer -->
+<div class="role-card p-2.5 rounded-lg cursor-pointer bg-surface-white hover:bg-surface-container-low border border-transparent hover:border-border-light transition-all" data-role-id="hr-officer" data-role-type="custom">
+<div class="flex items-center justify-between gap-1.5">
+<div class="flex items-center gap-1.5">
+<span class="role-indicator hidden w-2 h-2 rounded-full bg-secondary"></span>
+<span class="role-card-title text-[13px] font-semibold text-on-surface">HR Officer</span>
+</div>
+<span class="role-tag px-1.5 py-0.2 rounded text-[10px] font-medium bg-warning-light text-warning-amber border border-warning-amber/20">Custom</span>
+</div>
+<p class="text-[11px] text-text-muted truncate mt-0.5">Staff onboarding, directory &amp; delegations</p>
+<div class="role-card-footer flex items-center justify-between mt-1 text-[11px] text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[13px]">group</span>
+<span class="">18 users</span>
+</div>
+<span class="role-selected-badge hidden text-[10px] font-semibold px-1 rounded bg-secondary-fixed text-on-secondary-container">Active Selection</span>
+</div>
+</div>
+<!-- Role 4: Finance Officer -->
+<div class="role-card p-2.5 rounded-lg cursor-pointer bg-surface-white hover:bg-surface-container-low border border-transparent hover:border-border-light transition-all" data-role-id="finance-officer" data-role-type="system">
+<div class="flex items-center justify-between gap-1.5">
+<div class="flex items-center gap-1.5">
+<span class="role-indicator hidden w-2 h-2 rounded-full bg-secondary"></span>
+<span class="role-card-title text-[13px] font-semibold text-on-surface">Finance Officer</span>
+</div>
+<span class="role-tag px-1.5 py-0.2 rounded text-[10px] font-medium bg-surface-container text-on-surface-variant">System</span>
+</div>
+<p class="text-[11px] text-text-muted truncate mt-0.5">Subsidy disbursement, escrow &amp; escrow audit</p>
+<div class="role-card-footer flex items-center justify-between mt-1 text-[11px] text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[13px]">group</span>
+<span class="">24 users</span>
+</div>
+<span class="role-selected-badge hidden text-[10px] font-semibold px-1 rounded bg-secondary-fixed text-on-secondary-container">Active Selection</span>
+</div>
+</div>
+<!-- Role 5: SELECTED ACTIVE ROLE (Farm Manager) -->
+<div class="role-card p-2.5 rounded-lg cursor-pointer bg-surface-container border-2 border-secondary shadow-xs relative" data-role-id="farm-manager" data-role-type="custom">
+<div class="flex items-center justify-between gap-1.5">
+<div class="flex items-center gap-1.5">
+<span class="role-indicator w-2 h-2 rounded-full bg-secondary"></span>
+<span class="role-card-title text-[13px] font-bold text-primary-container">Farm Manager</span>
+</div>
+<span class="role-tag px-1.5 py-0.2 rounded text-[10px] font-semibold bg-secondary text-on-secondary">Custom</span>
+</div>
+<p class="text-[11px] text-on-surface-variant truncate mt-0.5">Field telemetry, irrigation, harvest &amp; farm ops</p>
+<div class="role-card-footer flex items-center justify-between mt-1 text-[11px] text-secondary font-medium">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[13px]">group</span>
+<span class="">142 users</span>
+</div>
+<span class="role-selected-badge text-[10px] font-semibold px-1 rounded bg-secondary-fixed text-on-secondary-container">Active Selection</span>
+</div>
+</div>
+<!-- Role 6: Logistics Officer -->
+<div class="role-card p-2.5 rounded-lg cursor-pointer bg-surface-white hover:bg-surface-container-low border border-transparent hover:border-border-light transition-all" data-role-id="logistics-officer" data-role-type="custom">
+<div class="flex items-center justify-between gap-1.5">
+<div class="flex items-center gap-1.5">
+<span class="role-indicator hidden w-2 h-2 rounded-full bg-secondary"></span>
+<span class="role-card-title text-[13px] font-semibold text-on-surface">Logistics Officer</span>
+</div>
+<span class="role-tag px-1.5 py-0.2 rounded text-[10px] font-medium bg-warning-light text-warning-amber border border-warning-amber/20">Custom</span>
+</div>
+<p class="text-[11px] text-text-muted truncate mt-0.5">Cold chain, warehouse dispatch &amp; transport</p>
+<div class="role-card-footer flex items-center justify-between mt-1 text-[11px] text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[13px]">group</span>
+<span class="">48 users</span>
+</div>
+<span class="role-selected-badge hidden text-[10px] font-semibold px-1 rounded bg-secondary-fixed text-on-secondary-container">Active Selection</span>
+</div>
+</div>
+<!-- Role 7: Field Officer -->
+<div class="role-card p-2.5 rounded-lg cursor-pointer bg-surface-white hover:bg-surface-container-low border border-transparent hover:border-border-light transition-all" data-role-id="field-officer" data-role-type="system">
+<div class="flex items-center justify-between gap-1.5">
+<div class="flex items-center gap-1.5">
+<span class="role-indicator hidden w-2 h-2 rounded-full bg-secondary"></span>
+<span class="role-card-title text-[13px] font-semibold text-on-surface">Field Officer</span>
+</div>
+<span class="role-tag px-1.5 py-0.2 rounded text-[10px] font-medium bg-surface-container text-on-surface-variant">System</span>
+</div>
+<p class="text-[11px] text-text-muted truncate mt-0.5">Agronomic surveys, smallholder verification</p>
+<div class="role-card-footer flex items-center justify-between mt-1 text-[11px] text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[13px]">group</span>
+<span class="">512 users</span>
+</div>
+<span class="role-selected-badge hidden text-[10px] font-semibold px-1 rounded bg-secondary-fixed text-on-secondary-container">Active Selection</span>
+</div>
+</div>
+<!-- Role 8: Viewer -->
+<div class="role-card p-2.5 rounded-lg cursor-pointer bg-surface-white hover:bg-surface-container-low border border-transparent hover:border-border-light transition-all" data-role-id="viewer" data-role-type="system">
+<div class="flex items-center justify-between gap-1.5">
+<div class="flex items-center gap-1.5">
+<span class="role-indicator hidden w-2 h-2 rounded-full bg-secondary"></span>
+<span class="role-card-title text-[13px] font-semibold text-on-surface">Viewer</span>
+</div>
+<span class="role-tag px-1.5 py-0.2 rounded text-[10px] font-medium bg-surface-container text-on-surface-variant">System</span>
+</div>
+<p class="text-[11px] text-text-muted truncate mt-0.5">Read-only analytics and compliance inspection</p>
+<div class="role-card-footer flex items-center justify-between mt-1 text-[11px] text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[13px]">group</span>
+<span class="">89 users</span>
+</div>
+<span class="role-selected-badge hidden text-[10px] font-semibold px-1 rounded bg-secondary-fixed text-on-secondary-container">Active Selection</span>
+</div>
+</div>
+</div>
+<!-- Dual Admin Note -->
+<div class="p-2 rounded-lg bg-surface-container-low border border-border-light flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0">lock_person</span>
+<span class="text-[10.5px] text-text-muted leading-tight">
+              Modifications require <strong class="text-on-surface font-semibold">Dual-Admin Signoff</strong> before deployment.
+            </span>
+</div>
+</aside>
+<!-- MAIN PANEL: ROLE OVERVIEW & PERMISSION MATRIX -->
+<div class="col-span-12 xl:col-span-8 flex flex-col gap-3">
+<!-- ROLE METADATA CARD (Compact Landscape Header) -->
+<div class="bg-surface-white rounded-xl border border-border-light p-3.5 shadow-xs flex flex-col gap-2.5">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2.5">
+<div class="flex flex-col gap-1">
+<div class="flex flex-wrap items-center gap-1.5">
+<h2 class="text-[17px] font-bold text-on-surface" id="role-title">Farm Manager</h2>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-surface-container-high text-secondary border border-secondary/20" id="role-type-badge">Custom Role</span>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-info-light text-info-blue border border-info-blue/20" id="role-user-count-badge">142 Active Users</span>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-surface-container text-text-muted" id="role-updated-badge">Updated 2d ago by Abebe Tesfaye</span>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-surface-container-low text-text-muted" id="role-scope-badge">Scope: Station Node + Outposts</span>
+</div>
+<p class="text-body-sm text-text-muted mt-0.5 max-w-2xl leading-relaxed" id="role-description">Manages day-to-day farm stations, agronomic workflows, drone field telemetry, input allocations, and harvest logging across assigned cooperatives.</p>
+</div>
+<!-- Top Action Buttons -->
+<div class="flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
+<button class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[12px] font-medium bg-surface-white border border-border-light text-on-surface hover:bg-surface-container-low transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px] text-text-muted">content_copy</span>
+<span class="">Duplicate</span>
+</button>
+<button class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[12px] font-medium bg-surface-white border border-border-light text-text-muted hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">restart_alt</span>
+<span class="">Reset</span>
+</button>
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-[12px] font-semibold bg-primary-container text-on-primary hover:bg-primary-dark transition-all shadow-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span class="">Save Changes</span>
+</button>
+</div>
+</div>
+<!-- Role Sub-navigation Tabs -->
+<div class="flex items-center gap-4 border-t border-border-light/60 pt-2 text-[12.5px]">
+<button class="flex items-center gap-1.5 pb-1 relative text-primary-container font-semibold border-b-2 border-primary-container" type="button">
+<span class="">Permissions Matrix</span>
+<span class="px-1.5 py-0.2 rounded-full text-[10px] bg-secondary text-on-secondary font-bold" id="role-granted-counter">42 Granted</span>
+</button>
+<button class="flex items-center gap-1.5 pb-1 text-text-muted hover:text-on-surface font-medium transition-colors" type="button">
+<span class="">Assigned Users</span>
+<span class="px-1.5 py-0.2 rounded-full text-[10px] bg-surface-container text-text-muted" id="tab-assigned-users-count">142</span>
+</button>
+<button class="flex items-center gap-1 pb-1 text-text-muted hover:text-on-surface font-medium transition-colors" type="button">
+<span class="">Role Details &amp; Metadata</span>
+</button>
+</div>
+</div>
+<!-- PERMISSION MATRIX CARD -->
+<div class="bg-surface-white rounded-xl border border-border-light shadow-xs overflow-hidden flex flex-col">
+<!-- Matrix Action & Legend Toolbar -->
+<div class="px-3.5 py-2.5 bg-surface-container-low border-b border-border-light flex flex-col md:flex-row md:items-center justify-between gap-2">
+<!-- Legend Badges -->
+<div class="flex flex-wrap items-center gap-3 text-[11.5px]">
+<div class="flex items-center gap-1.5">
+<span class="w-4 h-4 rounded bg-surface-container-high text-secondary flex items-center justify-center border border-secondary/30">
+<span class="material-symbols-outlined text-[13px] font-bold">check</span>
+</span>
+<span class="font-medium text-on-surface">Granted (Explicit)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-4 h-4 rounded bg-surface-container text-text-muted flex items-center justify-center border border-border-light">
+<span class="material-symbols-outlined text-[12px]">lock</span>
+</span>
+<span class="text-text-muted">Inherited (Base)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-4 h-4 rounded bg-danger-light text-danger-red flex items-center justify-center border border-danger-red/20">
+<span class="material-symbols-outlined text-[13px] font-bold">close</span>
+</span>
+<span class="text-danger-red font-medium">Denied (Restricted)</span>
+</div>
+</div>
+<!-- Interactive Controls: Expand All / Collapse All / Granted Only -->
+<div class="flex items-center gap-1.5">
+<button class="px-2.5 py-1 rounded-md bg-surface-white border border-border-light text-[11.5px] font-medium text-on-surface hover:bg-surface-container-high transition-colors shadow-xs flex items-center gap-1" id="btn-expand-all" type="button">
+<span class="material-symbols-outlined text-[14px]">unfold_more</span>
+<span class="">Expand All</span>
+</button>
+<button class="px-2.5 py-1 rounded-md bg-surface-white border border-border-light text-[11.5px] font-medium text-on-surface hover:bg-surface-container-high transition-colors shadow-xs flex items-center gap-1" id="btn-collapse-all" type="button">
+<span class="material-symbols-outlined text-[14px]">unfold_less</span>
+<span class="">Collapse All</span>
+</button>
+<button class="px-2.5 py-1 rounded-md bg-surface-white border border-border-light text-[11.5px] font-semibold text-secondary hover:bg-surface-container-high transition-colors shadow-xs flex items-center gap-1" id="btn-granted-only" type="button">
+<span class="material-symbols-outlined text-[14px]">filter_alt</span>
+<span id="btn-granted-text" class="">Granted Only</span>
+</button>
+</div>
+</div>
+<!-- Table Header -->
+<div class="grid grid-cols-12 px-3.5 py-2 bg-surface-container text-on-surface-variant font-semibold text-[11px] uppercase tracking-wider border-b border-border-light/70">
+<div class="col-span-6 md:col-span-7">Resource / Scope Category</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 text-center font-bold">
+<span class="">View</span>
+<span class="">Create</span>
+<span class="">Update</span>
+<span class="">Delete</span>
+<span class="">Approve</span>
+</div>
+</div>
+<!-- Matrix Accordion Body -->
+<div class="divide-y divide-border-light/60 text-[12px]" id="matrix-accordion-container">
+<!-- ================= CATEGORY 1: Organization Management ================= -->
+<div class="category-block" data-category="1">
+<!-- Accordion Toggle Header -->
+<button class="category-header w-full px-3.5 py-2 bg-surface-container-high/70 hover:bg-surface-container-high flex items-center justify-between transition-colors text-left font-semibold text-primary-container" type="button">
+<div class="flex items-center gap-2">
+<span class="category-chevron material-symbols-outlined text-[18px] text-secondary transition-transform duration-200">expand_more</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">corporate_fare</span>
+<span class="text-[13px] font-bold">1. Organization Management</span>
+</div>
+<span class="text-[11px] font-normal text-text-muted bg-surface-white/80 px-2 py-0.5 rounded-full border border-border-light">2 Scopes</span>
+</button>
+<!-- Accordion Rows -->
+<div class="category-content divide-y divide-border-light/50">
+<!-- Row 1.1 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors" data-row-key="org_branch">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Branch &amp; Station Structure</span>
+<span class="text-body-sm text-text-muted text-[11px]">Territorial hierarchy, outposts, coordinates</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-surface-container text-text-muted flex items-center justify-center font-bold border border-border-light" title="Inherited (Base)">
+            <span class="material-symbols-outlined text-[14px]">remove</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span></div>
+</div>
+<!-- Row 1.2 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors bg-surface-white" data-row-key="org_coop">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Cooperative Association Mapping</span>
+<span class="text-body-sm text-text-muted text-[11px]">Farmer unions, zonal unions, legal identifiers</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span></div>
+</div>
+</div>
+</div>
+<!-- ================= CATEGORY 2: User Directory & Roles ================= -->
+<div class="category-block" data-category="2">
+<button class="category-header w-full px-3.5 py-2 bg-surface-container-high/70 hover:bg-surface-container-high flex items-center justify-between transition-colors text-left font-semibold text-primary-container" type="button">
+<div class="flex items-center gap-2">
+<span class="category-chevron material-symbols-outlined text-[18px] text-secondary transition-transform duration-200">expand_more</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">group</span>
+<span class="text-[13px] font-bold">2. User Directory &amp; Roles</span>
+</div>
+<span class="text-[11px] font-normal text-text-muted bg-surface-white/80 px-2 py-0.5 rounded-full border border-border-light">2 Scopes</span>
+</button>
+<div class="category-content divide-y divide-border-light/50">
+<!-- Row 2.1 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors" data-row-key="users_field">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Field Staff &amp; Seasonal Workers</span>
+<span class="text-body-sm text-text-muted text-[11px]">Farm labor enrollment, daily roster check-in</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-surface-container text-text-muted flex items-center justify-center font-bold border border-border-light" title="Inherited (Base)">
+            <span class="material-symbols-outlined text-[14px]">remove</span>
+          </span></div>
+</div>
+<!-- Row 2.2 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors bg-surface-white" data-row-key="users_enterprise">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Enterprise Directory &amp; Admin Accounts</span>
+<span class="text-body-sm text-text-muted text-[11px]">Root IAM accounts, security keys, passkeys</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span></div>
+</div>
+</div>
+</div>
+<!-- ================= CATEGORY 3: Farm Operations & Telemetry ================= -->
+<div class="category-block" data-category="3">
+<button class="category-header w-full px-3.5 py-2 bg-surface-container-high/70 hover:bg-surface-container-high flex items-center justify-between transition-colors text-left font-semibold text-primary-container" type="button">
+<div class="flex items-center gap-2">
+<span class="category-chevron material-symbols-outlined text-[18px] text-secondary transition-transform duration-200">expand_more</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">agriculture</span>
+<span class="text-[13px] font-bold">3. Farm Operations &amp; Telemetry</span>
+</div>
+<span class="text-[11px] font-normal text-text-muted bg-surface-white/80 px-2 py-0.5 rounded-full border border-border-light">3 Scopes</span>
+</button>
+<div class="category-content divide-y divide-border-light/50">
+<!-- Row 3.1 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors bg-warning-light/30" data-row-key="ops_geofence">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-semibold text-on-surface text-[12.5px]">Field Plots &amp; Geofencing Boundaries</span>
+<span class="mod-badge px-1.5 py-0.2 rounded text-[9.5px] font-bold bg-warning-light text-warning-amber border border-warning-amber/30">Modified</span>
+</div>
+<span class="text-body-sm text-text-muted text-[11px]">GIS boundary polygons, soil zones, micro-catchment maps</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary ring-1 ring-secondary flex items-center justify-center font-bold shadow-xs" title="Granted - Pending Change">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span></div>
+</div>
+<!-- Row 3.2 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors bg-warning-light/30" data-row-key="ops_telemetry">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-semibold text-on-surface text-[12.5px]">Irrigation &amp; Soil Sensor Telemetry</span>
+<span class="mod-badge px-1.5 py-0.2 rounded text-[9.5px] font-bold bg-warning-light text-warning-amber border border-warning-amber/30">Modified</span>
+</div>
+<span class="text-body-sm text-text-muted text-[11px]">LoRaWAN moisture arrays, drip valve solenoids</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container text-text-muted flex items-center justify-center font-bold border border-border-light" title="Inherited (Base)">
+            <span class="material-symbols-outlined text-[14px]">remove</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary ring-1 ring-secondary flex items-center justify-center font-bold shadow-xs" title="Granted - Pending Change">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span></div>
+</div>
+<!-- Row 3.3 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors bg-surface-white" data-row-key="ops_drone">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Drone Flight Plans &amp; Multispectral Imaging</span>
+<span class="text-body-sm text-text-muted text-[11px]">Autonomous NDVI scan routes, calibration layers</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span></div>
+</div>
+</div>
+</div>
+<!-- ================= CATEGORY 4: Crop Management & Agronomy ================= -->
+<div class="category-block" data-category="4">
+<button class="category-header w-full px-3.5 py-2 bg-surface-container-high/70 hover:bg-surface-container-high flex items-center justify-between transition-colors text-left font-semibold text-primary-container" type="button">
+<div class="flex items-center gap-2">
+<span class="category-chevron material-symbols-outlined text-[18px] text-secondary transition-transform duration-200">expand_more</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">eco</span>
+<span class="text-[13px] font-bold">4. Crop Management &amp; Agronomy</span>
+</div>
+<span class="text-[11px] font-normal text-text-muted bg-surface-white/80 px-2 py-0.5 rounded-full border border-border-light">3 Scopes</span>
+</button>
+<div class="category-content divide-y divide-border-light/50">
+<!-- Row 4.1 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors bg-warning-light/30" data-row-key="crop_schedule">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-semibold text-on-surface text-[12.5px]">Planting Schedules &amp; Crop Cycles</span>
+<span class="mod-badge px-1.5 py-0.2 rounded text-[9.5px] font-bold bg-warning-light text-warning-amber border border-warning-amber/30">Modified</span>
+</div>
+<span class="text-body-sm text-text-muted text-[11px]">Cultivar rotation tables, germination targets, harvest projections</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary ring-1 ring-secondary flex items-center justify-center font-bold shadow-xs" title="Granted - Pending Change">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span></div>
+</div>
+<!-- Row 4.2 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors bg-surface-white" data-row-key="crop_fertilizer">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Fertilizer &amp; Chemical Prescriptions</span>
+<span class="text-body-sm text-text-muted text-[11px]">Agronomist dosage approvals, application dates</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span></div>
+</div>
+<!-- Row 4.3 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors bg-surface-white" data-row-key="crop_harvest">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Harvest Yield Logging &amp; Grading</span>
+<span class="text-body-sm text-text-muted text-[11px]">Weight batch tickets, moisture metrics, grade A/B classification</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span></div>
+</div>
+</div>
+</div>
+<!-- ================= CATEGORY 5: Logistics & Physical Inputs ================= -->
+<div class="category-block" data-category="5">
+<button class="category-header w-full px-3.5 py-2 bg-surface-container-high/70 hover:bg-surface-container-high flex items-center justify-between transition-colors text-left font-semibold text-primary-container" type="button">
+<div class="flex items-center gap-2">
+<span class="category-chevron material-symbols-outlined text-[18px] text-secondary transition-transform duration-200">expand_more</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">inventory_2</span>
+<span class="text-[13px] font-bold">5. Logistics &amp; Physical Inputs</span>
+</div>
+<span class="text-[11px] font-normal text-text-muted bg-surface-white/80 px-2 py-0.5 rounded-full border border-border-light">2 Scopes</span>
+</button>
+<div class="category-content divide-y divide-border-light/50">
+<!-- Row 5.1 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors" data-row-key="log_seed">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Seed Stock &amp; Input Supplies</span>
+<span class="text-body-sm text-text-muted text-[11px]">Station warehouse bin allocations, bag barcode tracking</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span></div>
+</div>
+<!-- Row 5.2 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors bg-surface-white" data-row-key="log_machinery">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Machinery &amp; Tractor Fleet Allocation</span>
+<span class="text-body-sm text-text-muted text-[11px]">Harvester dispatch, diesel allotment, telematics engine link</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-surface-container text-text-muted flex items-center justify-center font-bold border border-border-light" title="Inherited (Base)">
+            <span class="material-symbols-outlined text-[14px]">remove</span>
+          </span></div>
+</div>
+</div>
+</div>
+<!-- ================= CATEGORY 6: Financial Disbursals & Subsidies ================= -->
+<div class="category-block" data-category="6">
+<button class="category-header w-full px-3.5 py-2 bg-surface-container-high/70 hover:bg-surface-container-high flex items-center justify-between transition-colors text-left font-semibold text-primary-container" type="button">
+<div class="flex items-center gap-2">
+<span class="category-chevron material-symbols-outlined text-[18px] text-secondary transition-transform duration-200">expand_more</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">payments</span>
+<span class="text-[13px] font-bold">6. Financial Disbursals &amp; Subsidies</span>
+</div>
+<span class="text-[11px] font-normal text-text-muted bg-surface-white/80 px-2 py-0.5 rounded-full border border-border-light">2 Scopes</span>
+</button>
+<div class="category-content divide-y divide-border-light/50">
+<!-- Row 6.1 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors" data-row-key="fin_subsidy">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Smallholder Input Subsidy Disbursements</span>
+<span class="text-body-sm text-text-muted text-[11px]">Direct mobile money ledger lines, escrow transfers</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><div class="flex flex-col items-center">
+            <span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied - Finance Officer Req">
+              <span class="material-symbols-outlined text-[15px]">close</span>
+            </span>
+            <span class="text-[9px] text-text-muted leading-none mt-0.5 font-medium whitespace-nowrap">Finance Req</span>
+          </div></div>
+</div>
+<!-- Row 6.2 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors bg-surface-white" data-row-key="fin_voucher">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Emergency Seed Voucher Issuance</span>
+<span class="text-body-sm text-text-muted text-[11px]">Drought/flood contingency grain vouchers</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><div class="flex flex-col items-center">
+            <span class="w-6 h-6 rounded bg-surface-container text-text-muted flex items-center justify-center font-bold border border-border-light" title="Inherited (Cap $5k)">
+              <span class="material-symbols-outlined text-[14px]">remove</span>
+            </span>
+            <span class="text-[9px] text-text-muted leading-none mt-0.5 font-medium whitespace-nowrap">≤ $5k</span>
+          </div></div>
+</div>
+</div>
+</div>
+<!-- ================= CATEGORY 7: Intelligence & Audit Logs ================= -->
+<div class="category-block" data-category="7">
+<button class="category-header w-full px-3.5 py-2 bg-surface-container-high/70 hover:bg-surface-container-high flex items-center justify-between transition-colors text-left font-semibold text-primary-container" type="button">
+<div class="flex items-center gap-2">
+<span class="category-chevron material-symbols-outlined text-[18px] text-secondary transition-transform duration-200">expand_more</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">analytics</span>
+<span class="text-[13px] font-bold">7. Intelligence &amp; Audit Logs</span>
+</div>
+<span class="text-[11px] font-normal text-text-muted bg-surface-white/80 px-2 py-0.5 rounded-full border border-border-light">2 Scopes</span>
+</button>
+<div class="category-content divide-y divide-border-light/50">
+<!-- Row 7.1 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors" data-row-key="intel_analytics">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Agronomic Yield &amp; Soil Health Analytics</span>
+<span class="text-body-sm text-text-muted text-[11px]">Aggregated cooperative performance reports</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-surface-container text-text-muted flex items-center justify-center font-bold border border-border-light" title="Inherited (Base)">
+            <span class="material-symbols-outlined text-[14px]">remove</span>
+          </span></div>
+</div>
+<!-- Row 7.2 -->
+<div class="permission-row grid grid-cols-12 px-3.5 py-2 items-center hover:bg-canvas-warm/40 transition-colors bg-surface-white" data-row-key="intel_escrow">
+<div class="col-span-6 md:col-span-7 flex flex-col pr-2">
+<span class="font-semibold text-on-surface text-[12.5px]">Financial Audit &amp; Escrow Ledger Logs</span>
+<span class="text-body-sm text-text-muted text-[11px]">Regulatory compliance trail, multi-party signatures</span>
+</div>
+<div class="col-span-6 md:col-span-5 grid grid-cols-5 items-center justify-items-center perm-cells"><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span><span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- STICKY BOTTOM AUDIT & ACTION BAR -->
+<footer class="fixed bottom-0 left-64 right-0 bg-surface-white/95 backdrop-blur-md px-5 py-2.5 shadow-[0_-4px_16px_rgba(11,61,46,0.06)] border-t border-border-light z-30 flex flex-col sm:flex-row items-center justify-between gap-3" id="bottom-commit-bar">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-warning-light flex items-center justify-center text-warning-amber shrink-0 border border-warning-amber/30" id="commit-icon-box">
+<span class="material-symbols-outlined text-[18px]" id="commit-icon">edit_note</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="text-[13px] font-bold text-on-surface" id="commit-status-title">3 modifications pending confirmation</span>
+<span class="inline-flex items-center px-2 py-0.2 rounded-full text-[10px] font-bold bg-warning-light text-warning-amber border border-warning-amber/20" id="commit-badge">Farm Management: Field Plots, Soil Sensor, Crop Planting</span>
+</div>
+<span class="text-[11px] text-text-muted leading-tight" id="commit-protocol-text">Zero-Trust Agritech Protocol: Updates trigger cryptographic audit entry <strong class="text-on-surface font-semibold">SEC-RBAC-2025-081</strong>.</span>
+</div>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="px-3 py-1.5 rounded-lg text-[12px] font-medium bg-surface-container-low text-on-surface-variant hover:bg-surface-container border border-border-light transition-colors" type="button">
+          Discard Changes
+        </button>
+<button class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-[12px] font-bold bg-primary-container text-on-primary shadow-xs hover:bg-primary-dark transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Commit Changes</span>
+</button>
+</div>
+</footer>
+</div>
+<!-- INTERACTIVE VANILLA JAVASCRIPT -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // -------------------------------------------------------------
+      // Roles Definition & Realistic Permission Sets
+      // V: View, C: Create, U: Update, D: Delete, A: Approve
+      // Code values: 'G' (Granted), 'D' (Denied), 'I' (Inherited), 'GP' (Granted Pending)
+      // -------------------------------------------------------------
+      const rolesData = {
+        "super-admin": {
+          name: "Super Admin",
+          type: "System",
+          isCustom: false,
+          activeUsers: 3,
+          updated: "Updated 1mo ago by SecOps Root",
+          scope: "Scope: Global Enterprise Root",
+          description: "Unrestricted enterprise root access across all regional nodes, unions, escrow lines, telemetry relays, and SCIM directory authorities.",
+          grantedCount: 75,
+          pendingMods: 0,
+          pendingText: "All system parameters synced • No drift detected",
+          permissions: {
+            org_branch:      ['G', 'G', 'G', 'G', 'G'],
+            org_coop:        ['G', 'G', 'G', 'G', 'G'],
+            users_field:     ['G', 'G', 'G', 'G', 'G'],
+            users_enterprise:['G', 'G', 'G', 'G', 'G'],
+            ops_geofence:    ['G', 'G', 'G', 'G', 'G'],
+            ops_telemetry:   ['G', 'G', 'G', 'G', 'G'],
+            ops_drone:       ['G', 'G', 'G', 'G', 'G'],
+            crop_schedule:   ['G', 'G', 'G', 'G', 'G'],
+            crop_fertilizer: ['G', 'G', 'G', 'G', 'G'],
+            crop_harvest:    ['G', 'G', 'G', 'G', 'G'],
+            log_seed:        ['G', 'G', 'G', 'G', 'G'],
+            log_machinery:   ['G', 'G', 'G', 'G', 'G'],
+            fin_subsidy:     ['G', 'G', 'G', 'G', 'G'],
+            fin_voucher:     ['G', 'G', 'G', 'G', 'G'],
+            intel_analytics: ['G', 'G', 'G', 'G', 'G'],
+            intel_escrow:    ['G', 'G', 'G', 'G', 'G']
+          }
+        },
+        "system-admin": {
+          name: "System Admin",
+          type: "System",
+          isCustom: false,
+          activeUsers: 12,
+          updated: "Updated 5d ago by Abebe Tesfaye",
+          scope: "Scope: Hub Infrastructure & Directory",
+          description: "Core platform administration, SCIM identity provisioning, network boundaries, and security audits across regional servers.",
+          grantedCount: 52,
+          pendingMods: 0,
+          pendingText: "Standard administrative template • Verified baseline",
+          permissions: {
+            org_branch:      ['G', 'G', 'G', 'D', 'G'],
+            org_coop:        ['G', 'G', 'G', 'D', 'G'],
+            users_field:     ['G', 'G', 'G', 'G', 'G'],
+            users_enterprise:['G', 'G', 'G', 'D', 'G'],
+            ops_geofence:    ['G', 'G', 'G', 'D', 'I'],
+            ops_telemetry:   ['G', 'G', 'G', 'D', 'I'],
+            ops_drone:       ['G', 'G', 'G', 'D', 'D'],
+            crop_schedule:   ['G', 'I', 'I', 'D', 'D'],
+            crop_fertilizer: ['G', 'I', 'I', 'D', 'D'],
+            crop_harvest:    ['G', 'I', 'I', 'D', 'D'],
+            log_seed:        ['G', 'G', 'G', 'D', 'I'],
+            log_machinery:   ['G', 'G', 'G', 'D', 'I'],
+            fin_subsidy:     ['G', 'D', 'D', 'D', 'D'],
+            fin_voucher:     ['G', 'D', 'D', 'D', 'D'],
+            intel_analytics: ['G', 'G', 'G', 'D', 'I'],
+            intel_escrow:    ['G', 'G', 'G', 'D', 'G']
+          }
+        },
+        "hr-officer": {
+          name: "HR Officer",
+          type: "Custom",
+          isCustom: true,
+          activeUsers: 18,
+          updated: "Updated 1w ago by Almaz Kebede",
+          scope: "Scope: Regional Human Capital & Field Agents",
+          description: "Staff onboarding, seasonal worker certification, worker contract rosters, field staff identification, and personnel delegations.",
+          grantedCount: 22,
+          pendingMods: 0,
+          pendingText: "Staff lifecycle workflows • Labor compliance locked",
+          permissions: {
+            org_branch:      ['G', 'D', 'D', 'D', 'D'],
+            org_coop:        ['G', 'D', 'D', 'D', 'D'],
+            users_field:     ['G', 'G', 'G', 'D', 'G'],
+            users_enterprise:['G', 'G', 'G', 'D', 'I'],
+            ops_geofence:    ['G', 'D', 'D', 'D', 'D'],
+            ops_telemetry:   ['D', 'D', 'D', 'D', 'D'],
+            ops_drone:       ['D', 'D', 'D', 'D', 'D'],
+            crop_schedule:   ['G', 'D', 'D', 'D', 'D'],
+            crop_fertilizer: ['D', 'D', 'D', 'D', 'D'],
+            crop_harvest:    ['G', 'D', 'D', 'D', 'D'],
+            log_seed:        ['D', 'D', 'D', 'D', 'D'],
+            log_machinery:   ['D', 'D', 'D', 'D', 'D'],
+            fin_subsidy:     ['D', 'D', 'D', 'D', 'D'],
+            fin_voucher:     ['D', 'D', 'D', 'D', 'D'],
+            intel_analytics: ['G', 'D', 'D', 'D', 'D'],
+            intel_escrow:    ['D', 'D', 'D', 'D', 'D']
+          }
+        },
+        "finance-officer": {
+          name: "Finance Officer",
+          type: "System",
+          isCustom: false,
+          activeUsers: 24,
+          updated: "Updated 3d ago by Dawit Wolde",
+          scope: "Scope: Escrow, Subsidies & Treasury",
+          description: "Subsidy disbursement verification, mobile money transaction authorizations, seed voucher audit, and dual-key financial releases.",
+          grantedCount: 36,
+          pendingMods: 0,
+          pendingText: "Banking and escrow reconciliation rules in force",
+          permissions: {
+            org_branch:      ['G', 'D', 'D', 'D', 'D'],
+            org_coop:        ['G', 'D', 'G', 'D', 'D'],
+            users_field:     ['G', 'D', 'D', 'D', 'D'],
+            users_enterprise:['D', 'D', 'D', 'D', 'D'],
+            ops_geofence:    ['G', 'D', 'D', 'D', 'D'],
+            ops_telemetry:   ['D', 'D', 'D', 'D', 'D'],
+            ops_drone:       ['D', 'D', 'D', 'D', 'D'],
+            crop_schedule:   ['G', 'D', 'D', 'D', 'D'],
+            crop_fertilizer: ['G', 'D', 'D', 'D', 'D'],
+            crop_harvest:    ['G', 'D', 'D', 'D', 'G'],
+            log_seed:        ['G', 'D', 'D', 'D', 'G'],
+            log_machinery:   ['G', 'D', 'D', 'D', 'G'],
+            fin_subsidy:     ['G', 'G', 'G', 'D', 'G'],
+            fin_voucher:     ['G', 'G', 'G', 'D', 'G'],
+            intel_analytics: ['G', 'G', 'G', 'D', 'D'],
+            intel_escrow:    ['G', 'G', 'G', 'D', 'G']
+          }
+        },
+        "farm-manager": {
+          name: "Farm Manager",
+          type: "Custom",
+          isCustom: true,
+          activeUsers: 142,
+          updated: "Updated 2d ago by Abebe Tesfaye",
+          scope: "Scope: Station Node + Outposts",
+          description: "Manages day-to-day farm stations, agronomic workflows, drone field telemetry, input allocations, and harvest logging across assigned cooperatives.",
+          grantedCount: 42,
+          pendingMods: 3,
+          pendingText: "Farm Management: Field Plots, Soil Sensor, Crop Planting",
+          permissions: {
+            org_branch:      ['G', 'D', 'I', 'D', 'D'],
+            org_coop:        ['G', 'D', 'G', 'D', 'D'],
+            users_field:     ['G', 'G', 'G', 'D', 'I'],
+            users_enterprise:['D', 'D', 'D', 'D', 'D'],
+            ops_geofence:    ['G', 'G', 'G', 'D', 'GP'],
+            ops_telemetry:   ['G', 'G', 'G', 'I', 'GP'],
+            ops_drone:       ['G', 'G', 'G', 'D', 'D'],
+            crop_schedule:   ['G', 'G', 'G', 'D', 'GP'],
+            crop_fertilizer: ['G', 'G', 'G', 'D', 'G'],
+            crop_harvest:    ['G', 'G', 'G', 'D', 'G'],
+            log_seed:        ['G', 'G', 'G', 'D', 'G'],
+            log_machinery:   ['G', 'D', 'G', 'D', 'I'],
+            fin_subsidy:     ['G', 'D', 'D', 'D', 'D_fin'],
+            fin_voucher:     ['G', 'G', 'D', 'D', 'I_cap'],
+            intel_analytics: ['G', 'G', 'G', 'D', 'I'],
+            intel_escrow:    ['D', 'D', 'D', 'D', 'D']
+          }
+        },
+        "logistics-officer": {
+          name: "Logistics Officer",
+          type: "Custom",
+          isCustom: true,
+          activeUsers: 48,
+          updated: "Updated 4d ago by Meron Haile",
+          scope: "Scope: Cold Chain, Warehouse Hubs & Fleet",
+          description: "Responsible for seed inventory bin tracking, cold-storage temperature compliance, diesel allotment for tractors, and regional dispatch.",
+          grantedCount: 31,
+          pendingMods: 0,
+          pendingText: "Fleet and inventory control protocols verified",
+          permissions: {
+            org_branch:      ['G', 'D', 'D', 'D', 'D'],
+            org_coop:        ['G', 'D', 'D', 'D', 'D'],
+            users_field:     ['G', 'D', 'D', 'D', 'D'],
+            users_enterprise:['D', 'D', 'D', 'D', 'D'],
+            ops_geofence:    ['G', 'D', 'D', 'D', 'D'],
+            ops_telemetry:   ['G', 'D', 'D', 'D', 'D'],
+            ops_drone:       ['G', 'D', 'D', 'D', 'D'],
+            crop_schedule:   ['G', 'D', 'D', 'D', 'D'],
+            crop_fertilizer: ['G', 'G', 'G', 'D', 'I'],
+            crop_harvest:    ['G', 'G', 'G', 'D', 'G'],
+            log_seed:        ['G', 'G', 'G', 'D', 'G'],
+            log_machinery:   ['G', 'G', 'G', 'D', 'G'],
+            fin_subsidy:     ['G', 'D', 'D', 'D', 'D'],
+            fin_voucher:     ['G', 'D', 'D', 'D', 'D'],
+            intel_analytics: ['G', 'D', 'G', 'D', 'D'],
+            intel_escrow:    ['D', 'D', 'D', 'D', 'D']
+          }
+        },
+        "field-officer": {
+          name: "Field Officer",
+          type: "System",
+          isCustom: false,
+          activeUsers: 512,
+          updated: "Updated 1w ago by Regional Lead",
+          scope: "Scope: Designated Kebele Smallholder Clusters",
+          description: "Agronomic surveys, direct farmer onboarding, GPS farm plot boundaries verification, and mobile telemetry sampling.",
+          grantedCount: 28,
+          pendingMods: 0,
+          pendingText: "Mobile field synchronization policy active",
+          permissions: {
+            org_branch:      ['G', 'D', 'D', 'D', 'D'],
+            org_coop:        ['G', 'D', 'D', 'D', 'D'],
+            users_field:     ['G', 'G', 'G', 'D', 'D'],
+            users_enterprise:['D', 'D', 'D', 'D', 'D'],
+            ops_geofence:    ['G', 'G', 'G', 'D', 'D'],
+            ops_telemetry:   ['G', 'G', 'D', 'D', 'D'],
+            ops_drone:       ['G', 'D', 'D', 'D', 'D'],
+            crop_schedule:   ['G', 'G', 'G', 'D', 'D'],
+            crop_fertilizer: ['G', 'G', 'D', 'D', 'D'],
+            crop_harvest:    ['G', 'G', 'G', 'D', 'D'],
+            log_seed:        ['G', 'D', 'D', 'D', 'D'],
+            log_machinery:   ['G', 'D', 'D', 'D', 'D'],
+            fin_subsidy:     ['G', 'D', 'D', 'D', 'D'],
+            fin_voucher:     ['G', 'G', 'D', 'D', 'D'],
+            intel_analytics: ['G', 'D', 'D', 'D', 'D'],
+            intel_escrow:    ['D', 'D', 'D', 'D', 'D']
+          }
+        },
+        "viewer": {
+          name: "Viewer",
+          type: "System",
+          isCustom: false,
+          activeUsers: 89,
+          updated: "Updated 2w ago by System Default",
+          scope: "Scope: Read-Only Enterprise Audit",
+          description: "Read-only analytics, external auditor inspection, compliance monitoring, and reporting dashboards.",
+          grantedCount: 16,
+          pendingMods: 0,
+          pendingText: "Strict read-only role • Zero mutation permissions permitted",
+          permissions: {
+            org_branch:      ['G', 'D', 'D', 'D', 'D'],
+            org_coop:        ['G', 'D', 'D', 'D', 'D'],
+            users_field:     ['G', 'D', 'D', 'D', 'D'],
+            users_enterprise:['G', 'D', 'D', 'D', 'D'],
+            ops_geofence:    ['G', 'D', 'D', 'D', 'D'],
+            ops_telemetry:   ['G', 'D', 'D', 'D', 'D'],
+            ops_drone:       ['G', 'D', 'D', 'D', 'D'],
+            crop_schedule:   ['G', 'D', 'D', 'D', 'D'],
+            crop_fertilizer: ['G', 'D', 'D', 'D', 'D'],
+            crop_harvest:    ['G', 'D', 'D', 'D', 'D'],
+            log_seed:        ['G', 'D', 'D', 'D', 'D'],
+            log_machinery:   ['G', 'D', 'D', 'D', 'D'],
+            fin_subsidy:     ['G', 'D', 'D', 'D', 'D'],
+            fin_voucher:     ['G', 'D', 'D', 'D', 'D'],
+            intel_analytics: ['G', 'D', 'D', 'D', 'D'],
+            intel_escrow:    ['G', 'D', 'D', 'D', 'D']
+          }
+        }
+      };
+
+      // Helper to render individual badge
+      function createBadge(type) {
+        if (type === 'G') {
+          return `<span class="w-6 h-6 rounded bg-surface-container-high text-secondary flex items-center justify-center font-bold border border-secondary/30" title="Granted (Explicit)">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span>`;
+        }
+        if (type === 'GP') {
+          return `<span class="w-6 h-6 rounded bg-surface-container-high text-secondary ring-1 ring-secondary flex items-center justify-center font-bold shadow-xs" title="Granted - Pending Change">
+            <span class="material-symbols-outlined text-[15px]">check</span>
+          </span>`;
+        }
+        if (type === 'I') {
+          return `<span class="w-6 h-6 rounded bg-surface-container text-text-muted flex items-center justify-center font-bold border border-border-light" title="Inherited (Base)">
+            <span class="material-symbols-outlined text-[14px]">remove</span>
+          </span>`;
+        }
+        if (type === 'I_cap') {
+          return `<div class="flex flex-col items-center">
+            <span class="w-6 h-6 rounded bg-surface-container text-text-muted flex items-center justify-center font-bold border border-border-light" title="Inherited (Cap $5k)">
+              <span class="material-symbols-outlined text-[14px]">remove</span>
+            </span>
+            <span class="text-[9px] text-text-muted leading-none mt-0.5 font-medium whitespace-nowrap">≤ $5k</span>
+          </div>`;
+        }
+        if (type === 'D_fin') {
+          return `<div class="flex flex-col items-center">
+            <span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied - Finance Officer Req">
+              <span class="material-symbols-outlined text-[15px]">close</span>
+            </span>
+            <span class="text-[9px] text-text-muted leading-none mt-0.5 font-medium whitespace-nowrap">Finance Req</span>
+          </div>`;
+        }
+        // Default Denied
+        return `<span class="w-6 h-6 rounded bg-danger-light text-danger-red flex items-center justify-center font-bold border border-danger-red/20" title="Denied">
+          <span class="material-symbols-outlined text-[15px]">close</span>
+        </span>`;
+      }
+
+      let currentRoleId = "farm-manager";
+
+      // Render Matrix for a selected role
+      function renderRole(roleId) {
+        const role = rolesData[roleId];
+        if (!role) return;
+        currentRoleId = roleId;
+
+        // 1. Update Left List Cards Active state
+        document.querySelectorAll(".role-card").forEach(card => {
+          const cardRoleId = card.getAttribute("data-role-id");
+          const indicator = card.querySelector(".role-indicator");
+          const title = card.querySelector(".role-card-title");
+          const tag = card.querySelector(".role-tag");
+          const badge = card.querySelector(".role-selected-badge");
+          const footer = card.querySelector(".role-card-footer");
+
+          if (cardRoleId === roleId) {
+            // Selected active styling
+            card.className = "role-card p-2.5 rounded-lg cursor-pointer bg-surface-container border-2 border-secondary shadow-xs relative";
+            if (indicator) indicator.classList.remove("hidden");
+            if (title) {
+              title.className = "role-card-title text-[13px] font-bold text-primary-container";
+            }
+            if (tag) {
+              tag.className = "role-tag px-1.5 py-0.2 rounded text-[10px] font-semibold bg-secondary text-on-secondary";
+            }
+            if (badge) badge.classList.remove("hidden");
+            if (footer) {
+              footer.className = "role-card-footer flex items-center justify-between mt-1 text-[11px] text-secondary font-medium";
+            }
+          } else {
+            // Inactive card styling
+            card.className = "role-card p-2.5 rounded-lg cursor-pointer bg-surface-white hover:bg-surface-container-low border border-transparent hover:border-border-light transition-all";
+            if (indicator) indicator.classList.add("hidden");
+            if (title) {
+              title.className = "role-card-title text-[13px] font-semibold text-on-surface";
+            }
+            if (tag) {
+              const isCustomRole = card.getAttribute("data-role-type") === "custom";
+              tag.className = isCustomRole
+                ? "role-tag px-1.5 py-0.2 rounded text-[10px] font-medium bg-warning-light text-warning-amber border border-warning-amber/20"
+                : "role-tag px-1.5 py-0.2 rounded text-[10px] font-medium bg-surface-container text-on-surface-variant";
+            }
+            if (badge) badge.classList.add("hidden");
+            if (footer) {
+              footer.className = "role-card-footer flex items-center justify-between mt-1 text-[11px] text-text-muted";
+            }
+          }
+        });
+
+        // 2. Update Header Metadata
+        document.getElementById("role-title").textContent = role.name;
+        const typeBadge = document.getElementById("role-type-badge");
+        if (role.isCustom) {
+          typeBadge.textContent = "Custom Role";
+          typeBadge.className = "px-2 py-0.5 rounded-full text-[10px] font-semibold bg-surface-container-high text-secondary border border-secondary/20";
+        } else {
+          typeBadge.textContent = "System Role";
+          typeBadge.className = "px-2 py-0.5 rounded-full text-[10px] font-semibold bg-surface-container text-on-surface-variant border border-border-light";
+        }
+        document.getElementById("role-user-count-badge").textContent = `${role.activeUsers} Active Users`;
+        document.getElementById("role-updated-badge").textContent = role.updated;
+        document.getElementById("role-scope-badge").textContent = role.scope;
+        document.getElementById("role-description").textContent = role.description;
+        document.getElementById("role-granted-counter").textContent = `${role.grantedCount} Granted`;
+        document.getElementById("tab-assigned-users-count").textContent = role.activeUsers;
+
+        // 3. Update Permission Rows
+        const rows = document.querySelectorAll(".permission-row");
+        rows.forEach(row => {
+          const key = row.getAttribute("data-row-key");
+          const perms = role.permissions[key] || ['D', 'D', 'D', 'D', 'D'];
+          const cellsContainer = row.querySelector(".perm-cells");
+          if (cellsContainer) {
+            cellsContainer.innerHTML = perms.map(p => createBadge(p)).join("");
+          }
+
+          // Modified badge styling for farm manager pending edits vs other roles
+          const modBadge = row.querySelector(".mod-badge");
+          if (modBadge) {
+            if (roleId === "farm-manager") {
+              modBadge.classList.remove("hidden");
+              row.classList.add("bg-warning-light/30");
+            } else {
+              modBadge.classList.add("hidden");
+              row.classList.remove("bg-warning-light/30");
+            }
+          }
+        });
+
+        // 4. Update Bottom Audit Bar
+        const commitStatusTitle = document.getElementById("commit-status-title");
+        const commitBadge = document.getElementById("commit-badge");
+        const commitProtocolText = document.getElementById("commit-protocol-text");
+        const commitIconBox = document.getElementById("commit-icon-box");
+        const commitIcon = document.getElementById("commit-icon");
+
+        if (role.pendingMods > 0) {
+          commitIconBox.className = "w-8 h-8 rounded-lg bg-warning-light flex items-center justify-center text-warning-amber shrink-0 border border-warning-amber/30";
+          commitIcon.textContent = "edit_note";
+          commitStatusTitle.textContent = `${role.pendingMods} modifications pending confirmation`;
+          commitBadge.textContent = role.pendingText;
+          commitBadge.className = "inline-flex items-center px-2 py-0.2 rounded-full text-[10px] font-bold bg-warning-light text-warning-amber border border-warning-amber/20";
+          commitProtocolText.innerHTML = `Zero-Trust Agritech Protocol: Updates trigger cryptographic audit entry <strong class="text-on-surface font-semibold">SEC-RBAC-2025-081</strong>.`;
+        } else {
+          commitIconBox.className = "w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary shrink-0 border border-border-light";
+          commitIcon.textContent = "verified_user";
+          commitStatusTitle.textContent = `No pending modifications for ${role.name}`;
+          commitBadge.textContent = role.pendingText;
+          commitBadge.className = "inline-flex items-center px-2 py-0.2 rounded-full text-[10px] font-medium bg-surface-container text-text-muted border border-border-light";
+          commitProtocolText.innerHTML = `Zero-Trust Agritech Protocol: Role baseline verified on <strong class="text-on-surface font-semibold">East Africa Primary Node</strong>.`;
+        }
+
+        // 5. Re-apply Granted Only filter if currently toggled on
+        if (grantedOnlyActive) {
+          applyGrantedOnlyFilter();
+        }
+      }
+
+      // Handle Role Card Clicks
+      document.querySelectorAll(".role-card").forEach(card => {
+        card.addEventListener("click", () => {
+          const roleId = card.getAttribute("data-role-id");
+          renderRole(roleId);
+        });
+      });
+
+      // Filter Tabs for Role List: All (8), System (5), Custom (3)
+      const filterTabs = document.querySelectorAll(".role-filter-tab");
+      filterTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          // Update tab styles
+          filterTabs.forEach(t => {
+            t.className = "role-filter-tab flex-1 py-1 rounded text-center text-text-muted hover:text-on-surface transition-colors";
+          });
+          tab.className = "role-filter-tab flex-1 py-1 rounded text-center bg-surface-white text-primary-container shadow-xs font-semibold";
+
+          const filterType = tab.getAttribute("data-type");
+          const searchVal = (document.getElementById("role-search-input").value || "").toLowerCase().trim();
+
+          filterRoleList(filterType, searchVal);
+        });
+      });
+
+      function filterRoleList(filterType, searchQuery) {
+        document.querySelectorAll(".role-card").forEach(card => {
+          const cardType = card.getAttribute("data-role-type");
+          const cardText = card.textContent.toLowerCase();
+
+          const matchesType = (filterType === "all") || (cardType === filterType);
+          const matchesSearch = !searchQuery || cardText.includes(searchQuery);
+
+          if (matchesType && matchesSearch) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      }
+
+      // Role Search Filter input
+      const roleSearchInput = document.getElementById("role-search-input");
+      if (roleSearchInput) {
+        roleSearchInput.addEventListener("input", (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          const activeTab = document.querySelector(".role-filter-tab.bg-surface-white");
+          const currentFilterType = activeTab ? activeTab.getAttribute("data-type") : "all";
+          filterRoleList(currentFilterType, query);
+        });
+      }
+
+      // Accordion Functionality
+      const categoryBlocks = document.querySelectorAll(".category-block");
+      const btnExpandAll = document.getElementById("btn-expand-all");
+      const btnCollapseAll = document.getElementById("btn-collapse-all");
+      const btnGrantedOnly = document.getElementById("btn-granted-only");
+      const btnGrantedText = document.getElementById("btn-granted-text");
+      let grantedOnlyActive = false;
+
+      function expandCategory(block) {
+        const content = block.querySelector(".category-content");
+        const chevron = block.querySelector(".category-chevron");
+        if (content) {
+          content.classList.remove("hidden");
+        }
+        if (chevron) {
+          chevron.textContent = "expand_more";
+          chevron.classList.remove("-rotate-90");
+        }
+      }
+
+      function collapseCategory(block) {
+        const content = block.querySelector(".category-content");
+        const chevron = block.querySelector(".category-chevron");
+        if (content) {
+          content.classList.add("hidden");
+        }
+        if (chevron) {
+          chevron.textContent = "chevron_right";
+          chevron.classList.add("-rotate-90");
+        }
+      }
+
+      // Category Header Click
+      categoryBlocks.forEach(block => {
+        const header = block.querySelector(".category-header");
+        header.addEventListener("click", () => {
+          const content = block.querySelector(".category-content");
+          if (content.classList.contains("hidden")) {
+            expandCategory(block);
+          } else {
+            collapseCategory(block);
+          }
+        });
+      });
+
+      // Expand All Button
+      if (btnExpandAll) {
+        btnExpandAll.addEventListener("click", () => {
+          categoryBlocks.forEach(block => expandCategory(block));
+        });
+      }
+
+      // Collapse All Button
+      if (btnCollapseAll) {
+        btnCollapseAll.addEventListener("click", () => {
+          categoryBlocks.forEach(block => collapseCategory(block));
+        });
+      }
+
+      // Granted Only Filter implementation
+      function applyGrantedOnlyFilter() {
+        categoryBlocks.forEach(block => expandCategory(block));
+        const allRows = document.querySelectorAll(".permission-row");
+        allRows.forEach(row => {
+          const badges = row.querySelectorAll(".perm-cells span[title]");
+          let hasGranted = false;
+          badges.forEach(b => {
+            const title = b.getAttribute("title") || "";
+            if (title.includes("Granted")) {
+              hasGranted = true;
+            }
+          });
+          if (!hasGranted) {
+            row.classList.add("hidden");
+          } else {
+            row.classList.remove("hidden");
+          }
+        });
+      }
+
+      // Granted Only Toggle Click
+      if (btnGrantedOnly) {
+        btnGrantedOnly.addEventListener("click", () => {
+          grantedOnlyActive = !grantedOnlyActive;
+          if (grantedOnlyActive) {
+            btnGrantedOnly.classList.add("bg-secondary", "text-on-secondary");
+            btnGrantedOnly.classList.remove("bg-surface-white", "text-secondary");
+            btnGrantedText.textContent = "Showing Granted Only";
+            applyGrantedOnlyFilter();
+          } else {
+            btnGrantedOnly.classList.remove("bg-secondary", "text-on-secondary");
+            btnGrantedOnly.classList.add("bg-surface-white", "text-secondary");
+            btnGrantedText.textContent = "Granted Only";
+            const allRows = document.querySelectorAll(".permission-row");
+            allRows.forEach(row => row.classList.remove("hidden"));
+          }
+        });
+      }
+
+      // Initial Render for Farm Manager
+      renderRole("farm-manager");
+    });
+  </script>
+
+
+</body></html>

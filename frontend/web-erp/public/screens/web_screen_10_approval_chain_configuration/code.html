@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link rel="stylesheet" href="../design-tokens.css"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"primary":"#00261b","error-container":"#ffdad6","secondary-fixed":"#a3f4c3","on-primary-fixed":"#002116","primary-fixed-dim":"#a0d1bc","primary-fixed":"#bcedd7","secondary":"#156c46","secondary-container":"#a3f4c3","danger-red":"#C94B4B","surface-tint":"#E8F1EA","inverse-on-surface":"#e6f4ea","on-tertiary-fixed":"#0a2009","canvas-warm":"#F7F4EC","border-light":"#DDE4DE","danger-light":"#FDE8E8","on-tertiary-container":"#8ba584","inverse-primary":"#a0d1bc","surface-container":"#e3f1e7","on-secondary":"#ffffff","surface-bright":"#effdf3","inverse-surface":"#27332d","on-secondary-container":"#1e724b","on-primary":"#ffffff","info-light":"#E8F2FA","on-primary-container":"#79a894","tertiary-fixed-dim":"#b3ceab","outline":"#717974","tertiary":"#0f250e","on-tertiary":"#ffffff","on-background":"#121e18","tertiary-fixed":"#ceeac5","on-primary-fixed-variant":"#214f3f","on-secondary-fixed-variant":"#005232","error":"#ba1a1a","warning-light":"#FFF3D6","info-blue":"#3978A8","on-secondary-fixed":"#002111","surface-container-low":"#e9f7ed","surface-container-lowest":"#ffffff","on-surface-variant":"#414944","primary-container":"#0b3d2e","surface-variant":"#d8e6dc","on-tertiary-fixed-variant":"#354d31","on-error":"#ffffff","secondary-fixed-dim":"#87d7a8","surface-container-highest":"#d8e6dc","background":"#effdf3","on-surface":"#121e18","tertiary-container":"#243b21","on-error-container":"#93000a","text-muted":"#66736C","surface-container-high":"#ddece2","surface-dim":"#cfddd4","outline-variant":"#c0c8c3","surface":"#effdf3","primary-dark":"#062A20","surface-white":"#FFFFFF","warning-amber":"#D79A19"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1.5rem","space-sm":"0.5rem","space-xl":"1.5rem","space-xs":"0.25rem","gutter-sm":"1rem","margin-sm":"1rem","space-md":"1rem","space-lg":"1.25rem","margin":"1.5rem"},"fontFamily":{"body-md":["Inter"],"headline-sm":["Inter"],"label-sm":["Inter"],"headline-md":["Inter"],"body-lg":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"],"label-md":["Inter"],"headline-lg-mobile":["Inter"]},"fontSize":{"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"400"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.005em","fontWeight":"600"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}}</script></head><body class="bg-canvas-warm font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col justify-between"><header class="w-full bg-surface-white/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="max-w-7xl mx-auto h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Z•ORISIS Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UTMR57eg5erZv5ymtesinv1Wu9OPG4FKeEGIPVXFPiobBiiRIVx1Vu3WxqkltXUumqKM0R57cmvOtRPYlgEXDcN_D_Xdbt0lZQ_nBoH0SG4zuPiV1JiZJH_y1Kr0FDpNGdjps04nTyJ5TLkolCxqwWeJeTbVs9nXNMhzvwXUEqZy6MEBxc7LABoVevzcpeqgBHIZB4szF-UVtYjPGjnjVgITdDFzR73EgVpe0MdSbMASKyfuQbGjvIwkGg"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none">Z•ORISIS</span><span class="font-label-sm text-label-sm text-text-muted">Enterprise Gateway</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-tint"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-secondary">Portal Active</span></div><div class="flex items-center bg-canvas-warm rounded-lg p-0.5"><button class="px-space-sm py-0.5 rounded text-on-surface font-label-sm text-label-sm bg-surface-white shadow-[0_1px_2px_rgba(0,0,0,0.05)]">EN</button><button class="px-space-sm py-0.5 rounded text-text-muted hover:text-on-surface font-label-sm text-label-sm transition-colors">አማ</button></div></div></div></header><main class="w-full flex-1 flex items-center justify-center px-gutter-sm py-margin"><div class="flex flex-col w-full">
+<!-- Interactive Stage Edit Drawer Veil & Container (Hidden by default, toggled via JS) -->
+<div class="fixed inset-0 bg-primary-dark/40 z-50 opacity-0 pointer-events-none transition-opacity duration-300" id="stage-drawer-backdrop">
+<div class="absolute right-0 top-0 bottom-0 w-full max-w-lg bg-surface-white shadow-2xl p-space-xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out" id="stage-drawer">
+<div>
+<div class="flex items-center justify-between pb-space-md border-b border-border-light">
+<div>
+<span class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider">Configuration Node</span>
+<h3 class="font-headline-md text-headline-md text-primary mt-0.5" id="drawer-title">Edit Stage 02</h3>
+</div>
+<button class="w-8 h-8 rounded-lg bg-canvas-warm flex items-center justify-center text-text-muted hover:text-primary transition-colors" id="close-drawer">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="mt-space-lg space-y-space-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Designated Role or Approver Pool</label>
+<div class="relative">
+<select class="w-full h-11 px-3 bg-surface-white border border-border-light rounded-xl font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary transition-colors appearance-none" id="drawer-role-select">
+<option value="Finance Officer">Finance Officer (Pool)</option>
+<option selected="" value="Finance Manager">Finance Manager (Regional Hub)</option>
+<option value="Executive Director">Managing Director / C-Suite</option>
+<option value="Agronomy Lead">Agronomy Operations Lead</option>
+<option value="Internal Audit">Internal Audit & Compliance</option>
+</select>
+<span class="material-symbols-outlined text-[18px] text-text-muted absolute right-3 top-3 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Stage Latency SLA</label>
+<div class="relative">
+<input class="w-full h-11 px-3 bg-surface-white border border-border-light rounded-xl font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary transition-colors" id="drawer-sla-input" type="text" value="24 Hours"/>
+<span class="material-symbols-outlined text-[18px] text-text-muted absolute right-3 top-3 pointer-events-none">schedule</span>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Escalation Threshold</label>
+<div class="relative">
+<input class="w-full h-11 px-3 bg-surface-white border border-border-light rounded-xl font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary transition-colors" type="text" value="+4 Hours Grace"/>
+<span class="material-symbols-outlined text-[18px] text-text-muted absolute right-3 top-3 pointer-events-none">hourglass_top</span>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-canvas-warm rounded-xl space-y-space-sm">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-headline-sm text-headline-sm text-primary">Dual Authorization</span>
+<p class="font-body-sm text-body-sm text-text-muted">Mandates 2 co-signatories for amounts >$30k</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-border-light peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-white after:border-border-light after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+<div class="p-space-md bg-canvas-warm rounded-xl space-y-space-sm">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-headline-sm text-headline-sm text-primary">Separation of Duties (SoD)</span>
+<p class="font-body-sm text-body-sm text-text-muted">Prohibits original creator from co-signing</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" disabled="" type="checkbox"/>
+<div class="w-11 h-6 bg-secondary rounded-full opacity-60 cursor-not-allowed peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-white after:rounded-full after:h-5 after:w-5"></div>
+</label>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Cryptographic Ledger Verification</label>
+<div class="p-space-sm bg-surface-tint rounded-xl flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">verified_user</span>
+<span class="font-body-sm text-body-sm text-secondary font-semibold">Consensus Block Rule #ETH-AG-882 Active</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-space-md border-t border-border-light flex items-center justify-end gap-space-sm">
+<button class="px-space-md h-11 rounded-xl bg-surface-white border border-border-light font-label-md text-label-md text-on-surface hover:bg-canvas-warm transition-colors" id="cancel-drawer">Cancel</button>
+<button class="px-space-md h-11 rounded-xl bg-primary-container text-surface-white font-label-md text-label-md hover:bg-primary-dark transition-colors" id="apply-drawer">Apply Node Updates</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto w-full space-y-space-lg">
+<!-- Breadcrumb & Compliance Top Meta -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-body-sm text-body-sm text-text-muted">
+<span>Core & Administration</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Workflow Automation</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Approval Chain Configuration</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-surface-tint">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-secondary">ISO/IEC 27001 Certified</span>
+</div>
+<div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-warning-light">
+<span class="material-symbols-outlined text-[14px] text-warning-amber">bolt</span>
+<span class="font-label-sm text-label-sm text-warning-amber">Real-time Rule Engine</span>
+</div>
+</div>
+</div>
+<!-- Header Actions & Title Section -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
+<div class="max-w-3xl space-y-1">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Approval Chains</h1>
+<p class="font-body-lg text-body-lg text-text-muted">
+          Configure multi-stage approval workflows across agricultural enterprise transactions with enforced auditability and dynamic delegation rules.
+        </p>
+</div>
+<div class="flex items-center flex-wrap gap-space-sm">
+<button class="h-11 px-4 rounded-xl bg-surface-white border border-border-light text-primary font-label-md text-label-md flex items-center gap-space-xs hover:bg-surface-tint shadow-[0_2px_8px_rgba(11,61,46,0.04)] transition-all" id="btn-open-simulate">
+<span class="material-symbols-outlined text-[18px] text-secondary">tune</span>
+<span>Test Workflow Matrix</span>
+</button>
+<button class="h-11 px-4 rounded-xl bg-surface-white border border-border-light text-primary font-label-md text-label-md flex items-center gap-space-xs hover:bg-surface-tint shadow-[0_2px_8px_rgba(11,61,46,0.04)] transition-all" id="btn-export-json">
+<span class="material-symbols-outlined text-[18px] text-secondary">code_blocks</span>
+<span>Export Workflow JSON</span>
+</button>
+<button class="h-11 px-5 rounded-xl bg-primary-container text-surface-white font-label-md text-label-md flex items-center gap-space-xs hover:bg-primary-dark shadow-[0_2px_8px_rgba(11,61,46,0.12)] transition-all" id="btn-add-stage-quick">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>+ Add Stage</span>
+</button>
+</div>
+</div>
+<!-- Filter & Criteria Enterprise Toolbar -->
+<div class="bg-surface-white rounded-xl p-space-md border border-border-light shadow-[0_2px_8px_rgba(11,61,46,0.03)] space-y-space-md">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Filter 1 -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">receipt_long</span>
+            Transaction Type
+          </label>
+<div class="relative">
+<select class="w-full h-11 px-3 bg-canvas-warm/70 border border-border-light rounded-xl font-headline-sm text-headline-sm text-primary appearance-none focus:outline-none focus:border-secondary transition-colors">
+<option selected="">Payment Request</option>
+<option>Purchase Order (PO)</option>
+<option>Fertilizer Bulk Reallocation</option>
+<option>Seed Stock Disbursement</option>
+<option>Capital Expenditure (CapEx)</option>
+</select>
+<span class="material-symbols-outlined text-[18px] text-text-muted absolute right-3 top-3 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Filter 2 -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">apartment</span>
+            Organization
+          </label>
+<div class="relative">
+<select class="w-full h-11 px-3 bg-canvas-warm/70 border border-border-light rounded-xl font-headline-sm text-headline-sm text-primary appearance-none focus:outline-none focus:border-secondary transition-colors">
+<option selected="">Z•ORISIS Holding (All Hubs)</option>
+<option>Oromia Regional Agritech Union</option>
+<option>Amhara Seedling Distribution Center</option>
+<option>Rift Valley Coffee Cooperative</option>
+</select>
+<span class="material-symbols-outlined text-[18px] text-text-muted absolute right-3 top-3 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Filter 3 -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lan</span>
+            Department
+          </label>
+<div class="relative">
+<select class="w-full h-11 px-3 bg-canvas-warm/70 border border-border-light rounded-xl font-headline-sm text-headline-sm text-primary appearance-none focus:outline-none focus:border-secondary transition-colors">
+<option selected="">Finance & Accounting</option>
+<option>Agronomy Field Services</option>
+<option>Supply Chain & Logistics</option>
+<option>Export Quality Assurance</option>
+</select>
+<span class="material-symbols-outlined text-[18px] text-text-muted absolute right-3 top-3 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Filter 4 -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">payments</span>
+            Value Range
+          </label>
+<div class="relative">
+<select class="w-full h-11 px-3 bg-canvas-warm/70 border border-border-light rounded-xl font-headline-sm text-headline-sm text-primary appearance-none focus:outline-none focus:border-secondary transition-colors">
+<option selected="">$10,000 – $50,000 USD (or ETB equivalent)</option>
+<option>Micro: Up to $2,500 USD</option>
+<option>Standard: $2,500 – $10,000 USD</option>
+<option>Strategic: > $50,000 USD</option>
+</select>
+<span class="material-symbols-outlined text-[18px] text-text-muted absolute right-3 top-3 pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Quick Status Row inside Filter -->
+<div class="pt-space-sm border-t border-border-light/70 flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-1.5 px-3 py-1 bg-surface-tint rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-secondary">Active & Enforced • Revision v3.4</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted hidden md:inline">Last modified today by System Auditor (Adama Hub)</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<label class="flex items-center gap-space-xs cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded text-secondary focus:ring-0 accent-secondary" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Enforce Multi-Factor Authorization on Sign-off</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Target Rule Boundary Banner -->
+<div class="bg-primary-container text-surface-white rounded-xl p-space-lg shadow-[0_4px_16px_rgba(6,42,32,0.1)] relative overflow-hidden">
+<!-- Subtle Architectural Accent Grid SVG -->
+<svg class="absolute right-0 top-0 bottom-0 opacity-10 h-full w-auto pointer-events-none" fill="none" viewbox="0 0 300 120">
+<path d="M0 20 H300 M0 60 H300 M0 100 H300" stroke="#FFFFFF" stroke-width="1"></path>
+<path d="M40 0 V120 M120 0 V120 M200 0 V120 M280 0 V120" stroke="#FFFFFF" stroke-width="1"></path>
+</svg>
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-space-md">
+<div>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider block">Target Context</span>
+<span class="font-headline-sm text-headline-sm text-surface-white mt-1 block">Payment Request Chain</span>
+<span class="font-body-sm text-body-sm text-surface-container/80">Code: PR-OROMIA-STANDARD-v3</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider block">Threshold Tier</span>
+<span class="font-headline-sm text-headline-sm text-surface-white mt-1 block">$10,000 – $50,000 USD</span>
+<span class="font-body-sm text-body-sm text-surface-container/80">~ 570,000 – 2,850,000 ETB</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider block">Total Chain Latency SLA</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed">timer</span>
+<span class="font-headline-sm text-headline-sm text-surface-white">48 Hours Max</span>
+</div>
+<span class="font-body-sm text-body-sm text-surface-container/80">Dynamic working-day algorithm</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider block">Escalation Policy</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-[18px] text-warning-amber">warning</span>
+<span class="font-headline-sm text-headline-sm text-surface-white">Regional Director Override</span>
+</div>
+<span class="font-body-sm text-body-sm text-surface-container/80">Triggered if stage SLA breached >4h</span>
+</div>
+</div>
+</div>
+<!-- Visual Multi-Stage Approval Pipeline -->
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Approval Pipeline Topology</h2>
+<p class="font-body-sm text-body-sm text-text-muted">Sequential transition logic with gate conditions and dual-signature verification.</p>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-text-muted">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span>Linear Pipeline Mode</span>
+</div>
+</div>
+<!-- Pipeline Cards Container (Responsive Grid / Flow) -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-space-md items-start">
+<!-- STAGE 1 CARD -->
+<div class="bg-surface-white rounded-xl border border-border-light p-space-md shadow-[0_2px_8px_rgba(11,61,46,0.04)] flex flex-col justify-between hover:shadow-md transition-shadow relative">
+<div>
+<div class="flex items-center justify-between pb-space-sm border-b border-border-light">
+<div class="flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded-md bg-canvas-warm font-label-sm text-label-sm text-primary font-bold">Stage 01</span>
+<span class="font-headline-sm text-headline-sm text-primary">Initial Verification</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="stage-edit-btn w-7 h-7 rounded hover:bg-canvas-warm text-text-muted hover:text-primary flex items-center justify-center transition-colors" data-stage="1">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="w-7 h-7 rounded hover:bg-danger-light text-text-muted hover:text-danger-red flex items-center justify-center transition-colors" title="Stage locked as entry gate">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+</button>
+</div>
+</div>
+<!-- Stage Body -->
+<div class="py-space-md space-y-space-sm">
+<div>
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Authorized Role</span>
+<div class="flex items-center gap-space-sm mt-1 p-2 bg-canvas-warm/70 rounded-lg">
+<div class="w-8 h-8 rounded-full bg-surface-tint flex items-center justify-center text-secondary font-bold text-xs">
+                    FO
+                  </div>
+<div>
+<span class="font-headline-sm text-headline-sm text-primary block leading-tight">Finance Officer</span>
+<span class="font-body-sm text-body-sm text-text-muted">Pool: Selamawit Bekele + 2</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="p-2 bg-canvas-warm/50 rounded-lg">
+<span class="font-label-sm text-label-sm text-text-muted block">Stage SLA</span>
+<span class="font-headline-sm text-headline-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">schedule</span> 12 Hours
+                  </span>
+</div>
+<div class="p-2 bg-canvas-warm/50 rounded-lg">
+<span class="font-label-sm text-label-sm text-text-muted block">Delegation</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Enabled</span>
+</div>
+</div>
+<div class="p-space-xs px-2.5 rounded-lg bg-surface-tint flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary">Dual Authorization</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-white text-text-muted">Disabled (Single)</span>
+</div>
+<div class="p-2 bg-surface-white border border-border-light rounded-lg">
+<span class="font-label-sm text-label-sm text-text-muted block">Scope & Checks</span>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">Valid for invoice match & tax compliance audit up to $25k initial check.</p>
+</div>
+</div>
+</div>
+<!-- Bottom Connector Pill -->
+<div class="mt-space-sm pt-space-xs border-t border-border-light flex items-center justify-between text-text-muted">
+<span class="font-label-sm text-label-sm flex items-center gap-1 text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span> Advances > Stage 02
+            </span>
+<span class="font-body-sm text-body-sm text-text-muted">Gate 1 Passed</span>
+</div>
+</div>
+<!-- STAGE 2 CARD -->
+<div class="bg-surface-white rounded-xl border-2 border-secondary/40 p-space-md shadow-[0_4px_16px_rgba(20,108,70,0.08)] flex flex-col justify-between hover:shadow-lg transition-shadow relative">
+<div class="absolute -top-2.5 right-4 bg-secondary text-surface-white px-2.5 py-0.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider">
+            Critical Gate
+          </div>
+<div>
+<div class="flex items-center justify-between pb-space-sm border-b border-border-light">
+<div class="flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded-md bg-secondary text-surface-white font-label-sm text-label-sm font-bold">Stage 02</span>
+<span class="font-headline-sm text-headline-sm text-primary">Manager Authorization</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="stage-edit-btn w-7 h-7 rounded hover:bg-canvas-warm text-text-muted hover:text-primary flex items-center justify-center transition-colors" data-stage="2">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="w-7 h-7 rounded hover:bg-danger-light text-text-muted hover:text-danger-red flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Stage Body -->
+<div class="py-space-md space-y-space-sm">
+<div>
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Authorized Role</span>
+<div class="flex items-center gap-space-sm mt-1 p-2 bg-canvas-warm/70 rounded-lg">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-xs">
+                    FM
+                  </div>
+<div>
+<span class="font-headline-sm text-headline-sm text-primary block leading-tight">Finance Manager</span>
+<span class="font-body-sm text-body-sm text-text-muted">Abebe Tesfaye (Oromia Hub)</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="p-2 bg-canvas-warm/50 rounded-lg">
+<span class="font-label-sm text-label-sm text-text-muted block">Stage SLA</span>
+<span class="font-headline-sm text-headline-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">schedule</span> 24 Hours
+                  </span>
+</div>
+<div class="p-2 bg-canvas-warm/50 rounded-lg">
+<span class="font-label-sm text-label-sm text-text-muted block">Co-Signer Check</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">2 Signers >$30k</span>
+</div>
+</div>
+<div class="p-space-xs px-2.5 rounded-lg bg-warning-light flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-warning-amber font-semibold">Dual Authorization</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-white text-warning-amber">Enforced Co-sign</span>
+</div>
+<div class="p-2 bg-surface-white border border-border-light rounded-lg">
+<span class="font-label-sm text-label-sm text-text-muted block">Separation of Duties</span>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">Enforces separation of duties against original payment request initiator.</p>
+</div>
+</div>
+</div>
+<!-- Bottom Connector Pill -->
+<div class="mt-space-sm pt-space-xs border-t border-border-light flex items-center justify-between text-text-muted">
+<span class="font-label-sm text-label-sm flex items-center gap-1 text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span> Dual Co-sign > Stage 03
+            </span>
+<span class="font-body-sm text-body-sm text-text-muted">Gate 2 Passed</span>
+</div>
+</div>
+<!-- STAGE 3 CARD -->
+<div class="bg-surface-white rounded-xl border border-border-light p-space-md shadow-[0_2px_8px_rgba(11,61,46,0.04)] flex flex-col justify-between hover:shadow-md transition-shadow relative">
+<div>
+<div class="flex items-center justify-between pb-space-sm border-b border-border-light">
+<div class="flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded-md bg-canvas-warm font-label-sm text-label-sm text-primary font-bold">Stage 03</span>
+<span class="font-headline-sm text-headline-sm text-primary">Executive Governance</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="stage-edit-btn w-7 h-7 rounded hover:bg-canvas-warm text-text-muted hover:text-primary flex items-center justify-center transition-colors" data-stage="3">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="w-7 h-7 rounded hover:bg-danger-light text-text-muted hover:text-danger-red flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Stage Body -->
+<div class="py-space-md space-y-space-sm">
+<div>
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Authorized Role</span>
+<div class="flex items-center gap-space-sm mt-1 p-2 bg-canvas-warm/70 rounded-lg">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-surface-white font-bold text-xs">
+                    MD
+                  </div>
+<div>
+<span class="font-headline-sm text-headline-sm text-primary block leading-tight">Managing Director</span>
+<span class="font-body-sm text-body-sm text-text-muted">Executive Board Signatory</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="p-2 bg-canvas-warm/50 rounded-lg">
+<span class="font-label-sm text-label-sm text-text-muted block">Stage SLA</span>
+<span class="font-headline-sm text-headline-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">schedule</span> 12 Hours
+                  </span>
+</div>
+<div class="p-2 bg-canvas-warm/50 rounded-lg">
+<span class="font-label-sm text-label-sm text-text-muted block">Security</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Hardware Key</span>
+</div>
+</div>
+<div class="p-space-xs px-2.5 rounded-lg bg-surface-tint flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary">Dual Authorization</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-white text-text-muted">Sole Executive Seal</span>
+</div>
+<div class="p-2 bg-surface-white border border-border-light rounded-lg">
+<span class="font-label-sm text-label-sm text-text-muted block">Cryptographic Seal</span>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">Hardware Token / MFA sign-off writes immutable ledger dispatch token.</p>
+</div>
+</div>
+</div>
+<!-- Bottom Connector Pill -->
+<div class="mt-space-sm pt-space-xs border-t border-border-light flex items-center justify-between text-text-muted">
+<span class="font-label-sm text-label-sm flex items-center gap-1 text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Final Execution
+            </span>
+<span class="font-body-sm text-body-sm text-text-muted">Settlement Ready</span>
+</div>
+</div>
+<!-- STAGE 4 (ADD STAGE PLACEHOLDER) -->
+<button class="h-full min-h-[360px] bg-canvas-warm/60 border-2 border-dashed border-secondary/40 rounded-xl p-space-md flex flex-col items-center justify-center text-center hover:bg-surface-tint/50 hover:border-secondary transition-all group cursor-pointer" id="add-stage-card-btn">
+<div class="w-12 h-12 rounded-full bg-surface-white shadow-[0_2px_8px_rgba(11,61,46,0.06)] flex items-center justify-center text-secondary group-hover:scale-110 transition-transform mb-space-sm">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary block">Add Approval Stage</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold mt-1">Stage 04 of 04 Available</span>
+<p class="font-body-sm text-body-sm text-text-muted mt-2 max-w-[200px]">Append final quality or external agronomy auditor checkpoint</p>
+</button>
+</div>
+</div>
+<!-- Governance Hard Rules Callout -->
+<div class="bg-surface-white border border-border-light rounded-xl p-space-md shadow-[0_2px_8px_rgba(11,61,46,0.03)]">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-danger-light flex items-center justify-center text-danger-red shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">gavel</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-primary">Hard Governance Rules In Effect</span>
+<span class="px-2 py-0.5 rounded-full bg-danger-light text-danger-red font-label-sm text-label-sm">SEC-RULE-04</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">
+<strong class="text-danger-red">Self-approval is strictly prohibited</strong> by Z•ORISIS Governance Charter. Any transaction generated by a designated approver automatically bypasses them to their designated secondary alternate.
+            </p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs shrink-0">
+<span class="px-3 py-1.5 rounded-lg bg-canvas-warm text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">flight_takeoff</span>
+            Delegation On Leave Active
+          </span>
+<span class="px-3 py-1.5 rounded-lg bg-canvas-warm text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">token</span>
+            Ethereum / Hyperledger Audit
+          </span>
+<span class="px-3 py-1.5 rounded-lg bg-canvas-warm text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-warning-amber">notifications_active</span>
+            Auto-escalation at SLA Breach
+          </span>
+</div>
+</div>
+</div>
+<!-- Testing & Simulation Interactive Panel -->
+<div class="bg-surface-white border border-border-light rounded-xl p-space-lg shadow-[0_2px_8px_rgba(11,61,46,0.04)] space-y-space-md" id="simulation-panel">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider">Workflow Verification Sandbox</span>
+<h3 class="font-headline-md text-headline-md text-primary mt-0.5">Live Scenario Simulation</h3>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="h-9 px-4 rounded-lg bg-secondary text-surface-white font-label-md text-label-md flex items-center gap-1.5 hover:bg-primary-dark transition-colors" id="run-simulation-btn">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+<span>Run Test Scenario</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md p-space-md bg-canvas-warm rounded-xl items-center">
+<div>
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Sample Request</span>
+<span class="font-headline-sm text-headline-sm text-primary block mt-0.5">$35,000 Fertilizer Bulk Procurement</span>
+<span class="font-body-sm text-body-sm text-text-muted">Origin: Adama Agricultural Distribution Hub</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Simulated Path Trigger</span>
+<span class="font-headline-sm text-headline-sm text-primary block mt-0.5">Stage 01 → Stage 02 (Dual Co-sign) → Stage 03</span>
+<span class="font-body-sm text-body-sm text-secondary font-semibold">Value triggers Stage 02 Dual-signatory check</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Expected Total Duration</span>
+<span class="font-headline-sm text-headline-sm text-primary block mt-0.5">≤ 48 Hours SLA</span>
+<span class="font-body-sm text-body-sm text-text-muted">Simulated outcome: <span class="text-secondary font-semibold" id="sim-status">Ready to test</span></span>
+</div>
+</div>
+<!-- Simulation Flow Steps Trace -->
+<div class="space-y-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Trace Path Progression</span>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
+<div class="p-3 bg-surface-white border border-border-light rounded-xl flex items-center gap-3 transition-all" id="sim-step-1">
+<div class="w-8 h-8 rounded-full bg-surface-tint flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary block">Stage 01: Finance Verification</span>
+<span class="font-body-sm text-body-sm text-text-muted">Resolved in 4.2h (Within SLA)</span>
+</div>
+</div>
+<div class="p-3 bg-surface-white border border-border-light rounded-xl flex items-center gap-3 transition-all" id="sim-step-2">
+<div class="w-8 h-8 rounded-full bg-warning-light flex items-center justify-center text-warning-amber shrink-0">
+<span class="material-symbols-outlined text-[18px]">group</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary block">Stage 02: Dual Sign-off</span>
+<span class="font-body-sm text-body-sm text-text-muted">Co-signer 1: OK • Co-signer 2: OK</span>
+</div>
+</div>
+<div class="p-3 bg-surface-white border border-border-light rounded-xl flex items-center gap-3 transition-all" id="sim-step-3">
+<div class="w-8 h-8 rounded-full bg-surface-tint flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary block">Stage 03: Executive Hardware MFA</span>
+<span class="font-body-sm text-body-sm text-text-muted">Smart Token Signed & Settled</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating / Sticky Bottom Actions Bar -->
+<div class="sticky bottom-4 z-40 bg-surface-white/95 backdrop-blur-md rounded-2xl border border-border-light p-space-md shadow-[0_12px_32px_rgba(6,42,32,0.12)] flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[20px] text-secondary">shield</span>
+<span>All chain adjustments create a cryptographically signed revision entry on submission.</span>
+</div>
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end">
+<button class="px-5 h-11 rounded-xl bg-surface-white border border-border-light text-text-muted hover:text-primary font-label-md text-label-md hover:bg-canvas-warm transition-all" id="btn-discard">
+          Discard Changes
+        </button>
+<button class="px-5 h-11 rounded-xl bg-canvas-warm text-primary font-label-md text-label-md flex items-center gap-space-xs hover:bg-surface-tint transition-all" id="btn-test-bottom">
+<span class="material-symbols-outlined text-[18px] text-secondary">play_arrow</span>
+<span>Test Workflow</span>
+</button>
+<button class="px-6 h-11 rounded-xl bg-primary-container text-surface-white font-label-md text-label-md flex items-center gap-space-xs hover:bg-primary-dark shadow-[0_2px_8px_rgba(11,61,46,0.15)] transition-all" id="btn-save-configuration">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>Save Configuration</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Notification Toast (Hidden by default) -->
+<div class="fixed top-20 right-6 bg-primary-container text-surface-white px-space-md py-space-sm rounded-xl shadow-xl flex items-center gap-space-sm z-50 transform translate-y-4 opacity-0 pointer-events-none transition-all duration-300" id="toast-notification">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px]">task_alt</span>
+<span class="font-label-md text-label-md" id="toast-message">Workflow Configuration saved & enforced successfully!</span>
+</div>
+</div>
+<script>
+  // DOM element bindings
+  const backdrop = document.getElementById('stage-drawer-backdrop');
+  const drawer = document.getElementById('stage-drawer');
+  const closeDrawer = document.getElementById('close-drawer');
+  const cancelDrawer = document.getElementById('cancel-drawer');
+  const applyDrawer = document.getElementById('apply-drawer');
+  const editButtons = document.querySelectorAll('.stage-edit-btn');
+  const addStageQuick = document.getElementById('btn-add-stage-quick');
+  const addStageCardBtn = document.getElementById('add-stage-card-btn');
+  const runSimBtn = document.getElementById('run-simulation-btn');
+  const simStatus = document.getElementById('sim-status');
+  const simStep1 = document.getElementById('sim-step-1');
+  const simStep2 = document.getElementById('sim-step-2');
+  const simStep3 = document.getElementById('sim-step-3');
+  const saveBtn = document.getElementById('btn-save-configuration');
+  const discardBtn = document.getElementById('btn-discard');
+  const exportBtn = document.getElementById('btn-export-json');
+  const toast = document.getElementById('toast-notification');
+  const toastMessage = document.getElementById('toast-message');
+
+  function showToast(msg) {
+    if (toastMessage && toast) {
+      toastMessage.textContent = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 3500);
+    }
+  }
+
+  function openDrawer(stageNumber) {
+    const title = document.getElementById('drawer-title');
+    if (title) {
+      title.textContent = stageNumber ? `Edit Approval Stage 0${stageNumber}` : 'Add Stage 04 (Final)';
+    }
+    backdrop.classList.remove('opacity-0', 'pointer-events-none');
+    backdrop.classList.add('opacity-100');
+    drawer.classList.remove('translate-x-full');
+    drawer.classList.add('translate-x-0');
+  }
+
+  function hideDrawer() {
+    backdrop.classList.add('opacity-0', 'pointer-events-none');
+    backdrop.classList.remove('opacity-100');
+    drawer.classList.add('translate-x-full');
+    drawer.classList.remove('translate-x-0');
+  }
+
+  editButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const stage = btn.getAttribute('data-stage');
+      openDrawer(stage);
+    });
+  });
+
+  if (addStageQuick) addStageQuick.addEventListener('click', () => openDrawer(4));
+  if (addStageCardBtn) addStageCardBtn.addEventListener('click', () => openDrawer(4));
+  if (closeDrawer) closeDrawer.addEventListener('click', hideDrawer);
+  if (cancelDrawer) cancelDrawer.addEventListener('click', hideDrawer);
+
+  if (applyDrawer) {
+    applyDrawer.addEventListener('click', () => {
+      hideDrawer();
+      showToast('Stage parameters updated in working draft.');
+    });
+  }
+
+  // Simulation Trigger
+  if (runSimBtn) {
+    runSimBtn.addEventListener('click', () => {
+      simStatus.textContent = 'Running simulation test...';
+      simStatus.className = 'text-warning-amber font-semibold';
+
+      simStep1.classList.add('ring-2', 'ring-secondary');
+      setTimeout(() => {
+        simStep1.classList.remove('ring-2', 'ring-secondary');
+        simStep2.classList.add('ring-2', 'ring-secondary');
+      }, 700);
+
+      setTimeout(() => {
+        simStep2.classList.remove('ring-2', 'ring-secondary');
+        simStep3.classList.add('ring-2', 'ring-secondary');
+      }, 1400);
+
+      setTimeout(() => {
+        simStep3.classList.remove('ring-2', 'ring-secondary');
+        simStatus.textContent = '100% Policy Compliant (Valid Path)';
+        simStatus.className = 'text-secondary font-semibold';
+        showToast('Scenario simulated: Zero compliance conflicts detected.');
+      }, 2100);
+    });
+  }
+
+  if (saveBtn) {
+    saveBtn.addEventListener('click', () => {
+      showToast('Approval Chain Revision v3.5 successfully committed & signed.');
+    });
+  }
+
+  if (discardBtn) {
+    discardBtn.addEventListener('click', () => {
+      showToast('Draft revisions reverted to last active baseline v3.4.');
+    });
+  }
+
+  if (exportBtn) {
+    exportBtn.addEventListener('click', () => {
+      const sampleJSON = {
+        chainId: 'PR-OROMIA-STANDARD-v3',
+        type: 'Payment Request',
+        stages: 3,
+        maxLatencyHours: 48,
+        hardRulePolicy: 'SEC-RULE-04',
+        dualAuthThreshold: 30000
+      };
+      const blob = new Blob([JSON.stringify(sampleJSON, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'zorisis-approval-chain-pr.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Workflow JSON manifest exported.');
+    });
+  }
+</script></main><footer class="w-full bg-surface-white py-space-md px-gutter shadow-[0_-1px_8px_rgba(0,0,0,0.02)]"><div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><span class="font-body-sm text-body-sm text-text-muted">© 2024 Z•ORISIS Core Enterprise. Protected by End-to-End Cryptographic Audit Trails.</span><span class="font-label-sm text-label-sm text-text-muted flex items-center gap-space-xs justify-center"><span class="material-symbols-outlined text-[16px] text-secondary">lock</span>ISO/IEC 27001 Certified Infrastructure & NDPR Compliant</span></div></footer></body></html>

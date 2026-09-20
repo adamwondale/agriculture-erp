@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Z•ORISIS — Mobile Enterprise Sign In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../design-tokens.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'canvas-warm': '#F7F4EC',
+            'surface-white': '#FFFFFF',
+            'primary': '#00261B',
+            'primary-dark': '#062A20',
+            'primary-container': '#0B3D2E',
+            'secondary': '#146B45',
+            'secondary-container': '#A3F4C3',
+            'surface-tint': '#E8F1EA',
+            'text-primary': '#17231D',
+            'text-muted': '#66736C',
+            'border-light': '#DDE4DE'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      overscroll-behavior-y: none;
+    }
+    .input-touch {
+      height: 48px;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body class="bg-canvas-warm font-sans text-text-primary antialiased min-h-screen flex flex-col justify-between p-5 select-none">
+
+  <!-- Mobile Top Nav / Brand Bar -->
+  <header class="w-full flex items-center justify-between pt-2 pb-4">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-xl bg-primary-container flex items-center justify-center text-surface-tint shadow-subtle">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C12 2 6 8.5 6 14.5C6 17.8 8.7 20.5 12 20.5C15.3 20.5 18 17.8 18 14.5C18 8.5 12 2 12 2Z"/></svg>
+      </div>
+      <div>
+        <span class="font-bold text-sm text-primary tracking-tight">Z•ORISIS</span>
+        <span class="block text-[10px] text-secondary font-medium tracking-wide">Together We Grow</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-white border border-border-light text-[11px] text-text-muted">
+      <span class="w-2 h-2 rounded-full bg-secondary"></span>
+      <span>v2.4 Core</span>
+    </div>
+  </header>
+
+  <!-- Main Sign In Form Card -->
+  <main class="w-full max-w-sm mx-auto my-auto py-2">
+    <div class="mb-6 text-left">
+      <h1 class="text-2xl font-bold tracking-tight text-primary" style="letter-spacing: -0.02em;">Welcome Back</h1>
+      <p class="text-sm text-text-muted mt-1">Sign in to your authorized ERP mobile workspace</p>
+    </div>
+
+    <form id="mobile-login-form" class="space-y-4" onsubmit="event.preventDefault(); handleMobileLogin();">
+      <!-- Identity Field -->
+      <div class="space-y-1.5">
+        <label class="block text-xs font-semibold text-primary tracking-wide uppercase" for="mobile-email">
+          Email or Username
+        </label>
+        <div class="relative flex items-center">
+          <span class="material-symbols-outlined absolute left-3.5 text-[20px] text-text-muted pointer-events-none">
+            badge
+          </span>
+          <input 
+            type="text" 
+            id="mobile-email"
+            value="abebe.tesfaye@zorisis.com"
+            required
+            autocomplete="username"
+            placeholder="e.g. name@zorisis.com"
+            class="w-full input-touch pl-11 pr-4 bg-surface-white border border-border-light rounded-xl text-text-primary placeholder:text-text-muted/60 transition-all focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none"
+          >
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="space-y-1.5">
+        <div class="flex justify-between items-center">
+          <label class="block text-xs font-semibold text-primary tracking-wide uppercase" for="mobile-password">
+            Password
+          </label>
+          <a href="javascript:void(0)" class="text-xs text-secondary font-medium hover:underline">Forgot?</a>
+        </div>
+        <div class="relative flex items-center">
+          <span class="material-symbols-outlined absolute left-3.5 text-[20px] text-text-muted pointer-events-none">
+            lock
+          </span>
+          <input 
+            type="password" 
+            id="mobile-password"
+            value="••••••••••••"
+            required
+            autocomplete="current-password"
+            placeholder="Enter password"
+            class="w-full input-touch pl-11 pr-12 bg-surface-white border border-border-light rounded-xl text-text-primary placeholder:text-text-muted/60 transition-all focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none"
+          >
+          <button 
+            type="button" 
+            id="toggle-mobile-pwd" 
+            onclick="toggleMobilePassword()"
+            class="absolute right-3 p-1.5 text-text-muted hover:text-primary rounded-lg transition-colors active:scale-95"
+          >
+            <span class="material-symbols-outlined text-[20px]" id="mobile-pwd-icon">visibility</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Biometrics & Remember Switch -->
+      <div class="flex items-center justify-between py-1">
+        <label class="flex items-center gap-2 cursor-pointer select-none">
+          <input type="checkbox" checked class="w-4 h-4 rounded text-secondary border-border-light accent-secondary focus:ring-0">
+          <span class="text-xs text-text-muted">Remember account</span>
+        </label>
+        <button type="button" class="inline-flex items-center gap-1 text-xs font-semibold text-secondary px-2 py-1 rounded-lg bg-surface-tint active:scale-95 transition-transform">
+          <span class="material-symbols-outlined text-[16px]">fingerprint</span>
+          <span>Face ID / Touch</span>
+        </button>
+      </div>
+
+      <!-- Sign In CTA Button (Emil Kowalski rule: scale(0.97) on press) -->
+      <button 
+        type="submit" 
+        id="mobile-submit-btn"
+        class="w-full h-12 bg-primary-container text-white font-semibold text-sm rounded-xl shadow-card flex items-center justify-center gap-2 transition-all active:scale-[0.97] hover:bg-primary-dark"
+      >
+        <span>Sign In to Mobile ERP</span>
+        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </button>
+    </form>
+
+    <!-- SSO Divider -->
+    <div class="relative my-6 text-center">
+      <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-border-light"></div></div>
+      <span class="relative px-3 bg-canvas-warm text-[11px] font-semibold text-text-muted uppercase tracking-wider">
+        or continue with
+      </span>
+    </div>
+
+    <!-- SSO Buttons (Microsoft & Google Workspace) -->
+    <div class="grid grid-cols-2 gap-3">
+      <button type="button" class="h-11 px-3 bg-surface-white border border-border-light rounded-xl text-xs font-medium text-text-primary flex items-center justify-center gap-2 shadow-subtle active:scale-[0.97] transition-transform">
+        <svg class="w-4 h-4 shrink-0" viewBox="0 0 21 21"><rect x="1" y="1" width="9" height="9" fill="#F25022"/><rect x="11" y="1" width="9" height="9" fill="#7FBA00"/><rect x="1" y="11" width="9" height="9" fill="#00A4EF"/><rect x="11" y="11" width="9" height="9" fill="#FFB900"/></svg>
+        <span>Microsoft 365</span>
+      </button>
+      <button type="button" class="h-11 px-3 bg-surface-white border border-border-light rounded-xl text-xs font-medium text-text-primary flex items-center justify-center gap-2 shadow-subtle active:scale-[0.97] transition-transform">
+        <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/></svg>
+        <span>Google SSO</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- Mobile Footer Navigation / Switcher Link -->
+  <footer class="w-full text-center py-2 z-10">
+    <p class="text-xs text-text-muted">
+      Need mobile access credentials? <br>
+      <a href="javascript:void(0)" class="text-secondary font-medium hover:underline">Request IT Provisioning</a>
+    </p>
+  </footer>
+
+  <script>
+    function toggleMobilePassword() {
+      const input = document.getElementById('mobile-password');
+      const icon = document.getElementById('mobile-pwd-icon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+
+    function handleMobileLogin() {
+      const btn = document.getElementById('mobile-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = `<div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" style="animation-duration: 0.6s;"></div><span>Authenticating...</span>`;
+      setTimeout(() => {
+        btn.innerHTML = `<span class="material-symbols-outlined text-[18px]">verified</span><span>Proceeding to MFA...</span>`;
+        setTimeout(() => {
+          window.location.href = '../mobile_screen_03_mfa_verification/code.html';
+        }, 500);
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
