@@ -1,0 +1,24 @@
+{
+  "name": "agriculture-erp",
+  "version": "1.0.0",
+  "description": "Enterprise-grade **Agriculture ERP and Digital Farm Management Monorepo** built on an **event-driven microservices architecture**.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamwondale/agriculture-erp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/adamwondale/agriculture-erp/issues"
+  },
+  "homepage": "https://github.com/adamwondale/agriculture-erp#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

@@ -1,0 +1,899 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link rel="stylesheet" href="../design-tokens.css"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"><style>
+@layer base {
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; min-height: 100vh; }
+}
+/* Accessible cross-browser scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #F7F4EC; }
+::-webkit-scrollbar-thumb { background: #A8C3A0; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #146B45; }
+* { scrollbar-width: thin; scrollbar-color: #A8C3A0 #F7F4EC; }
+</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-container": "#a3f4c3", "on-secondary": "#ffffff", "surface": "#effdf3", "outline": "#717974", "inverse-surface": "#27332d", "inverse-primary": "#a0d1bc", "primary-fixed": "#bcedd7", "surface-container-high": "#ddece2", "on-tertiary-fixed-variant": "#354d31", "surface-container-low": "#e9f7ed", "on-error": "#ffffff", "on-surface": "#121e18", "border-light": "#DDE4DE", "on-surface-variant": "#414944", "error-container": "#ffdad6", "tertiary-container": "#243b21", "primary-dark": "#062A20", "danger-red": "#C94B4B", "on-secondary-fixed-variant": "#005232", "surface-white": "#FFFFFF", "background": "#effdf3", "error": "#ba1a1a", "inverse-on-surface": "#e6f4ea", "on-error-container": "#93000a", "on-primary": "#ffffff", "surface-container-highest": "#d8e6dc", "surface-tint": "#396756", "on-tertiary": "#ffffff", "tertiary": "#0f250e", "secondary": "#156c46", "secondary-fixed-dim": "#87d7a8", "warning-light": "#FFF3D6", "info-blue": "#3978A8", "warning-amber": "#D79A19", "on-primary-fixed-variant": "#214f3f", "on-secondary-container": "#1e724b", "on-tertiary-container": "#8ba584", "tertiary-fixed-dim": "#b3ceab", "surface-container": "#e3f1e7", "secondary-fixed": "#a3f4c3", "primary-container": "#0b3d2e", "surface-dim": "#cfddd4", "on-primary-fixed": "#002116", "primary": "#00261b", "outline-variant": "#c0c8c3", "info-light": "#E8F2FA", "surface-bright": "#effdf3", "on-tertiary-fixed": "#0a2009", "surface-container-lowest": "#ffffff", "surface-variant": "#d8e6dc", "danger-light": "#FDE8E8", "primary-fixed-dim": "#a0d1bc", "text-muted": "#66736C", "on-secondary-fixed": "#002111", "canvas-warm": "#F7F4EC", "tertiary-fixed": "#ceeac5", "on-primary-container": "#79a894", "on-background": "#121e18" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "space-sm": "0.5rem", "space-xl": "1.5rem", "gutter-sm": "1rem", "margin-sm": "1rem", "space-lg": "1.25rem", "gutter": "1.5rem", "space-md": "1rem", "margin": "1.5rem" }, "fontFamily": { "headline-lg": ["Inter"], "headline-md": ["Inter"], "body-sm": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Inter"], "label-sm": ["Inter"], "headline-lg-mobile": ["Inter"], "body-lg": ["Inter"], "label-md": ["Inter"] }, "fontSize": { "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.005em", "fontWeight": "600" }] } } } };</script></head><body class="bg-canvas-warm font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-screen w-72 bg-primary-container z-50 flex flex-col justify-between shadow-[0_2px_8px_rgba(11,61,46,0.04)]"><div class="flex flex-col flex-1 overflow-y-auto px-space-md pt-space-lg"><div class="flex items-start gap-space-sm pb-space-lg px-space-xs"><img alt="Brand logo. - Primary color: #0b3d2e
+- Font: inter
+- Mode: light
+- Roundness: rounded-md
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UTMR57eg5erZv5ymtesinv1Wu9OPG4FKeEGIPVXFPiobBiiRIVx1Vu3WxqkltXUumqKM0R57cmvOtRPYlgEXDcN_D_Xdbt0lZQ_nBoH0SG4zuPiV1JiZJH_y1Kr0FDpNGdjps04nTyJ5TLkolCxqwWeJeTbVs9nXNMhzvwXUEqZy6MEBxc7LABoVevzcpeqgBHIZB4szF-UVtYjPGjnjVgITdDFzR73EgVpe0MdSbMASKyfuQbGjvIwkGg"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-primary tracking-tight">Z•ORISIS</span></div><span class="font-body-sm text-body-sm text-on-primary-container">Together We Grow</span><div class="mt-space-xs"></div></div></div><nav class="flex flex-col gap-space-xs mt-space-sm" data-active-classes="bg-secondary text-on-secondary font-label-md"><a aria-current="page" class="flex items-center justify-between px-space-md py-2.5 rounded-xl transition-colors bg-secondary text-on-secondary font-label-md" data-path="dashboard" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="">Dashboard</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="organization" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">corporate_fare</span><span class="">Organization</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="users" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">group</span><span class="">Users</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="roles-and-permissions" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">admin_panel_settings</span><span class="">Roles &amp; Permissions</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="delegation" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">swap_horiz</span><span class="">Delegation</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="approvals" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">verified</span><span class="">Approvals</span></div><span class="px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-secondary text-on-secondary">8</span></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="audit-logs" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="">Audit Logs</span></div></a></nav><div class="mt-space-lg pt-space-md"><span class="px-space-md font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Preferences</span><nav class="flex flex-col gap-space-xs mt-space-xs" data-active-classes="bg-secondary text-on-secondary font-label-md"><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-body-md text-body-md text-on-primary-container hover:bg-primary-dark hover:text-on-primary transition-colors" data-path="settings" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">settings</span><span class="">Settings</span></div></a></nav></div></div><div class="p-space-md m-space-sm rounded-xl bg-primary-dark"><div class="flex items-center gap-space-sm"><div class="relative"><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-secondary-fixed"></span></div><div class="flex flex-col min-w-0 flex-1"><div class="flex items-center justify-between"><span class="font-label-md text-label-md text-on-primary truncate">Abebe Tesfaye</span><span class="font-label-sm text-label-sm text-secondary-fixed-dim">Verified</span></div><span class="font-body-sm text-body-sm text-on-primary-container truncate">System Admin</span><span class="font-body-sm text-body-sm text-text-muted truncate mt-0.5">Z•ORISIS Holding • Oromia Hub</span></div></div></div></aside><div class="pl-72"><header class="sticky top-0 z-40 h-16 w-full bg-canvas-warm/90 backdrop-blur-xl z-40 flex items-center justify-between px-margin shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-lg flex-1 max-w-2xl"><img alt="Brand logo. - Primary color: #0b3d2e
+- Font: inter
+- Mode: light
+- Roundness: rounded-md
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UTMR57eg5erZv5ymtesinv1Wu9OPG4FKeEGIPVXFPiobBiiRIVx1Vu3WxqkltXUumqKM0R57cmvOtRPYlgEXDcN_D_Xdbt0lZQ_nBoH0SG4zuPiV1JiZJH_y1Kr0FDpNGdjps04nTyJ5TLkolCxqwWeJeTbVs9nXNMhzvwXUEqZy6MEBxc7LABoVevzcpeqgBHIZB4szF-UVtYjPGjnjVgITdDFzR73EgVpe0MdSbMASKyfuQbGjvIwkGg"><div class="relative flex-1"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span><input class="w-full h-11 pl-10 pr-4 bg-surface-white rounded-xl font-body-sm text-body-sm text-on-surface placeholder:text-text-muted focus:outline-none" placeholder="Search users, roles, organizations or audit logs (⌘K)..." type="text"></div></div><div class="flex items-center gap-space-md"><div class="hidden xl:flex items-center gap-space-xs px-3 py-1.5 rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span></div><div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-info-light text-info-blue font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">shield</span></div><button class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-white font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface" type="button"><span class="material-symbols-outlined text-[16px]">language</span><span class="">EN / አማ</span></button><a class="p-2 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-white transition-colors" data-path="documentation" href="#"><span class="material-symbols-outlined text-[20px]">help</span></a><button class="relative p-2 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-white transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-6 pb-space-xl bg-canvas-warm px-margin min-h-screen"><div class="flex flex-col w-full pb-16">
+<!-- Top Navigation Breadcrumb & Header Bar -->
+<div class="flex flex-col gap-space-sm mb-space-lg">
+<!-- Breadcrumb Hierarchy -->
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-text-muted">
+<span class="">Core &amp; Administration</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="">Security &amp; Governance</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="font-label-sm text-label-sm text-secondary">Audit Logs</span>
+</div>
+<!-- Title and Primary Actions -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Audit Logs</h1>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-secondary">verified_user</span>
+            Zero-Trust Agritech Protocol • SEC-AUDIT-2025
+          </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-tint font-label-sm text-label-sm text-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            Immutable Merkle Ledger: Synchronized
+          </span>
+</div>
+<p class="font-body-md text-body-md text-text-muted">
+          Track administrative, automated, and security state modifications across the distributed agricultural infrastructure.
+        </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-space-sm self-start lg:self-auto">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface-white hover:bg-surface-container-low transition-all font-label-md text-label-md text-primary shadow-sm hover:shadow active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[18px] text-text-muted">download</span>
+<span class="">Export CSV</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary-container text-on-primary hover:bg-primary-dark transition-all font-label-md text-label-md shadow-sm hover:shadow active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">encrypted</span>
+<span class="">Export Signed PDF</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Compliance & Ledger Integrity Strip -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Total Events -->
+<div class="bg-surface-white p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-20 h-20 rounded-full bg-surface-container opacity-40 pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Total Audited Events</span>
+<span class="p-2 rounded-lg bg-surface-container-low text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">database</span>
+</span>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-headline-lg text-primary tracking-tight">142,890</div>
+<div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-text-muted">
+<span class="material-symbols-outlined text-[15px] text-secondary">trending_up</span>
+<span class="">+8.4% recorded in last 30 days</span>
+</div>
+</div>
+</div>
+<!-- Security & IAM Actions -->
+<div class="bg-surface-white p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-20 h-20 rounded-full bg-info-light opacity-60 pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Security &amp; IAM Actions</span>
+<span class="p-2 rounded-lg bg-info-light text-info-blue flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">security</span>
+</span>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-headline-lg text-primary tracking-tight">1,420</div>
+<div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-text-muted">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="">Zero unauthorized permission overrides</span>
+</div>
+</div>
+</div>
+<!-- High Risk / Denials -->
+<div class="bg-surface-white p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-20 h-20 rounded-full bg-warning-light opacity-50 pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">High Risk / Denials</span>
+<span class="p-2 rounded-lg bg-warning-light text-warning-amber flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">shield_with_heart</span>
+</span>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-headline-lg text-primary tracking-tight">18 Flagged</div>
+<div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-text-muted">
+<span class="material-symbols-outlined text-[15px] text-secondary">check_circle</span>
+<span class="">All resolved &amp; dual-signed</span>
+</div>
+</div>
+</div>
+<!-- Cryptographic Ledger Status -->
+<div class="bg-surface-white p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-20 h-20 rounded-full bg-surface-tint opacity-80 pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Cryptographic Ledger</span>
+<span class="p-2 rounded-lg bg-surface-tint text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">token</span>
+</span>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-headline-lg text-primary tracking-tight">SHA-256 Validated</div>
+<div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-text-muted">
+<span class="material-symbols-outlined text-[15px] text-secondary">lock</span>
+<span class="">Block #89,412 sealed to local node</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter & Query Control Console -->
+<div class="bg-surface-white rounded-xl shadow-sm p-space-md mb-space-lg flex flex-col gap-space-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-space-sm">
+<!-- Date Range -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-muted">Date Range</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">calendar_today</span>
+<select class="w-full h-11 pl-9 pr-8 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:bg-surface-white transition-colors cursor-pointer">
+<option>Last 7 Days (May 24 – May 30)</option>
+<option>Today (May 30, 2025)</option>
+<option>Last 30 Days</option>
+<option>Current Fiscal Quarter</option>
+<option>Custom Range...</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-text-muted text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Actor Filter -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-muted">Actor</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">person</span>
+<select class="w-full h-11 pl-9 pr-8 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:bg-surface-white transition-colors cursor-pointer">
+<option>All Actors</option>
+<option>Abebe Tesfaye (System Admin)</option>
+<option>Dawit Mengistu (SecOps)</option>
+<option>Board Audit Committee</option>
+<option>Automated SCIM Cron</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-text-muted text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Action Type -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-muted">Action Type</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">bolt</span>
+<select class="w-full h-11 pl-9 pr-8 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:bg-surface-white transition-colors cursor-pointer">
+<option>All Actions</option>
+<option>GRANT (Permission)</option>
+<option>DENY (Violation)</option>
+<option>CREATE (Resource)</option>
+<option>UPDATE (Resource)</option>
+<option>REVOKE / DELETE</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-text-muted text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Entity Type -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-muted">Entity Target</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">category</span>
+<select class="w-full h-11 pl-9 pr-8 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:bg-surface-white transition-colors cursor-pointer">
+<option>All Entities</option>
+<option>Permission</option>
+<option>Delegation Chain</option>
+<option>Role Definition</option>
+<option>User Profile</option>
+<option>Approval Gate</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-text-muted text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Organization / Branch -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-muted">Hub / Outpost</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">hub</span>
+<select class="w-full h-11 pl-9 pr-8 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:bg-surface-white transition-colors cursor-pointer">
+<option>All Hubs &amp; Outposts</option>
+<option>Adama Regional Hub</option>
+<option>Oromia HQ - Addis Ababa</option>
+<option>Bishoftu LoRaWAN Outpost</option>
+<option>Hawassa Ag-Corridor</option>
+<option>Nairobi Secure Relay</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-text-muted text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Search & Clear -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm text-text-muted">Quick Search</label>
+<button class="font-label-sm text-label-sm text-secondary hover:underline" type="button">Reset</button>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span>
+<input class="w-full h-11 pl-9 pr-3 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-white transition-colors placeholder:text-text-muted" placeholder="Hash, IP, actor or keyword..." type="text">
+</div>
+</div>
+</div>
+</div>
+<!-- Master / Split View: Table (68%) + Detail Drawer (32%) -->
+<div class="flex flex-col 2xl:flex-row items-start gap-space-lg">
+<!-- Main Data Table Container -->
+<div class="w-full 2xl:w-[67%] bg-surface-white rounded-xl shadow-sm flex flex-col overflow-hidden">
+<!-- Table Header & Filter Summary -->
+<div class="p-space-md bg-surface-white flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-primary">Cryptographic Audit Sequence</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low font-label-sm text-label-sm text-text-muted">Live Stream</span>
+</div>
+<div class="flex items-center gap-space-sm font-body-sm text-body-sm text-text-muted">
+<span class="">Sort: <strong class="text-on-surface font-label-sm">Most Recent First</strong></span>
+<button class="p-1 rounded-lg hover:bg-surface-container-low text-text-muted" type="button">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Responsive Table View -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-canvas-warm font-label-sm text-label-sm text-text-muted uppercase tracking-wider">
+<th class="py-3 px-space-md">Timestamp</th>
+<th class="py-3 px-space-md">Actor</th>
+<th class="py-3 px-space-md">Action</th>
+<th class="py-3 px-space-md">Entity Target</th>
+<th class="py-3 px-space-md min-w-[200px]">Reason &amp; Business Context</th>
+<th class="py-3 px-space-md">Network / Origin</th>
+<th class="py-3 px-space-md text-right">View</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface" id="audit-table-body">
+<!-- ROW 1 (Default Active) -->
+<tr class="audit-row bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors" data-log-id="EVT-89412-SEC" onclick="selectAuditRow(this, 'EVT-89412-SEC')">
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary">May 30, 2025</span>
+<div class="flex items-center gap-1 text-text-muted">
+<span class="">14:22:08</span>
+<span class="px-1 py-0.2 rounded bg-surface-container text-[10px] text-text-muted font-mono">EAT</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-[11px]">AT</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface">Abebe Tesfaye</span>
+<span class="text-text-muted text-[11px]">System Admin</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-tint font-label-sm text-label-sm text-secondary">
+<span class="material-symbols-outlined text-[13px]">key</span>
+                  GRANT
+                </span>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined text-[16px] text-text-muted">vpn_key</span>
+<span class="font-mono text-[12px]">inventory.update</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<p class="line-clamp-2 text-on-surface-variant font-body-sm">
+                  Emergency seed stock reallocation authority during drought contingency
+                </p>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex flex-col font-mono text-[11px] text-text-muted">
+<span class="text-on-surface">196.188.24.12</span>
+<span class="">Adama Hub</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right whitespace-nowrap">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-primary-container text-on-primary">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</span>
+</td>
+</tr>
+<!-- ROW 2 -->
+<tr class="audit-row hover:bg-surface-container-low cursor-pointer transition-colors" data-log-id="EVT-89411-SEC" onclick="selectAuditRow(this, 'EVT-89411-SEC')">
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary">May 30, 2025</span>
+<div class="flex items-center gap-1 text-text-muted">
+<span class="">11:05:44</span>
+<span class="px-1 py-0.2 rounded bg-surface-container text-[10px] text-text-muted font-mono">EAT</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center font-label-sm text-[11px]">BAC</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface">Board Audit Committee</span>
+<span class="text-text-muted text-[11px]">Governance Council</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-danger-light font-label-sm text-label-sm text-danger-red">
+<span class="material-symbols-outlined text-[13px]">block</span>
+                  DENY
+                </span>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined text-[16px] text-text-muted">rule</span>
+<span class="font-mono text-[12px]">payment.approve</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<p class="line-clamp-2 text-on-surface-variant font-body-sm">
+                  Regulatory SoD Compliance: System Admins strictly prohibited from direct payment authorization
+                </p>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex flex-col font-mono text-[11px] text-text-muted">
+<span class="text-on-surface">10.0.4.18</span>
+<span class="">Z•ORISIS Addis HQ</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right whitespace-nowrap">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg hover:bg-surface-container-low text-text-muted">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</span>
+</td>
+</tr>
+<!-- ROW 3 -->
+<tr class="audit-row hover:bg-surface-container-low cursor-pointer transition-colors" data-log-id="EVT-89410-SEC" onclick="selectAuditRow(this, 'EVT-89410-SEC')">
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary">May 29, 2025</span>
+<div class="flex items-center gap-1 text-text-muted">
+<span class="">17:40:19</span>
+<span class="px-1 py-0.2 rounded bg-surface-container text-[10px] text-text-muted font-mono">EAT</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-[11px]">AT</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface">Abebe Tesfaye</span>
+<span class="text-text-muted text-[11px]">System Admin</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined text-[13px]">add_circle</span>
+                  CREATE
+                </span>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined text-[16px] text-text-muted">swap_horiz</span>
+<span class="font-mono text-[12px]">SEC-DLG-2025-044</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<p class="line-clamp-2 text-on-surface-variant font-body-sm">
+                  Harvest Season Operations: Proxy drone flight authority delegated to Selamawit Bekele
+                </p>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex flex-col font-mono text-[11px] text-text-muted">
+<span class="text-on-surface">196.188.24.12</span>
+<span class="">Adama Hub</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right whitespace-nowrap">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg hover:bg-surface-container-low text-text-muted">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</span>
+</td>
+</tr>
+<!-- ROW 4 -->
+<tr class="audit-row hover:bg-surface-container-low cursor-pointer transition-colors" data-log-id="EVT-89409-SEC" onclick="selectAuditRow(this, 'EVT-89409-SEC')">
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary">May 29, 2025</span>
+<div class="flex items-center gap-1 text-text-muted">
+<span class="">15:18:02</span>
+<span class="px-1 py-0.2 rounded bg-surface-container text-[10px] text-text-muted font-mono">EAT</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-secondary-fixed text-primary flex items-center justify-center font-label-sm text-[11px]">DM</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface">Dawit Mengistu</span>
+<span class="text-text-muted text-[11px]">SecOps Lead</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-info-light font-label-sm text-label-sm text-info-blue">
+<span class="material-symbols-outlined text-[13px]">edit</span>
+                  UPDATE
+                </span>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined text-[16px] text-text-muted">verified</span>
+<span class="font-mono text-[12px]">CHN-FIN-PAY-03</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<p class="line-clamp-2 text-on-surface-variant font-body-sm">
+                  Multi-stage dual-authorization mandate enforced for seed acquisition contracts &gt; $10,000
+                </p>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex flex-col font-mono text-[11px] text-text-muted">
+<span class="text-on-surface">197.156.77.90</span>
+<span class="">Nairobi Relay</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right whitespace-nowrap">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg hover:bg-surface-container-low text-text-muted">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</span>
+</td>
+</tr>
+<!-- ROW 5 -->
+<tr class="audit-row hover:bg-surface-container-low cursor-pointer transition-colors" data-log-id="EVT-89408-SEC" onclick="selectAuditRow(this, 'EVT-89408-SEC')">
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary">May 28, 2025</span>
+<div class="flex items-center gap-1 text-text-muted">
+<span class="">09:30:15</span>
+<span class="px-1 py-0.2 rounded bg-surface-container text-[10px] text-text-muted font-mono">EAT</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-[11px]">AT</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface">Abebe Tesfaye</span>
+<span class="text-text-muted text-[11px]">System Admin</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined text-[13px]">person_add</span>
+                  CREATE
+                </span>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined text-[16px] text-text-muted">badge</span>
+<span class="font-mono text-[12px]">User: Daniel Kebede</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<p class="line-clamp-2 text-on-surface-variant font-body-sm">
+                  Onboarding Senior Agronomist for Bishoftu LoRaWAN telemetry station
+                </p>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex flex-col font-mono text-[11px] text-text-muted">
+<span class="text-on-surface">196.188.24.12</span>
+<span class="">Adama Hub</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right whitespace-nowrap">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg hover:bg-surface-container-low text-text-muted">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</span>
+</td>
+</tr>
+<!-- ROW 6 -->
+<tr class="audit-row hover:bg-surface-container-low cursor-pointer transition-colors" data-log-id="EVT-89407-SEC" onclick="selectAuditRow(this, 'EVT-89407-SEC')">
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary">May 27, 2025</span>
+<div class="flex items-center gap-1 text-text-muted">
+<span class="">16:45:30</span>
+<span class="px-1 py-0.2 rounded bg-surface-container text-[10px] text-text-muted font-mono">EAT</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-[11px]">AT</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface">Abebe Tesfaye</span>
+<span class="text-text-muted text-[11px]">System Admin</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-info-light font-label-sm text-label-sm text-info-blue">
+<span class="material-symbols-outlined text-[13px]">edit</span>
+                  UPDATE
+                </span>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined text-[16px] text-text-muted">admin_panel_settings</span>
+<span class="font-mono text-[12px]">Role: Farm Manager</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<p class="line-clamp-2 text-on-surface-variant font-body-sm">
+                  Modified GIS field plot boundary rights &amp; multispectral drone flight permissions
+                </p>
+</td>
+<td class="py-3.5 px-space-md whitespace-nowrap">
+<div class="flex flex-col font-mono text-[11px] text-text-muted">
+<span class="text-on-surface">196.188.24.12</span>
+<span class="">Adama Hub</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right whitespace-nowrap">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg hover:bg-surface-container-low text-text-muted">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="p-space-md bg-canvas-warm flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<span class="font-body-sm text-body-sm text-text-muted">
+          Showing <span class="font-label-sm text-on-surface">1–6</span> of <span class="font-label-sm text-on-surface">142,890</span> events
+        </span>
+<div class="flex items-center gap-1.5">
+<button class="px-3 py-1.5 rounded-lg bg-surface-white hover:bg-surface-container-low font-label-sm text-label-sm text-text-muted disabled:opacity-40 transition-colors" disabled="" type="button">
+            Previous
+          </button>
+<button class="w-8 h-8 rounded-lg bg-primary-container font-label-sm text-label-sm text-on-primary" type="button">1</button>
+<button class="w-8 h-8 rounded-lg bg-surface-white hover:bg-surface-container-low font-label-sm text-label-sm text-on-surface" type="button">2</button>
+<button class="w-8 h-8 rounded-lg bg-surface-white hover:bg-surface-container-low font-label-sm text-label-sm text-on-surface" type="button">3</button>
+<span class="px-1 text-text-muted font-label-sm text-label-sm">...</span>
+<button class="w-8 h-8 rounded-lg bg-surface-white hover:bg-surface-container-low font-label-sm text-label-sm text-on-surface" type="button">23,815</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-white hover:bg-surface-container-low font-label-sm text-label-sm text-primary font-label-md transition-colors" type="button">
+            Next
+          </button>
+</div>
+</div>
+</div>
+<!-- Right-Side Detail Drawer (Log Inspection Panel) -->
+<div class="w-full 2xl:w-[33%] bg-surface-white rounded-xl shadow-sm flex flex-col overflow-hidden sticky top-20" id="audit-inspector">
+<!-- Drawer Top Bar -->
+<div class="p-space-md bg-primary-container text-on-primary flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px]">policy</span>
+<span class="font-headline-sm text-headline-sm tracking-tight text-on-primary">Event Details</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-primary-dark font-mono text-[11px] text-primary-fixed" id="detail-event-id">#EVT-89412-SEC</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>
+<span class="font-body-sm text-body-sm text-on-primary-container">Immutable Node Log</span>
+</div>
+</div>
+<button class="p-1.5 rounded-lg bg-primary-dark/60 hover:bg-primary-dark text-on-primary-container hover:text-on-primary transition-colors" onclick="closeInspector()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Verification Seal Strip -->
+<div class="px-space-md py-2.5 bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span class="font-label-sm text-label-sm text-secondary">Cryptographic Merkle Root: Verified</span>
+</div>
+<span class="font-mono text-[11px] text-text-muted truncate max-w-[150px]" title="SHA-256: 7f8b92c4e1a0bb394d21f3">SHA: 7f8b92c4...e12a</span>
+</div>
+<!-- Scrollable Inspector Content Area -->
+<div class="p-space-lg flex flex-col gap-space-lg max-h-[calc(100vh-280px)] overflow-y-auto">
+<!-- Metadata Key-Value Matrix -->
+<div class="grid grid-cols-2 gap-space-md bg-canvas-warm p-space-md rounded-xl">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">Actor Identity</span>
+<span class="font-label-md text-label-md text-primary mt-0.5" id="detail-actor">Abebe Tesfaye</span>
+<span class="text-[11px] text-text-muted font-mono">System Admin • ZOR-0012</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">Timestamp (ISO 8601)</span>
+<span class="font-mono text-[12px] text-on-surface mt-0.5" id="detail-timestamp">2025-05-30T14:22:08.412+03:00</span>
+<span class="text-[11px] text-text-muted">East Africa Time (UTC+3)</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">Action Executed</span>
+<div class="mt-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-tint font-label-sm text-label-sm text-secondary" id="detail-action-badge">
+                GRANT (Explicit Override)
+              </span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">Target Entity</span>
+<span class="font-mono text-[12px] text-primary mt-0.5" id="detail-entity">Permission / inventory.update</span>
+<span class="text-[11px] text-text-muted">Distributed Storage Scope</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">Outpost / Network</span>
+<span class="font-mono text-[12px] text-on-surface mt-0.5" id="detail-ip">196.188.24.12</span>
+<span class="text-[11px] text-text-muted">Adama Regional Silo Cluster</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">Session ID</span>
+<span class="font-mono text-[12px] text-on-surface mt-0.5">SES-9921-ADAMA</span>
+<span class="text-[11px] text-secondary font-label-sm">Hardware Token Verified</span>
+</div>
+</div>
+<!-- Business Justification Box -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Business Justification &amp; Authority</span>
+<span class="inline-flex items-center gap-1 text-[11px] text-secondary font-label-sm">
+<span class="material-symbols-outlined text-[14px]">gavel</span>
+              Statutory
+            </span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low">
+<p class="font-body-md text-body-md text-primary-dark leading-relaxed" id="detail-reason">
+              "Emergency seed stock reallocation authority during current East Africa drought contingency protocol. Authorized under Ethiopian Ministry of Agriculture Directive AG-2025-09 for Bishoftu and Adama reserve storage nodes."
+            </p>
+</div>
+</div>
+<!-- Before & After State Diff -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Cryptographic State Diff (JSON)</span>
+<span class="font-mono text-[11px] text-text-muted">Delta: +2 props, 1 change</span>
+</div>
+<!-- BEFORE STATE -->
+<div class="rounded-xl overflow-hidden shadow-sm">
+<button class="w-full px-space-md py-2.5 bg-surface-container-high flex items-center justify-between hover:bg-surface-container transition-colors" onclick="toggleSection('before-diff-block', 'before-icon')" type="button">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-label-sm text-label-sm text-primary font-mono">1. Before State Snapshot</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-text-muted transition-transform" id="before-icon">expand_less</span>
+</button>
+<div class="p-space-md bg-canvas-warm overflow-x-auto text-[12px] font-mono text-on-surface leading-snug" id="before-diff-block">
+<pre>{
+  <span class="text-text-muted">"permission":</span> <span class="text-primary">"inventory.update"</span>,
+  <span class="text-text-muted">"effect":</span> <span class="text-danger-red">"INHERITED_DEFAULT"</span>,
+  <span class="text-text-muted">"granted":</span> <span class="text-danger-red">false</span>,
+  <span class="text-text-muted">"expiration":</span> null,
+  <span class="text-text-muted">"dual_custody_approved":</span> false
+}</pre>
+</div>
+</div>
+<!-- AFTER STATE -->
+<div class="rounded-xl overflow-hidden shadow-sm">
+<button class="w-full px-space-md py-2.5 bg-surface-tint flex items-center justify-between hover:bg-surface-container transition-colors" onclick="toggleSection('after-diff-block', 'after-icon')" type="button">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-secondary font-mono">2. After State (Merkle Root Applied)</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-secondary transition-transform" id="after-icon">expand_less</span>
+</button>
+<div class="p-space-md bg-canvas-warm overflow-x-auto text-[12px] font-mono text-on-surface leading-snug" id="after-diff-block">
+<pre>{
+  <span class="text-text-muted">"permission":</span> <span class="text-primary">"inventory.update"</span>,
+  <span class="text-text-muted">"effect":</span> <span class="text-secondary font-bold">"EXPLICIT_GRANT"</span>,
+  <span class="text-text-muted">"granted":</span> <span class="text-secondary font-bold">true</span>,
+  <span class="text-text-muted">"expiration":</span> <span class="text-secondary">"2025-06-15T23:59:59Z"</span>,
+  <span class="text-text-muted">"dual_custody_approved":</span> <span class="text-secondary font-bold">true</span>,
+  <span class="text-text-muted">"authorized_by":</span> [
+    <span class="text-secondary">"a.tesfaye@zorisis.com"</span>,
+    <span class="text-secondary">"d.mengistu@zorisis.com"</span>
+  ]
+}</pre>
+</div>
+</div>
+</div>
+<!-- Geographic Telemetry & Node Origin -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-muted">Ledger Propagation Node</span>
+<div class="w-full h-32 rounded-xl shadow-sm relative overflow-hidden bg-surface-container-low flex flex-col justify-end p-space-sm" data-alt="Satellite map view of the Rift Valley agricultural corridor near Adama and Bishoftu Ethiopia showing lush farm plots, grain silos, and IoT telemetry nodes under warm African sunlight." data-location="Adama, Ethiopia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyyummeK7D1lsDZfgfBOl-4zK6YLlsm7dpvHr0SG-z4lQtNgQGCLr2VdGPilJUgj0DtmrRNP6GPhsDcaDcKVWAJVhrtmAkhisgtJg5PAcrm3n3_61lAo5aH1Ybjz60BsxfWTKrAyMDpRoMnEyvVI8rb_00nu6FIw9_hpZr8EvDgGWxUqZPRA1dLu3WRHlLHv_RlPvx_2Wjw8JGBRvqo61DqanT7JQgoXY4xYOaQJ9n4wBRZsr1FWR2_A')">
+<div class="bg-primary-dark/85 backdrop-blur-md p-2 rounded-lg flex items-center justify-between text-on-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed text-[16px]">sensors</span>
+<span class="font-label-sm text-label-sm">Adama Agri-Telemetry Gateway #04</span>
+</div>
+<span class="font-mono text-[11px] text-primary-fixed">Lat 8.54°N Lon 39.27°E</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Inspection Actions Footer -->
+<div class="p-space-md bg-canvas-warm mt-auto flex flex-col gap-space-sm">
+<div class="flex items-center justify-between text-[11px] text-text-muted">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified_user</span>
+            Signed under AU-Malabo &amp; e-IDAS Protocol
+          </span>
+<span class="font-mono">Cert #ZOR-PKI-2025</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-surface-white hover:bg-surface-container-low text-primary font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px] text-text-muted">code</span>
+<span class="">Raw JSON</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-primary-container hover:bg-primary-dark text-on-primary font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">fact_check</span>
+<span class="">Verify Hash</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Log Mock Data for Dynamic Inspection
+  const logDetails = {
+    'EVT-89412-SEC': {
+      id: '#EVT-89412-SEC',
+      actor: 'Abebe Tesfaye',
+      role: 'System Admin • ZOR-0012',
+      timestamp: '2025-05-30T14:22:08.412+03:00',
+      action: 'GRANT (Explicit Override)',
+      badgeClass: 'bg-surface-tint text-secondary',
+      entity: 'Permission / inventory.update',
+      ip: '196.188.24.12',
+      origin: 'Adama Regional Silo Cluster',
+      reason: 'Emergency seed stock reallocation authority during current East Africa drought contingency protocol. Authorized under Ethiopian Ministry of Agriculture Directive AG-2025-09 for Bishoftu and Adama reserve storage nodes.',
+      beforeJson: `{\n  "permission": "inventory.update",\n  "effect": "INHERITED_DEFAULT",\n  "granted": false,\n  "expiration": null,\n  "dual_custody_approved": false\n}`,
+      afterJson: `{\n  "permission": "inventory.update",\n  "effect": "EXPLICIT_GRANT",\n  "granted": true,\n  "expiration": "2025-06-15T23:59:59Z",\n  "dual_custody_approved": true,\n  "authorized_by": [\n    "a.tesfaye@zorisis.com",\n    "d.mengistu@zorisis.com"\n  ]\n}`
+    },
+    'EVT-89411-SEC': {
+      id: '#EVT-89411-SEC',
+      actor: 'Board Audit Committee',
+      role: 'Governance Council • BAC-ETH',
+      timestamp: '2025-05-30T11:05:44.890+03:00',
+      action: 'DENY (Policy Guardrail)',
+      badgeClass: 'bg-danger-light text-danger-red',
+      entity: 'Permission / payment.approve',
+      ip: '10.0.4.18',
+      origin: 'Z•ORISIS Addis HQ Intranet',
+      reason: 'Automated Segregation of Duties (SoD) Rule 4A Violation: System Administrators are legally barred from holding payment authorization capabilities.',
+      beforeJson: `{\n  "user": "a.tesfaye@zorisis.com",\n  "requested_role": "payment.approver",\n  "status": "EVALUATING"\n}`,
+      afterJson: `{\n  "user": "a.tesfaye@zorisis.com",\n  "requested_role": "payment.approver",\n  "status": "DENIED_SOD_CONFLICT",\n  "rule_triggered": "SOD-FIN-002"\n}`
+    },
+    'EVT-89410-SEC': {
+      id: '#EVT-89410-SEC',
+      actor: 'Abebe Tesfaye',
+      role: 'System Admin • ZOR-0012',
+      timestamp: '2025-05-29T17:40:19.102+03:00',
+      action: 'CREATE (Delegation)',
+      badgeClass: 'bg-surface-container-high text-primary',
+      entity: 'Delegation / SEC-DLG-2025-044',
+      ip: '196.188.24.12',
+      origin: 'Adama Regional Hub',
+      reason: 'Temporary delegation of autonomous multispectral drone flight paths to Field Supervisor Selamawit Bekele for the 2025 Tef harvest surveillance period.',
+      beforeJson: `{\n  "delegation_id": null,\n  "active": false\n}`,
+      afterJson: `{\n  "delegation_id": "SEC-DLG-2025-044",\n  "delegator": "a.tesfaye@zorisis.com",\n  "delegatee": "s.bekele@zorisis.com",\n  "scope": "drones.flight.execute",\n  "valid_until": "2025-06-30T18:00:00Z"\n}`
+    },
+    'EVT-89409-SEC': {
+      id: '#EVT-89409-SEC',
+      actor: 'Dawit Mengistu',
+      role: 'SecOps Lead • SEC-904',
+      timestamp: '2025-05-29T15:18:02.320+03:00',
+      action: 'UPDATE (Approval Chain)',
+      badgeClass: 'bg-info-light text-info-blue',
+      entity: 'Chain / CHN-FIN-PAY-03',
+      ip: '197.156.77.90',
+      origin: 'Nairobi Secure Relay',
+      reason: 'Enforced multi-sig cryptographic requirement on fertilizer procurement disbursements exceeding $10,000 USD to comply with AU Agricultural Anti-Fraud standards.',
+      beforeJson: `{\n  "chain_id": "CHN-FIN-PAY-03",\n  "steps": 1,\n  "dual_custody": false\n}`,
+      afterJson: `{\n  "chain_id": "CHN-FIN-PAY-03",\n  "steps": 2,\n  "dual_custody": true,\n  "signers_required": 2,\n  "threshold_usd": 10000\n}`
+    },
+    'EVT-89408-SEC': {
+      id: '#EVT-89408-SEC',
+      actor: 'Abebe Tesfaye',
+      role: 'System Admin • ZOR-0012',
+      timestamp: '2025-05-28T09:30:15.541+03:00',
+      action: 'CREATE (User)',
+      badgeClass: 'bg-surface-container-high text-primary',
+      entity: 'User / ZOR-0094',
+      ip: '196.188.24.12',
+      origin: 'Adama Regional Hub',
+      reason: 'Personnel onboarding: Daniel Kebede appointed as Senior Agronomist at Bishoftu research station with read-only soil moisture telemetry access.',
+      beforeJson: `{\n  "user_exists": false\n}`,
+      afterJson: `{\n  "user_id": "ZOR-0094",\n  "email": "d.kebede@zorisis.com",\n  "station": "Bishoftu-LoRaWAN",\n  "role": "Agronomist_Senior",\n  "mfa_enforced": true\n}`
+    },
+    'EVT-89407-SEC': {
+      id: '#EVT-89407-SEC',
+      actor: 'Abebe Tesfaye',
+      role: 'System Admin • ZOR-0012',
+      timestamp: '2025-05-27T16:45:30.912+03:00',
+      action: 'UPDATE (Role)',
+      badgeClass: 'bg-info-light text-info-blue',
+      entity: 'Role / Farm Manager',
+      ip: '196.188.24.12',
+      origin: 'Adama Regional Hub',
+      reason: 'Expansion of GIS polygon editing boundaries to accommodate newly demarcated 450-hectare cooperative farmland plots in East Shewa.',
+      beforeJson: `{\n  "role": "Farm Manager",\n  "gis_precision_m": 5.0,\n  "drone_geofence_override": false\n}`,
+      afterJson: `{\n  "role": "Farm Manager",\n  "gis_precision_m": 0.5,\n  "drone_geofence_override": true,\n  "authorized_zone": "ET-OR-SHEWA-EAST"\n}`
+    }
+  };
+
+  // Row selection handler
+  function selectAuditRow(rowElement, eventId) {
+    // Reset all row backgrounds
+    document.querySelectorAll('.audit-row').forEach(row => {
+      row.classList.remove('bg-surface-container-low', 'bg-surface-container');
+    });
+
+    // Mark current row
+    rowElement.classList.add('bg-surface-container-low');
+
+    // Make inspector panel visible if collapsed
+    const inspector = document.getElementById('audit-inspector');
+    if (inspector) {
+      inspector.classList.remove('hidden');
+    }
+
+    // Populate inspector data
+    const data = logDetails[eventId];
+    if (!data) return;
+
+    document.getElementById('detail-event-id').innerText = data.id;
+    document.getElementById('detail-actor').innerText = data.actor;
+    document.getElementById('detail-timestamp').innerText = data.timestamp;
+    document.getElementById('detail-entity').innerText = data.entity;
+    document.getElementById('detail-ip').innerText = data.ip;
+    document.getElementById('detail-reason').innerText = `"${data.reason}"`;
+
+    const badge = document.getElementById('detail-action-badge');
+    badge.className = `inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-label-sm text-label-sm ${data.badgeClass}`;
+    badge.innerText = data.action;
+
+    // Update diff snapshots
+    const beforeBlock = document.querySelector('#before-diff-block pre');
+    const afterBlock = document.querySelector('#after-diff-block pre');
+    if (beforeBlock) beforeBlock.innerText = data.beforeJson;
+    if (afterBlock) afterBlock.innerText = data.afterJson;
+  }
+
+  // Collapsible toggle for JSON blocks
+  function toggleSection(contentId, iconId) {
+    const el = document.getElementById(contentId);
+    const icon = document.getElementById(iconId);
+    if (!el || !icon) return;
+
+    if (el.classList.contains('hidden')) {
+      el.classList.remove('hidden');
+      icon.innerText = 'expand_less';
+    } else {
+      el.classList.add('hidden');
+      icon.innerText = 'expand_more';
+    }
+  }
+
+  // Close inspector drawer function
+  function closeInspector() {
+    const inspector = document.getElementById('audit-inspector');
+    if (inspector) {
+      inspector.classList.add('hidden');
+    }
+    // Deselect table rows
+    document.querySelectorAll('.audit-row').forEach(row => {
+      row.classList.remove('bg-surface-container-low');
+    });
+  }
+</script></main></div>
+
+</body></html>

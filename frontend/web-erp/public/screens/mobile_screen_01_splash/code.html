@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Z•ORISIS — Mobile Gateway Splash</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../design-tokens.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'canvas-warm': '#F7F4EC',
+            'surface-white': '#FFFFFF',
+            'primary': '#00261B',
+            'primary-dark': '#062A20',
+            'primary-container': '#0B3D2E',
+            'secondary': '#146B45',
+            'secondary-container': '#A3F4C3',
+            'surface-tint': '#E8F1EA',
+            'text-primary': '#17231D',
+            'text-muted': '#66736C',
+            'border-light': '#DDE4DE'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      overscroll-behavior-y: none;
+    }
+    .splash-glow {
+      background: radial-gradient(circle at 50% 45%, rgba(168, 195, 160, 0.25) 0%, rgba(247, 244, 236, 0) 70%);
+    }
+  </style>
+</head>
+<body class="bg-canvas-warm font-sans text-text-primary antialiased min-h-screen flex flex-col justify-between items-center p-6 relative select-none overflow-hidden splash-glow">
+
+  <!-- Top Status / Security Badge -->
+  <div class="w-full flex justify-between items-center pt-3 text-xs text-text-muted z-10">
+    <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-white/80 backdrop-blur-md border border-border-light shadow-subtle">
+      <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+      <span class="font-medium text-[11px] text-secondary">Secured Node</span>
+    </div>
+    <span class="text-[11px] font-mono tracking-wider opacity-70">MS1-CORE v2.4</span>
+  </div>
+
+  <!-- Center Hero Branding -->
+  <main class="flex flex-col items-center justify-center text-center my-auto z-10 w-full max-w-xs">
+    <!-- Animated Brand Symbol Container with Spring Bounce Feel -->
+    <div class="relative w-24 h-24 mb-8 flex items-center justify-center">
+      <div class="absolute inset-0 rounded-3xl bg-secondary-container/30 animate-ping opacity-25"></div>
+      <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary-container to-primary-dark shadow-[0_12px_28px_rgba(11,61,46,0.22)] flex items-center justify-center border border-white/20 transform transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer">
+        <svg class="w-10 h-10 text-surface-tint" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5C20 5 11 14 11 23C11 27.97 15.03 32 20 32C24.97 32 29 27.97 29 23C29 14 20 5 20 5Z" fill="currentColor" fill-opacity="0.9"/>
+          <path d="M20 12V28M15 20L20 15L25 20" stroke="#062A20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <h1 class="text-3xl font-bold tracking-tight text-primary mb-1.5" style="letter-spacing: -0.025em;">
+      Z•ORISIS
+    </h1>
+    <p class="text-xs font-semibold uppercase tracking-[0.25em] text-secondary mb-3">
+      Together We Grow
+    </p>
+    <p class="text-sm text-text-muted font-normal max-w-[240px] leading-relaxed">
+      Smart Agriculture Management &amp; Multi-Tier Enterprise ERP
+    </p>
+
+    <!-- Fast-spinning Apple-feel spinner (Emil Kowalski rule: fast spinner makes loading feel faster) -->
+    <div class="mt-10 flex flex-col items-center gap-3">
+      <div class="w-6 h-6 border-2 border-secondary/20 border-t-secondary rounded-full animate-spin" style="animation-duration: 0.65s;"></div>
+      <span class="text-[12px] text-text-muted font-medium animate-pulse">Initializing verified session...</span>
+    </div>
+  </main>
+
+  <!-- Bottom Enterprise Compliance & Security Footer -->
+  <footer class="w-full text-center pb-4 z-10 space-y-1.5">
+    <div class="inline-flex items-center gap-1.5 text-[11px] text-text-muted/90 bg-surface-white/60 backdrop-blur-sm px-3 py-1 rounded-full border border-border-light/60">
+      <span class="material-symbols-outlined text-[14px] text-secondary">verified</span>
+      <span>256-Bit Encrypted Agricultural Infrastructure</span>
+    </div>
+    <div class="text-[10px] text-text-muted/60">
+      Federal Democratic Republic of Ethiopia &amp; Regional Operations
+    </div>
+  </footer>
+
+  <script>
+    // Simulate natural mobile splash handoff to login after short delay
+    setTimeout(() => {
+      const banner = document.createElement('div');
+      banner.className = 'fixed bottom-4 left-6 right-6 p-3 bg-primary-container text-white rounded-2xl shadow-floating text-center text-xs font-medium z-50 flex items-center justify-between transition-all duration-300 transform translate-y-0';
+      banner.innerHTML = `<span>Session ready for authentication</span><a href="../mobile_screen_02_login/code.html" class="px-2.5 py-1 bg-secondary rounded-lg text-white font-semibold text-[11px] hover:bg-secondary/90 active:scale-95 transition-transform">Enter &rarr;</a>`;
+      document.body.appendChild(banner);
+    }, 1800);
+  </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+:root {
+  --color-canvas-warm: #F7F4EC;
+  --color-surface-white: #FFFFFF;
+  --color-primary: #00261B;
+  --color-primary-dark: #062A20;
+  --color-primary-container: #0B3D2E;
+  --color-secondary: #146B45;
+  --color-secondary-container: #A3F4C3;
+  --color-surface-tint: #E8F1EA;
+  --color-text-primary: #17231D;
+  --color-text-muted: #66736C;
+  --color-border-light: #DDE4DE;
+  
+  /* Emil Kowalski custom easings */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --shadow-subtle: 0 2px 8px rgba(11, 61, 46, 0.04);
+  --shadow-card: 0 4px 16px rgba(11, 61, 46, 0.06);
+  --shadow-floating: 0 20px 50px -12px rgba(6, 42, 32, 0.16), 0 8px 20px -4px rgba(6, 42, 32, 0.06), 0 0 0 1px rgba(11, 61, 46, 0.04);
+}
+
+@utility shadow-floating {
+  box-shadow: var(--shadow-floating);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+@utility shadow-subtle {
+  box-shadow: var(--shadow-subtle);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-canvas-warm);
+  color: var(--color-text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Universal cross-browser scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #A8C3A0 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #A8C3A0;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #146B45;
+}
+
+/* Emil Kowalski Rule: Responsive press feedback */
+.btn-press, button:not(:disabled), .interactive-tab {
+  transition: transform 140ms var(--ease-out), background-color 160ms var(--ease-out), color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+}
+
+.btn-press:active, button:not(:disabled):active, .interactive-tab:active {
+  transform: scale(0.97) !important;
+}
+
+/* Translucent Apple materials */
+.apple-glass {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(221, 228, 222, 0.65);
+}
+
+.apple-glass-dark {
+  background: rgba(11, 61, 46, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #DDE4DE;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A8C3A0;
+}
