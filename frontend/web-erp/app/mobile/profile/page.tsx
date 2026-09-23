@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getStoredUser, ROLES, AuthUser, DEMO_ACCOUNTS, setStoredUser } from "@/lib/rbac";
@@ -10,9 +10,6 @@ export default function MobileProfilePage() {
   const [user, setUser] = useState<AuthUser>(() => getStoredUser());
   const [biometricsEnabled, setBiometricsEnabled] = useState(true);
   const [lang, setLang] = useState<"en" | "am">("en");
-  const [holdProgress, setHoldProgress] = useState(0);
-  const holdIntervalRef = useRef<NodeJS.Timeout | null>(null);
-
   useEffect(() => {
     const sync = () => setUser(getStoredUser());
     window.addEventListener("zorisis_auth_change", sync);
@@ -23,23 +20,8 @@ export default function MobileProfilePage() {
 
   const roleConfig = ROLES[user.role] || ROLES.super_admin;
 
-  const startHold = () => {
-    let progress = 0;
-    holdIntervalRef.current = setInterval(() => {
-      progress += 5;
-      setHoldProgress(progress);
-      if (progress >= 100) {
-        if (holdIntervalRef.current) clearInterval(holdIntervalRef.current);
-        router.push("/login");
-      }
-    }, 90); // ~1.8 seconds
-  };
-
-  const endHold = () => {
-    if (holdIntervalRef.current) {
-      clearInterval(holdIntervalRef.current);
-    }
-    setHoldProgress(0);
+  const handleLogout = () => {
+    router.push("/login");
   };
 
   return (
@@ -250,29 +232,15 @@ export default function MobileProfilePage() {
           </div>
         </div>
 
-        {/* Emil Kowalski Hold-to-Sign-Out (Hold 1.8s) */}
+        {/* Sign Out */}
         <div className="pt-2">
-          <div className="mb-1 text-[11px] text-[#66736C] text-center">
-            Press and hold for 1.8 seconds to terminate authenticated mobile session
-          </div>
           <button
             type="button"
-            onMouseDown={startHold}
-            onMouseUp={endHold}
-            onMouseLeave={endHold}
-            onTouchStart={startHold}
-            onTouchEnd={endHold}
-            className="relative w-full h-12 bg-[#FDE8E8] border border-[#C94B4B]/20 text-[#C94B4B] rounded-xl font-semibold text-xs overflow-hidden flex items-center justify-center gap-2 active:scale-[0.98] transition-transform select-none"
+            onClick={handleLogout}
+            className="w-full h-12 bg-[#FDE8E8] hover:bg-[#FCD8D8] border border-[#C94B4B]/20 text-[#C94B4B] rounded-xl font-semibold text-xs flex items-center justify-center gap-2 active:scale-[0.98] transition-all cursor-pointer"
           >
-            {/* Hold progress bar */}
-            <div
-              className="absolute left-0 top-0 bottom-0 bg-[#C94B4B]/20 transition-all pointer-events-none"
-              style={{ width: `${holdProgress}%` }}
-            />
-            <span className="material-symbols-outlined text-[18px] relative z-10">logout</span>
-            <span className="relative z-10">
-              {holdProgress > 0 ? `Holding to Sign Out (${holdProgress}%)` : "Hold to Sign Out"}
-            </span>
+            <span className="material-symbols-outlined text-[18px]">logout</span>
+            <span>Sign Out</span>
           </button>
         </div>
       </main>
