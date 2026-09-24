@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_theme.dart';
 import 'mfa_verification_screen.dart';
 
@@ -43,7 +44,8 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Image.asset(
               'assets/images/login_field.png',
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Container(color: AppColors.primaryDark),
+              errorBuilder: (_, __, ___) =>
+                  Container(color: AppColors.primaryDark),
             ),
           ),
           Positioned.fill(
@@ -56,7 +58,8 @@ class _LoginScreenState extends State<LoginScreen> {
           SafeArea(
             child: Center(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 16.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 18.0, vertical: 16.0),
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 420),
                   child: Column(
@@ -80,14 +83,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               ],
                             ),
                             padding: const EdgeInsets.all(8),
-                            child: Image.asset(
-                              'assets/images/logo_emblem.png',
+                            child: SvgPicture.asset(
+                              'web/icons/zorisis-symbol.svg',
                               fit: BoxFit.contain,
-                              errorBuilder: (_, __, ___) => const Icon(
-                                Icons.eco,
-                                color: AppColors.secondary,
-                                size: 40,
-                              ),
                             ),
                           ),
                           Positioned(
@@ -122,7 +120,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             TextSpan(text: 'Z'),
                             TextSpan(
                               text: ' • ',
-                              style: TextStyle(color: AppColors.secondaryContainer),
+                              style: TextStyle(
+                                  color: AppColors.secondaryContainer),
                             ),
                             TextSpan(text: 'ORISIS'),
                           ],
@@ -142,7 +141,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       // Floating Authentication Form Card
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 24),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(16),
@@ -159,7 +159,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             Text(
                               'Welcome Back',
-                              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineMedium
+                                  ?.copyWith(
                                     fontWeight: FontWeight.bold,
                                     color: AppColors.onSurface,
                                   ),
@@ -167,7 +170,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             const SizedBox(height: 4),
                             Text(
                               'Sign in to access your agricultural telemetry & parcels',
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
                                     color: AppColors.onSurfaceVariant,
                                   ),
                             ),
@@ -212,7 +218,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   onTap: () {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
-                                        content: Text('Password reset instructions dispatched.'),
+                                        content: Text(
+                                            'Password reset instructions dispatched.'),
                                       ),
                                     );
                                   },
@@ -240,7 +247,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 suffixIcon: IconButton(
                                   icon: Icon(
-                                    _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                                    _obscurePassword
+                                        ? Icons.visibility_outlined
+                                        : Icons.visibility_off_outlined,
                                     color: AppColors.outline,
                                     size: 20,
                                   ),
@@ -296,7 +305,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.primaryContainer,
                                   foregroundColor: Colors.white,
-                                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
                                   ),
@@ -329,7 +339,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       // Bottom Floating Pill: Request Partnership
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(9999),
@@ -358,7 +369,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               onTap: () {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                    content: Text('Agronomic partnership inquiry form opened.'),
+                                    content: Text(
+                                        'Agronomic partnership inquiry form opened.'),
                                   ),
                                 );
                               },

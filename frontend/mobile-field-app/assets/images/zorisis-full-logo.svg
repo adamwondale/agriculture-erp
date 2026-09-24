@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 760" role="img" aria-labelledby="title desc">
+  <title id="title">ZORISIS</title>
+  <desc id="desc">ZORISIS logo with two people supporting a growing plant and the Together We Grow tagline.</desc>
+  <g fill="#003D22">
+    <circle cx="205" cy="120" r="60"/><circle cx="435" cy="120" r="60"/>
+    <path d="M182 205C120 234 90 304 90 380c0 101 65 182 170 208l45 11c-17-83-70-125-120-153-39-23-63-61-63-105 0-39 17-77 47-102 20-17 42-28 62-34-12 0-31-5-49 0Z"/>
+    <path d="M458 205c62 29 92 99 92 175 0 101-65 182-170 208l-45 11c17-83 70-125 120-153 39-23 63-61 63-105 0-39-17-77-47-102-20-17-42-28-62-34 12 0 31-5 49 0Z"/>
+    <path d="M319 502c-3-93-31-162-102-204-13 105 30 170 102 204Z"/><path d="M321 502c3-93 31-162 102-204 13 105-30 170-102 204Z"/>
+    <path d="M320 580c-1-88-20-129-74-161 50 13 88 50 74 161Z"/><path d="M320 580c1-88 20-129 74-161-50 13-88 50-74 161Z"/>
+  </g>
+  <g fill="#003D22" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="320" y="663" font-size="92" font-weight="800" letter-spacing="2">ZORISIS</text>
+    <text x="320" y="713" fill="#769E28" font-size="25" font-weight="700" letter-spacing="9">TOGETHER WE GROW</text>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+using System.IdentityModel.Tokens.Jwt; using System.Security.Claims; using System.Text; using Microsoft.IdentityModel.Tokens; using CoreAdmin.Domain.Entities; using CoreAdmin.Infrastructure.Persistence; using Microsoft.EntityFrameworkCore; using System.Security.Cryptography;
+namespace CoreAdmin.API.Services;
+public interface IAuthService { Task<(string Token, User User)?> LoginAsync(string email,string password,CancellationToken ct); }
+public sealed class AuthService(CoreAdminDbContext db,IConfiguration config) : IAuthService {
+ public async Task<(string Token,User User)?> LoginAsync(string email,string password,CancellationToken ct) { var u=await db.Users.SingleOrDefaultAsync(x=>x.Email==email && !x.IsDeleted,ct); if(u is null || u.Status!=CoreAdmin.Domain.Enums.UserStatus.Active.ToString() || !Verify(password,u.PasswordHash)) return null; var roles=await (from ur in db.UserRoles join r in db.Roles on ur.RoleId equals r.Id where ur.UserId==u.Id && ur.IsActive select r.Code).ToListAsync(ct); var claims=new List<Claim>{new(JwtRegisteredClaimNames.Sub,u.Id.ToString()),new(JwtRegisteredClaimNames.Email,u.Email),new("permissions_version",u.PermissionsVersion.ToString())}; claims.AddRange(roles.Select(r=>new Claim(ClaimTypes.Role,r))); var key=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]!)); var token=new JwtSecurityToken(issuer:config["Jwt:Issuer"],audience:config["Jwt:Audience"],claims:claims,expires:DateTime.UtcNow.AddMinutes(15),signingCredentials:new SigningCredentials(key,SecurityAlgorithms.HmacSha256)); return (new JwtSecurityTokenHandler().WriteToken(token),u); }
+ public static string Hash(string value) { var salt=RandomNumberGenerator.GetBytes(16); var hash=Rfc2898DeriveBytes.Pbkdf2(value,salt,120000,HashAlgorithmName.SHA256,32); return Convert.ToBase64String(salt)+":"+Convert.ToBase64String(hash); }
+ static bool Verify(string value,string encoded) { var p=encoded.Split(':'); if(p.Length!=2)return false; var hash=Rfc2898DeriveBytes.Pbkdf2(value,Convert.FromBase64String(p[0]),120000,HashAlgorithmName.SHA256,32); return CryptographicOperations.FixedTimeEquals(hash,Convert.FromBase64String(p[1])); }
+}
+
+

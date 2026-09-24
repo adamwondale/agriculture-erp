@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // 1. Add Controllers and HealthChecks
 builder.Services.AddControllers();
+builder.Services.AddScoped<CoreAdmin.API.Services.IAuthService, CoreAdmin.API.Services.AuthService>();
 builder.Services.AddHealthChecks();
 builder.Services.AddEndpointsApiExplorer();
 
@@ -84,3 +85,6 @@ app.MapControllers();
 app.MapHealthChecks("/health");
 
 app.Run();
+
+
+

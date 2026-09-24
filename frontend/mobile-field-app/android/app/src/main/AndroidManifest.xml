@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="mobile_field_app"
+        android:label="ZORISIS"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@drawable/zorisis_launcher">
         <activity
             android:name=".MainActivity"
             android:exported="true"
