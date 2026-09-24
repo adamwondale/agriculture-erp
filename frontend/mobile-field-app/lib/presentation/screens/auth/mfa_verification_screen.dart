@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_theme.dart';
 import '../home/main_nav_screen.dart';
 
@@ -100,15 +101,10 @@ class _MfaVerificationScreenState extends State<MfaVerificationScreen> {
         ),
         title: Row(
           children: [
-            Image.asset(
-              'assets/images/logo_emblem.png',
+            SvgPicture.asset(
+              'web/icons/zorisis-symbol.svg',
               height: 28,
               width: 28,
-              errorBuilder: (_, __, ___) => const Icon(
-                Icons.eco,
-                color: AppColors.secondary,
-                size: 24,
-              ),
             ),
             const SizedBox(width: 8),
             const Text(

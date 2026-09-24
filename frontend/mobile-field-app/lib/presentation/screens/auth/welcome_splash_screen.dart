@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_theme.dart';
 import 'login_screen.dart';
 
@@ -71,7 +72,8 @@ class WelcomeSplashScreen extends StatelessWidget {
           // Main Column layout
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -94,13 +96,9 @@ class WelcomeSplashScreen extends StatelessWidget {
                           ],
                         ),
                         child: ClipOval(
-                          child: Image.asset(
-                            'assets/images/logo_emblem.png',
+                          child: SvgPicture.asset(
+                            'web/icons/zorisis-symbol.svg',
                             fit: BoxFit.contain,
-                            errorBuilder: (_, __, ___) => Container(
-                              color: AppColors.surfaceContainerLowest,
-                              child: const Icon(Icons.eco, color: AppColors.secondary, size: 48),
-                            ),
                           ),
                         ),
                       ),
@@ -108,7 +106,10 @@ class WelcomeSplashScreen extends StatelessWidget {
                       // Wordmark
                       RichText(
                         text: TextSpan(
-                          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineLarge
+                              ?.copyWith(
                                 color: AppColors.primary,
                                 fontWeight: FontWeight.w800,
                                 letterSpacing: 0.5,
@@ -140,17 +141,20 @@ class WelcomeSplashScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Welcome Back!',
-                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.black.withValues(alpha: 0.6),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium
+                            ?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black.withValues(alpha: 0.6),
+                              blurRadius: 8,
+                              offset: const Offset(0, 2),
                             ),
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 8),
                       Padding(
@@ -158,16 +162,17 @@ class WelcomeSplashScreen extends StatelessWidget {
                         child: Text(
                           'Sign in to continue managing your farm efficiently.',
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: const Color(0xFFE8F1EA),
-                                shadows: [
-                                  Shadow(
-                                    color: Colors.black.withValues(alpha: 0.6),
-                                    blurRadius: 6,
-                                    offset: const Offset(0, 1),
-                                  ),
-                                ],
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: const Color(0xFFE8F1EA),
+                            shadows: [
+                              Shadow(
+                                color: Colors.black.withValues(alpha: 0.6),
+                                blurRadius: 6,
+                                offset: const Offset(0, 1),
                               ),
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(height: 28),
@@ -180,7 +185,8 @@ class WelcomeSplashScreen extends StatelessWidget {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (_) => const LoginScreen()),
+                              MaterialPageRoute(
+                                  builder: (_) => const LoginScreen()),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -188,7 +194,8 @@ class WelcomeSplashScreen extends StatelessWidget {
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14),
-                              side: BorderSide(color: Colors.white.withValues(alpha: 0.2)),
+                              side: BorderSide(
+                                  color: Colors.white.withValues(alpha: 0.2)),
                             ),
                             elevation: 4,
                           ),
@@ -213,7 +220,8 @@ class WelcomeSplashScreen extends StatelessWidget {
                           style: OutlinedButton.styleFrom(
                             backgroundColor: Colors.white,
                             foregroundColor: AppColors.primary,
-                            side: const BorderSide(color: AppColors.borderClean),
+                            side:
+                                const BorderSide(color: AppColors.borderClean),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14),
                             ),
