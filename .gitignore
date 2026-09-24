@@ -27,5 +27,7 @@ build/
 .flutter-plugins-dependencies
 .agents/
 skills-lock.json
+.github/
+tmp/
 **/bin/
 **/obj/
