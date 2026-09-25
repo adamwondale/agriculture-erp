@@ -26,4 +26,9 @@ public class User : BaseEntity
     public Guid ConcurrencyStamp { get; set; } = Guid.NewGuid();
     public Guid? BranchId { get; set; } = default!;
     public bool MfaEnabled { get; set; } = default!;
+    public string? RefreshToken { get; set; }
+    public DateTimeOffset? RefreshTokenExpiryTime { get; set; }
+    public string? MfaPendingTicket { get; set; }
+    public string? MfaPendingCode { get; set; }
+    public DateTimeOffset? MfaPendingCodeExpiry { get; set; }
 }
