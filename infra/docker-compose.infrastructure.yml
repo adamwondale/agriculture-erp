@@ -1,0 +1,109 @@
+# =============================================================================
+# docker-compose.infrastructure.yml
+# Agriculture ERP — Local Development Infrastructure Only
+#
+# Starts: PostgreSQL, RabbitMQ, Redis
+# Does NOT start application services.
+#
+# Usage:
+#   docker compose -f infra/docker-compose.infrastructure.yml up -d
+#   docker compose -f infra/docker-compose.infrastructure.yml down
+#   docker compose -f infra/docker-compose.infrastructure.yml ps
+#   docker compose -f infra/docker-compose.infrastructure.yml logs -f
+#
+# NOTE: Host port is 5433 because Windows PostgreSQL 18 (postgresql-x64-18)
+# is occupying port 5432. To use 5432, stop the Windows service:
+#   sc stop postgresql-x64-18   (requires Administrator)
+# Then change POSTGRES_PORT in .env back to 5432.
+# =============================================================================
+
+networks:
+  agri-infra-network:
+    name: agri-infra-network
+    driver: bridge
+
+volumes:
+  agri_postgres_data:
+    name: agri_postgres_data
+  agri_rabbitmq_data:
+    name: agri_rabbitmq_data
+  agri_redis_data:
+    name: agri_redis_data
+
+services:
+
+  # ---------------------------------------------------------------------------
+  # PostgreSQL — one database per microservice
+  # Init script creates all 17 databases idempotently on first start.
+  # ---------------------------------------------------------------------------
+  agri-postgres:
+    image: postgres:16-alpine
+    container_name: agri-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - agri_postgres_data:/var/lib/postgresql/data
+      - ./postgres-init-scripts:/docker-entrypoint-initdb.d:ro
+    networks:
+      - agri-infra-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ---------------------------------------------------------------------------
+  # RabbitMQ — management-enabled image
+  # AMQP:          localhost:${RABBITMQ_PORT}
+  # Management UI: http://localhost:${RABBITMQ_MANAGEMENT_PORT}
+  # ---------------------------------------------------------------------------
+  agri-rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: agri-rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USERNAME}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST:-/}
+    ports:
+      - "${RABBITMQ_PORT:-5672}:5672"
+      - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
+    volumes:
+      - agri_rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - agri-infra-network
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  # ---------------------------------------------------------------------------
+  # Redis — cache / short-lived state
+  # NOT used for: users, permissions, authorization, audit, business txns
+  # ---------------------------------------------------------------------------
+  agri-redis:
+    image: redis:7-alpine
+    container_name: agri-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--loglevel", "notice"]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - agri_redis_data:/data
+    networks:
+      - agri-infra-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s

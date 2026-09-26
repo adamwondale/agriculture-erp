@@ -25,3 +25,29 @@ yarn-error.log*
 build/
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# Environment secrets — NEVER commit
+.env
+.env.local
+.env.*.local
+
+# .NET build artifacts
+bin/
+obj/
+*.user
+*.suo
+.vs/
+TestResults/
+*.nupkg
+*.snupkg
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Docker override files with local secrets
+docker-compose.override.local.yml
