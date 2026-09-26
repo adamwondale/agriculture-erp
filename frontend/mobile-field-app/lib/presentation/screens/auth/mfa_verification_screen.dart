@@ -1,23 +1,30 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../providers/auth_provider.dart';
 import '../home/main_nav_screen.dart';
 
-class MfaVerificationScreen extends StatefulWidget {
+class MfaVerificationScreen extends ConsumerStatefulWidget {
   final String userIdentifier;
+  final String? mfaTicket;
+  final String? devOtpCode;
 
   const MfaVerificationScreen({
     super.key,
     this.userIdentifier = 'agronomist@coop.ag',
+    this.mfaTicket,
+    this.devOtpCode,
   });
 
   @override
-  State<MfaVerificationScreen> createState() => _MfaVerificationScreenState();
+  ConsumerState<MfaVerificationScreen> createState() =>
+      _MfaVerificationScreenState();
 }
 
-class _MfaVerificationScreenState extends State<MfaVerificationScreen> {
+class _MfaVerificationScreenState extends ConsumerState<MfaVerificationScreen> {
   static const int _otpLength = 6;
   final List<TextEditingController> _controllers =
       List.generate(_otpLength, (_) => TextEditingController());
@@ -30,13 +37,19 @@ class _MfaVerificationScreenState extends State<MfaVerificationScreen> {
   @override
   void initState() {
     super.initState();
-    // Pre-populate sample first three digits like mockup: 8, 4, 2
-    _controllers[0].text = '8';
-    _controllers[1].text = '4';
-    _controllers[2].text = '2';
+    if (widget.devOtpCode != null &&
+        widget.devOtpCode!.length == _otpLength) {
+      for (int i = 0; i < _otpLength; i++) {
+        _controllers[i].text = widget.devOtpCode![i];
+      }
+    }
     _startTimer();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _focusNodes[3].requestFocus();
+      if (widget.devOtpCode != null) {
+        _focusNodes[_otpLength - 1].requestFocus();
+      } else {
+        _focusNodes[0].requestFocus();
+      }
     });
   }
 
@@ -78,11 +91,10 @@ class _MfaVerificationScreenState extends State<MfaVerificationScreen> {
   void _verifyCode() {
     final code = _controllers.map((c) => c.text).join();
     if (code.length == _otpLength) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (_) => const MainNavScreen()),
-        (route) => false,
-      );
+      ref.read(authNotifierProvider.notifier).verifyMfa(
+            mfaTicket: widget.mfaTicket ?? '',
+            code: code,
+          );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please enter the full 6-digit code')),
@@ -92,6 +104,26 @@ class _MfaVerificationScreenState extends State<MfaVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authNotifierProvider);
+    final isLoading = authState is AuthLoading;
+
+    ref.listen<AuthState>(authNotifierProvider, (previous, next) {
+      if (next is AuthError) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(next.message),
+            backgroundColor: AppColors.error,
+          ),
+        );
+      } else if (next is AuthAuthenticated) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (_) => const MainNavScreen()),
+          (route) => false,
+        );
+      }
+    });
+
     return Scaffold(
       backgroundColor: AppColors.surface,
       appBar: AppBar(
@@ -413,27 +445,36 @@ class _MfaVerificationScreenState extends State<MfaVerificationScreen> {
                           width: double.infinity,
                           height: 50,
                           child: ElevatedButton(
-                            onPressed: _verifyCode,
+                            onPressed: isLoading ? null : _verifyCode,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Verify Session',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
+                            child: isLoading
+                                ? const SizedBox(
+                                    width: 22,
+                                    height: 22,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2.5,
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Verify Session',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      SizedBox(width: 8),
+                                      Icon(Icons.arrow_forward, size: 18),
+                                    ],
                                   ),
-                                ),
-                                SizedBox(width: 8),
-                                Icon(Icons.arrow_forward, size: 18),
-                              ],
-                            ),
                           ),
                         ),
                         const SizedBox(height: 10),

@@ -9,9 +9,11 @@ import 'presentation/screens/farmer_registration/farmer_registration_screen.dart
 import 'presentation/screens/field_inspection/field_inspection_screen.dart';
 import 'presentation/screens/parcel_mapping/parcel_mapping_screen.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const AgriFieldApp());
+  runApp(const ProviderScope(child: AgriFieldApp()));
 }
 
 class AgriFieldApp extends StatelessWidget {

@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../providers/auth_provider.dart';
+import '../home/main_nav_screen.dart';
 import 'mfa_verification_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _emailController = TextEditingController(text: 'agronomist@coop.ag');
-  final _passwordController = TextEditingController(text: '••••••••••••');
+  final _passwordController = TextEditingController();
   bool _obscurePassword = true;
   bool _rememberMe = true;
 
@@ -24,18 +27,55 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _handleSignIn() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => MfaVerificationScreen(
-          userIdentifier: _emailController.text.trim(),
+    final email = _emailController.text.trim();
+    final password = _passwordController.text;
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please enter your email and password.'),
+          backgroundColor: AppColors.error,
         ),
-      ),
-    );
+      );
+      return;
+    }
+
+    ref.read(authNotifierProvider.notifier).login(email, password);
   }
 
   @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authNotifierProvider);
+    final isLoading = authState is AuthLoading;
+
+    ref.listen<AuthState>(authNotifierProvider, (previous, next) {
+      if (next is AuthError) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(next.message),
+            backgroundColor: AppColors.error,
+          ),
+        );
+      } else if (next is AuthMfaRequired) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => MfaVerificationScreen(
+              userIdentifier: next.email,
+              mfaTicket: next.mfaTicket,
+              devOtpCode: next.devOtpCode,
+            ),
+          ),
+        );
+      } else if (next is AuthAuthenticated) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (_) => const MainNavScreen()),
+          (route) => false,
+        );
+      }
+    });
+
     return Scaffold(
       body: Stack(
         children: [
@@ -301,7 +341,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               width: double.infinity,
                               height: 52,
                               child: ElevatedButton(
-                                onPressed: _handleSignIn,
+                                onPressed: isLoading ? null : _handleSignIn,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.primaryContainer,
                                   foregroundColor: Colors.white,
@@ -312,24 +352,34 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   elevation: 2,
                                 ),
-                                child: const Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        'Sign In to Workspace',
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w600,
+                                child: isLoading
+                                    ? const SizedBox(
+                                        width: 22,
+                                        height: 22,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2.5,
+                                          color: Colors.white,
                                         ),
-                                        overflow: TextOverflow.ellipsis,
+                                      )
+                                    : const Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Flexible(
+                                            child: Text(
+                                              'Sign In to Workspace',
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                          SizedBox(width: 8),
+                                          Icon(Icons.arrow_forward, size: 18),
+                                        ],
                                       ),
-                                    ),
-                                    SizedBox(width: 8),
-                                    Icon(Icons.arrow_forward, size: 18),
-                                  ],
-                                ),
                               ),
                             ),
                           ],
