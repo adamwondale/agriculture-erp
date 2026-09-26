@@ -1,12 +1,24 @@
+using System.Net;
 using Xunit;
+using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace CoreAdmin.IntegrationTests;
 
-public class HealthEndpointTests
+public class HealthEndpointTests : IClassFixture<CustomWebApplicationFactory<Program>>
 {
-    [Fact]
-    public void Health_Check_Should_Be_Configured()
+    private readonly CustomWebApplicationFactory<Program> _factory;
+
+    public HealthEndpointTests(CustomWebApplicationFactory<Program> factory)
     {
-        Assert.True(true);
+        _factory = factory;
+    }
+
+    [Fact]
+    public async Task Health_Check_Should_Return_Ok()
+    {
+        var client = _factory.CreateClient();
+        var response = await client.GetAsync("/health");
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 }

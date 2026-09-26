@@ -5,6 +5,10 @@ namespace CoreAdmin.Domain.Entities;
 
 public class Branch : BaseEntity
 {
+    public Guid OrganizationId { get; set; }
+    public Guid? ParentBranchId { get; set; }
+    public string Level { get; set; } = "HQ";
+    public string Country { get; set; } = "Ethiopia";
     public string Code { get; set; } = default!;
     public string Name { get; set; } = default!;
     public string Region { get; set; } = default!;

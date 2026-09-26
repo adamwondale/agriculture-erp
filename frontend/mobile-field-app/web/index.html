@@ -18,21 +18,36 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="ZORISIS mobile field application for agricultural operations.">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="mobile_field_app">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <meta name="apple-mobile-web-app-title" content="ZORISIS">
+  <link rel="apple-touch-icon" href="icons/zorisis-symbol.svg">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/svg+xml" href="icons/zorisis-symbol.svg"/>
 
-  <title>mobile_field_app</title>
+  <title>ZORISIS Mobile Field App</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <div id="app-loader" aria-label="Loading ZORISIS Mobile Field App">
+    <img src="assets/assets/images/zorisis-full-logo.svg" alt="ZORISIS — Together We Grow">
+  </div>
+  <style>
+    #app-loader {
+      align-items: center;
+      background: #F7F4EC;
+      display: flex;
+      inset: 0;
+      justify-content: center;
+      position: fixed;
+      z-index: 9999;
+    }
+    #app-loader img { height: auto; max-width: 220px; width: 42vw; }
+  </style>
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader
@@ -42,5 +57,10 @@
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
   <script src="flutter_bootstrap.js" async></script>
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      document.getElementById('app-loader')?.remove();
+    });
+  </script>
 </body>
 </html>

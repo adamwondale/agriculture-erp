@@ -3,13 +3,14 @@ using CoreAdmin.Domain.Entities;
 
 namespace CoreAdmin.Infrastructure.Persistence;
 
-public class CoreAdminDbContext : DbContext
+public partial class CoreAdminDbContext : DbContext
 {
     public CoreAdminDbContext(DbContextOptions<CoreAdminDbContext> options) : base(options)
     {
     }
 
     public DbSet<Branch> Branchs => Set<Branch>();
+    public DbSet<CoreAdmin.Domain.Entities.UserRole> UserRoles => Set<CoreAdmin.Domain.Entities.UserRole>();
     public DbSet<User> Users => Set<User>();
     public DbSet<Role> Roles => Set<Role>();
     public DbSet<Permission> Permissions => Set<Permission>();
@@ -22,3 +23,5 @@ public class CoreAdminDbContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CoreAdminDbContext).Assembly);
     }
 }
+
+
