@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../providers/auth_provider.dart';
 import '../farmer_registration/farmer_registration_screen.dart';
 import '../field_inspection/field_inspection_screen.dart';
 import '../parcel_mapping/parcel_mapping_screen.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends ConsumerWidget {
   final VoidCallback? onSwitchToProfile;
   final VoidCallback? onSwitchToTasks;
   final VoidCallback? onSwitchToFarms;
@@ -16,8 +18,47 @@ class DashboardScreen extends StatelessWidget {
     this.onSwitchToFarms,
   });
 
+  String _getInitials(String? name) {
+    if (name == null || name.trim().isEmpty) return 'FO';
+    final parts = name.trim().split(RegExp(r'\s+'));
+    if (parts.length >= 2) {
+      return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
+    }
+    return parts[0].substring(0, parts[0].length >= 2 ? 2 : 1).toUpperCase();
+  }
+
+  String _formatRoleName(String rawRole) {
+    switch (rawRole) {
+      case 'Agronomist':
+        return 'Agronomist';
+      case 'FieldOfficer':
+        return 'Field Officer';
+      case 'FarmManager':
+        return 'Farm Manager';
+      case 'SuperAdmin':
+        return 'Super Admin';
+      default:
+        return rawRole.replaceAllMapped(
+          RegExp(r'([A-Z])'),
+          (match) => ' ${match.group(0)}',
+        ).trim();
+    }
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authState = ref.watch(authNotifierProvider);
+    final user = authState is AuthAuthenticated ? authState.user : null;
+    final displayName = user != null && user.displayName.isNotEmpty
+        ? user.displayName
+        : 'Field Operator';
+    final initials = _getInitials(displayName);
+    final primaryRole = user != null && user.roles.isNotEmpty
+        ? _formatRoleName(user.roles.first)
+        : 'Farm Manager';
+    final scopeLocation = user != null && user.department.isNotEmpty
+        ? '${user.department} • ${user.position}'
+        : 'Oromia HQ • Central Region';
     return Scaffold(
       backgroundColor: AppColors.surface,
       body: SafeArea(
@@ -42,7 +83,7 @@ class DashboardScreen extends StatelessWidget {
                               ),
                         ),
                         Text(
-                          'Abebe Tesfaye',
+                          displayName,
                           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.onSurface,
@@ -99,7 +140,7 @@ class DashboardScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 10),
 
-                      // Avatar AT with Online Status
+                      // Avatar with Online Status
                       GestureDetector(
                         onTap: onSwitchToProfile,
                         child: Stack(
@@ -111,10 +152,10 @@ class DashboardScreen extends StatelessWidget {
                                 color: AppColors.primaryContainer,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Center(
+                              child: Center(
                                 child: Text(
-                                  'AT',
-                                  style: TextStyle(
+                                  initials,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
@@ -180,9 +221,9 @@ class DashboardScreen extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              const Text(
-                                'Farm Manager',
-                                style: TextStyle(
+                              Text(
+                                primaryRole,
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15,
                                   color: AppColors.primaryContainer,
@@ -207,9 +248,9 @@ class DashboardScreen extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 2),
-                          const Text(
-                            'Oromia HQ • Central Region',
-                            style: TextStyle(
+                          Text(
+                            scopeLocation,
+                            style: const TextStyle(
                               fontSize: 12,
                               color: AppColors.onSurfaceVariant,
                             ),
@@ -294,84 +335,15 @@ class DashboardScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
 
-              // 4. Quick Action Pills (Horizontal Scroll)
+              // 4. Quick Action Pills (Horizontal Scroll - Role-Aware)
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: [
-                    // New Field Log
-                    _buildPillAction(
-                      icon: Icons.add_circle,
-                      label: '+ New Field Log',
-                      isPrimary: true,
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Field log quick recorder active.')),
-                        );
-                      },
-                    ),
-                    const SizedBox(width: 8),
-
-                    // Log Inspection (links to field inspection screen)
-                    _buildPillAction(
-                      icon: Icons.fact_check,
-                      label: 'Log Inspection',
-                      isPrimary: false,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const FieldInspectionScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox(width: 8),
-
-                    // Register Farmer (links to offline farmer registration)
-                    _buildPillAction(
-                      icon: Icons.person_add,
-                      label: 'Register Farmer',
-                      isPrimary: false,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const FarmerRegistrationScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox(width: 8),
-
-                    // Map Parcel (links to parcel mapping)
-                    _buildPillAction(
-                      icon: Icons.map,
-                      label: 'Map Parcel',
-                      isPrimary: false,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const ParcelMappingScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox(width: 8),
-
-                    // Request Stock
-                    _buildPillAction(
-                      icon: Icons.inventory_2,
-                      label: 'Request Stock',
-                      isPrimary: false,
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Stock requisition form opened.')),
-                        );
-                      },
-                    ),
-                  ],
+                  children: _buildRoleQuickActions(
+                    context,
+                    user?.roles ?? const [],
+                    user?.permissions ?? const [],
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -707,6 +679,151 @@ class DashboardScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> _buildRoleQuickActions(
+    BuildContext context,
+    List<String> roles,
+    List<String> permissions,
+  ) {
+    final isAgronomist = roles.contains('Agronomist') ||
+        permissions.contains('CAN_INSPECT_FIELDS') ||
+        permissions.contains('CAN_SCOUT_CROPS');
+    final isFieldOfficer = roles.contains('FieldOfficer') ||
+        permissions.contains('CAN_REGISTER_FARMERS');
+    final isManager = roles.contains('FarmManager') ||
+        permissions.contains('CAN_APPROVE_AUDIT');
+    final isAdmin = roles.contains('SuperAdmin') || roles.contains('Admin');
+
+    final showAll =
+        (!isAgronomist && !isFieldOfficer && !isManager && !isAdmin) || isAdmin;
+
+    final items = <Widget>[];
+
+    void addAction(Widget action) {
+      if (items.isNotEmpty) {
+        items.add(const SizedBox(width: 8));
+      }
+      items.add(action);
+    }
+
+    if (showAll || isAgronomist || isFieldOfficer) {
+      addAction(
+        _buildPillAction(
+          icon: Icons.add_circle,
+          label: '+ New Field Log',
+          isPrimary: true,
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Field log quick recorder active.')),
+            );
+          },
+        ),
+      );
+    }
+
+    if (showAll || isAgronomist || isManager) {
+      addAction(
+        _buildPillAction(
+          icon: Icons.fact_check,
+          label: 'Log Inspection',
+          isPrimary: items.isEmpty,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const FieldInspectionScreen(),
+              ),
+            );
+          },
+        ),
+      );
+    }
+
+    if (showAll || isFieldOfficer || isManager) {
+      addAction(
+        _buildPillAction(
+          icon: Icons.person_add,
+          label: 'Register Farmer',
+          isPrimary: items.isEmpty,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const FarmerRegistrationScreen(),
+              ),
+            );
+          },
+        ),
+      );
+    }
+
+    if (showAll || isAgronomist || isFieldOfficer) {
+      addAction(
+        _buildPillAction(
+          icon: Icons.map,
+          label: 'Map Parcel',
+          isPrimary: false,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const ParcelMappingScreen(),
+              ),
+            );
+          },
+        ),
+      );
+    }
+
+    if (showAll || isManager) {
+      addAction(
+        _buildPillAction(
+          icon: Icons.inventory_2,
+          label: 'Request Stock',
+          isPrimary: false,
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Stock requisition form opened.')),
+            );
+          },
+        ),
+      );
+
+      addAction(
+        _buildPillAction(
+          icon: Icons.approval,
+          label: 'Audit Queue',
+          isPrimary: false,
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Audit approval queue: 3 pending harvest submissions.'),
+              ),
+            );
+          },
+        ),
+      );
+    }
+
+    if (isAgronomist && !showAll) {
+      addAction(
+        _buildPillAction(
+          icon: Icons.pest_control_outlined,
+          label: 'Scout Crops',
+          isPrimary: false,
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Crop pest & disease scouting recorder launched.'),
+              ),
+            );
+          },
+        ),
+      );
+    }
+
+    return items;
   }
 
   Widget _buildPillAction({
