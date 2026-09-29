@@ -16,6 +16,8 @@ public partial class CoreAdminDbContext : DbContext
     public DbSet<Permission> Permissions => Set<Permission>();
     public DbSet<RolePermission> RolePermissions => Set<RolePermission>();
     public DbSet<AuditLogEntry> AuditLogEntrys => Set<AuditLogEntry>();
+    public DbSet<PermissionOverride> PermissionOverrides => Set<PermissionOverride>();
+    public DbSet<Organization> Organizations => Set<Organization>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

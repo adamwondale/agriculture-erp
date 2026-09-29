@@ -53,7 +53,7 @@ class AuthRepository {
         authResponse: auth,
       );
     } on DioException catch (e) {
-      String message = 'Unable to connect to server. Please check connection.';
+      String message = 'Unable to connect to server at ${ApiConfig.baseUrl}. (${e.message ?? e.type.name})';
       if (e.response?.statusCode == 401) {
         final errData = e.response?.data;
         if (errData is Map && errData['error'] != null) {
@@ -63,7 +63,9 @@ class AuthRepository {
         }
       } else if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.receiveTimeout) {
-        message = 'Connection timed out. Ensure backend is running.';
+        message = 'Connection to ${ApiConfig.baseUrl} timed out. Ensure backend is running.';
+      } else if (e.error != null) {
+        message = 'Connection error (${ApiConfig.baseUrl}): ${e.error}';
       }
       return LoginResult(
         isSuccess: false,

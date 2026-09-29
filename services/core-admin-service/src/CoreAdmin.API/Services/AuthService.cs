@@ -70,7 +70,7 @@ public interface IAuthService
     Task<UserProfileDto?> GetCurrentUserProfileAsync(Guid userId, CancellationToken ct);
 }
 
-public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IWebHostEnvironment env) : IAuthService
+public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IWebHostEnvironment env, CoreAdmin.Application.Interfaces.IMfaCodeProvider mfaProvider) : IAuthService
 {
     public async Task<LoginResult> LoginAsync(string email, string password, CancellationToken ct)
     {
@@ -89,8 +89,7 @@ public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IW
             u.MfaPendingCodeExpiry = DateTimeOffset.UtcNow.AddMinutes(5);
             await db.SaveChangesAsync(ct);
 
-            // In development or console output
-            Console.WriteLine($"[MFA DEV NOTICE] Code for user {u.Email}: {otpCode} (Expires in 5m)");
+            await mfaProvider.SendMfaCodeAsync(u.Email, otpCode, TimeSpan.FromMinutes(5), ct);
 
             return new LoginResult(
                 true,
@@ -157,6 +156,22 @@ public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IW
                                  where roleIds.Contains(rp.RoleId)
                                  select p.Code).Distinct().ToListAsync(ct);
 
+        var overrides = await db.PermissionOverrides
+            .Where(po => po.UserId == u.Id && !po.IsDeleted && (po.ExpiresAt == null || po.ExpiresAt > DateTimeOffset.UtcNow))
+            .ToListAsync(ct);
+
+        foreach (var ov in overrides)
+        {
+            if (ov.Effect == "Allow" && !permissions.Contains(ov.PermissionCode))
+            {
+                permissions.Add(ov.PermissionCode);
+            }
+            else if (ov.Effect == "Deny")
+            {
+                permissions.Remove(ov.PermissionCode);
+            }
+        }
+
         BranchSummaryDto? branchDto = null;
         if (u.BranchId.HasValue)
         {
@@ -195,6 +210,22 @@ public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IW
                                  join p in db.Permissions on rp.PermissionId equals p.Id
                                  where roleEntities.Contains(rp.RoleId)
                                  select p.Code).Distinct().ToListAsync(ct);
+
+        var overrides = await db.PermissionOverrides
+            .Where(po => po.UserId == u.Id && !po.IsDeleted && (po.ExpiresAt == null || po.ExpiresAt > DateTimeOffset.UtcNow))
+            .ToListAsync(ct);
+
+        foreach (var ov in overrides)
+        {
+            if (ov.Effect == "Allow" && !permissions.Contains(ov.PermissionCode))
+            {
+                permissions.Add(ov.PermissionCode);
+            }
+            else if (ov.Effect == "Deny")
+            {
+                permissions.Remove(ov.PermissionCode);
+            }
+        }
 
         var claims = new List<Claim>
         {
