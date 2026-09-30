@@ -1,12 +1,158 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/auth/user_role.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../providers/auth_provider.dart';
+import '../../providers/role_provider.dart';
 import '../auth/welcome_splash_screen.dart';
 
-class ProfileSecurityScreen extends StatelessWidget {
+class ProfileSecurityScreen extends ConsumerWidget {
   const ProfileSecurityScreen({super.key});
 
+  String _getInitials(String name) {
+    final parts = name.trim().split(RegExp(r'\s+'));
+    if (parts.length >= 2) {
+      return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
+    } else if (parts.isNotEmpty && parts[0].isNotEmpty) {
+      return parts[0].substring(0, parts[0].length >= 2 ? 2 : 1).toUpperCase();
+    }
+    return 'AG';
+  }
+
+  void _showRoleSelectorModal(
+    BuildContext context,
+    WidgetRef ref,
+    AgriRole currentRole,
+    List<AgriRole> assignedRoles,
+  ) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (ctx) {
+        return Container(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+          child: SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: AppColors.outlineVariant,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'Switch Operational Context',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primary,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                const Text(
+                  'Select an enterprise role to dynamically morph navigation and dashboards:',
+                  style: TextStyle(fontSize: 12, color: AppColors.onSurfaceVariant),
+                ),
+                const SizedBox(height: 16),
+                Flexible(
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: AgriRole.values.length,
+                    separatorBuilder: (_, __) => const Divider(height: 8, color: AppColors.borderClean),
+                    itemBuilder: (_, index) {
+                      final role = AgriRole.values[index];
+                      final isCurrent = role == currentRole;
+                      final isAssigned = assignedRoles.contains(role);
+
+                      return ListTile(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        leading: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: role.badgeColor.withValues(alpha: 0.12),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(role.icon, color: role.badgeColor, size: 22),
+                        ),
+                        title: Row(
+                          children: [
+                            Text(
+                              role.title,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: isCurrent ? FontWeight.bold : FontWeight.w600,
+                                color: isCurrent ? role.badgeColor : AppColors.onSurface,
+                              ),
+                            ),
+                            if (isAssigned) ...[
+                              const SizedBox(width: 8),
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                decoration: BoxDecoration(
+                                  color: AppColors.secondaryContainer.withValues(alpha: 0.4),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: const Text(
+                                  'Assigned',
+                                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.secondary),
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                        subtitle: Text(
+                          role.description,
+                          style: const TextStyle(fontSize: 11, color: AppColors.onSurfaceVariant),
+                        ),
+                        trailing: isCurrent
+                            ? Icon(Icons.check_circle, color: role.badgeColor, size: 22)
+                            : const Icon(Icons.radio_button_unchecked, color: AppColors.outlineVariant, size: 20),
+                        onTap: () {
+                          ref.read(activeRoleProvider.notifier).switchRole(role);
+                          Navigator.pop(ctx);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Switched operational role to ${role.title}'),
+                              backgroundColor: role.badgeColor,
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authState = ref.watch(authNotifierProvider);
+    final activeRole = ref.watch(activeRoleProvider);
+    final assignedRoles = ref.watch(userRolesProvider);
+
+    final user = authState is AuthAuthenticated ? authState.user : null;
+    final displayName = user?.displayName.isNotEmpty == true ? user!.displayName : 'Dawit Kebede';
+    final email = user?.email.isNotEmpty == true ? user!.email : 'dawit.kebede@zorisis.com';
+    final branchScope = user?.department.isNotEmpty == true ? user!.department : 'Jimma Woreda Hub';
+    final initials = _getInitials(displayName);
+
     return Scaffold(
       backgroundColor: AppColors.surface,
       appBar: AppBar(
@@ -41,12 +187,15 @@ class ProfileSecurityScreen extends StatelessWidget {
               );
             },
           ),
-          const Padding(
-            padding: EdgeInsets.only(right: 16.0),
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
             child: CircleAvatar(
               radius: 16,
-              backgroundColor: AppColors.primaryContainer,
-              child: Icon(Icons.person, color: Colors.white, size: 18),
+              backgroundColor: activeRole.badgeColor,
+              child: Text(
+                initials,
+                style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],
@@ -81,14 +230,14 @@ class ProfileSecurityScreen extends StatelessWidget {
                             Container(
                               width: 60,
                               height: 60,
-                              decoration: const BoxDecoration(
-                                color: AppColors.primaryContainer,
+                              decoration: BoxDecoration(
+                                color: activeRole.badgeColor,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Center(
+                              child: Center(
                                 child: Text(
-                                  'AT',
-                                  style: TextStyle(
+                                  initials,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 22,
                                     fontWeight: FontWeight.bold,
@@ -116,17 +265,17 @@ class ProfileSecurityScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                'Abebe Tesfaye',
-                                style: TextStyle(
+                              Text(
+                                displayName,
+                                style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.onSurface,
                                 ),
                               ),
-                              const Text(
-                                'abebe.tesfaye@zorisis.com',
-                                style: TextStyle(
+                              Text(
+                                email,
+                                style: const TextStyle(
                                   fontSize: 12,
                                   color: AppColors.onSurfaceVariant,
                                 ),
@@ -135,20 +284,20 @@ class ProfileSecurityScreen extends StatelessWidget {
                               Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                                 decoration: BoxDecoration(
-                                  color: AppColors.secondaryContainer,
+                                  color: activeRole.badgeColor.withValues(alpha: 0.12),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: const Row(
+                                child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Icon(Icons.grass, size: 12, color: AppColors.onSecondaryContainer),
-                                    SizedBox(width: 4),
+                                    Icon(activeRole.icon, size: 13, color: activeRole.badgeColor),
+                                    const SizedBox(width: 5),
                                     Text(
-                                      'Active Role: Farm Manager',
+                                      'Active: ${activeRole.title}',
                                       style: TextStyle(
                                         fontSize: 11,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.onSecondaryContainer,
+                                        color: activeRole.badgeColor,
                                       ),
                                     ),
                                   ],
@@ -170,11 +319,11 @@ class ProfileSecurityScreen extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          _buildTelemetryItem('12', 'Assigned Parcels', AppColors.primaryContainer),
+                          _buildTelemetryItem('${assignedRoles.length}', 'Assigned Roles', activeRole.badgeColor),
                           Container(width: 1, height: 30, color: AppColors.borderClean),
                           _buildTelemetryItem('99.4%', 'Sync Health', AppColors.secondary),
                           Container(width: 1, height: 30, color: AppColors.borderClean),
-                          _buildTelemetryItem('Level 4', 'Clearance', AppColors.primaryContainer),
+                          _buildTelemetryItem(activeRole.shortCode, 'Role Code', activeRole.badgeColor),
                         ],
                       ),
                     ),
@@ -185,18 +334,15 @@ class ProfileSecurityScreen extends StatelessWidget {
                       width: double.infinity,
                       height: 44,
                       child: ElevatedButton.icon(
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Agronomic role selector opened.')),
-                          );
-                        },
+                        onPressed: () => _showRoleSelectorModal(context, ref, activeRole, assignedRoles),
                         icon: const Icon(Icons.swap_horiz, size: 18),
                         label: const Text(
-                          'Switch Role / Context',
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                          'Switch Role / Operational Context',
+                          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                         ),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
+                          backgroundColor: activeRole.badgeColor,
+                          foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -228,7 +374,7 @@ class ProfileSecurityScreen extends StatelessWidget {
                     _buildSettingsTile(
                       icon: Icons.badge_outlined,
                       title: 'Personal Information',
-                      subtitle: 'Abebe Tesfaye • Phone: +251 91 234 5678',
+                      subtitle: '$displayName • $email',
                       trailing: const Icon(Icons.chevron_right, color: AppColors.onSurfaceVariant),
                       onTap: () {},
                     ),
@@ -236,7 +382,7 @@ class ProfileSecurityScreen extends StatelessWidget {
                     _buildSettingsTile(
                       icon: Icons.translate,
                       title: 'Preferred Language',
-                      subtitle: 'English (US) / Amharic',
+                      subtitle: 'English (US) / Amharic / Afaan Oromoo',
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -247,7 +393,7 @@ class ProfileSecurityScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: const Text(
-                              'EN/AM',
+                              'EN/AM/OM',
                               style: TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w600,
@@ -285,20 +431,20 @@ class ProfileSecurityScreen extends StatelessWidget {
                   children: [
                     _buildSettingsTile(
                       icon: Icons.shield_outlined,
-                      title: 'Active Role',
-                      subtitle: 'Farm Manager',
+                      title: 'Active Role Scope',
+                      subtitle: activeRole.title,
                       trailing: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
-                          color: AppColors.secondaryContainer,
+                          color: activeRole.badgeColor.withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: const Text(
-                          'Primary Scope',
+                        child: Text(
+                          activeRole.shortCode,
                           style: TextStyle(
                             fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.onSecondaryContainer,
+                            fontWeight: FontWeight.bold,
+                            color: activeRole.badgeColor,
                           ),
                         ),
                       ),
@@ -307,7 +453,7 @@ class ProfileSecurityScreen extends StatelessWidget {
                     _buildSettingsTile(
                       icon: Icons.apartment,
                       title: 'Organization',
-                      subtitle: 'Z•ORISIS Holding',
+                      subtitle: 'Z•ORISIS Holding • Agri-ERP',
                       trailing: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
@@ -324,7 +470,7 @@ class ProfileSecurityScreen extends StatelessWidget {
                     _buildSettingsTile(
                       icon: Icons.location_on_outlined,
                       title: 'Branch Scope',
-                      subtitle: 'Oromia HQ • Central Region',
+                      subtitle: branchScope,
                       trailing: IconButton(
                         icon: const Icon(Icons.travel_explore, color: AppColors.secondary, size: 20),
                         onPressed: () {},
@@ -347,12 +493,15 @@ class ProfileSecurityScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 48,
                 child: OutlinedButton.icon(
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (_) => const WelcomeSplashScreen()),
-                      (route) => false,
-                    );
+                  onPressed: () async {
+                    await ref.read(authNotifierProvider.notifier).logout();
+                    if (context.mounted) {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (_) => const WelcomeSplashScreen()),
+                        (route) => false,
+                      );
+                    }
                   },
                   icon: const Icon(Icons.logout, size: 18, color: AppColors.error),
                   label: const Text(
