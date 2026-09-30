@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <ProjectReference Include="..\..\src\CoreAdmin.API\CoreAdmin.API.csproj" />
     <ProjectReference Include="..\..\src\CoreAdmin.Application\CoreAdmin.Application.csproj" />
     <ProjectReference Include="..\..\src\CoreAdmin.Domain\CoreAdmin.Domain.csproj" />
   </ItemGroup>
