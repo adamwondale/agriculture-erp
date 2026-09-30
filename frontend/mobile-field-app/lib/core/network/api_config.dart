@@ -2,17 +2,18 @@ import 'dart:io';
 
 class ApiConfig {
   /// Default base URL for Core Admin Service.
-  /// When running on a physical Android device via USB/Wi-Fi with `adb reverse tcp:5000 tcp:5000`,
-  /// localhost (127.0.0.1) connects directly to your PC's service.
-  /// For Android emulator, 10.0.2.2 is used.
+  /// When running on a physical Android device via USB with `adb reverse tcp:5001 tcp:5001`,
+  /// localhost (127.0.0.1:5001) connects directly to your PC's service.
+  /// For Android emulator, 10.0.2.2:5001 is used.
+  /// Can be overridden at build/runtime via `--dart-define=API_BASE_URL=http://...`
   static String get defaultBaseUrl {
+    const fromEnv = String.fromEnvironment('API_BASE_URL');
+    if (fromEnv.isNotEmpty) return fromEnv;
+
     if (Platform.isAndroid) {
-      // If running on emulator without adb reverse:
-      // return 'http://10.0.2.2:5000';
-      // For physical phone connected with `adb reverse tcp:5000 tcp:5000` or local dev:
-      return 'http://127.0.0.1:5000';
+      return 'http://127.0.0.1:5001';
     }
-    return 'http://localhost:5000';
+    return 'http://localhost:5001';
   }
 
   static String baseUrl = defaultBaseUrl;

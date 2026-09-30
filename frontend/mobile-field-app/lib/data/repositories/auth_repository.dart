@@ -63,7 +63,9 @@ class AuthRepository {
         }
       } else if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.receiveTimeout) {
-        message = 'Connection timed out. Ensure backend is running.';
+        message = 'Connection timed out. Ensure Core Admin Service is running on port 5001.';
+      } else if (e.type == DioExceptionType.connectionError) {
+        message = 'Cannot reach backend at ${ApiConfig.baseUrl}. If on a phone via USB, run "adb reverse tcp:5001 tcp:5001" on PC.';
       }
       return LoginResult(
         isSuccess: false,
