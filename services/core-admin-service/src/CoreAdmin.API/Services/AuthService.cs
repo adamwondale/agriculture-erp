@@ -114,7 +114,8 @@ public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IW
 
         if (u is null) return null;
 
-        var isValidCode = (u.MfaPendingCode == code) || (env.IsDevelopment() && code == "123456");
+        // SECURITY: Validate MFA code strictly against the generated/stored OTP to prevent authentication bypass.
+        var isValidCode = u.MfaPendingCode == code;
         if (!isValidCode) return null;
 
         // Clear ticket and generate tokens
