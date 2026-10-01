@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { branchesApi, BranchDto } from "@/lib/api";
 
 interface TreeNode {
   id: string;
@@ -58,9 +59,9 @@ const TREE_DATA: TreeNode = {
               children: [
                 {
                   id: "node-ada",
-                  name: "Ada'a Woreda Cluster",
+                  name: "Adama Woreda Cluster",
                   type: "Branch",
-                  code: "CL-ADA-09",
+                  code: "CL-ADM-09",
                   users: 420,
                   stations: 12,
                   country: "Ethiopia",
@@ -131,6 +132,8 @@ const TREE_DATA: TreeNode = {
 
 export default function OrganizationPage() {
   const [selectedNode, setSelectedNode] = useState<TreeNode>(TREE_DATA.children![0].children![0].children![0]); // Oromia Hub default
+  const [liveBranches, setLiveBranches] = useState<BranchDto[]>([]);
+  const [isLiveBackend, setIsLiveBackend] = useState<boolean>(false);
   const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({
     "node-root": true,
     "node-ea": true,
@@ -138,6 +141,24 @@ export default function OrganizationPage() {
     "node-oro": true,
     "node-ada": true,
   });
+
+  useEffect(() => {
+    let isMounted = true;
+    branchesApi
+      .listBranches()
+      .then((branches) => {
+        if (isMounted && Array.isArray(branches) && branches.length > 0) {
+          setLiveBranches(branches);
+          setIsLiveBackend(true);
+        }
+      })
+      .catch((e) => {
+        console.warn("Backend branches fetch error, using local tree data:", e);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const toggleExpand = (id: string) => {
     setExpandedNodes((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -223,6 +244,12 @@ export default function OrganizationPage() {
             <span className="px-3 py-0.5 rounded-full bg-[#E8F1EA] text-[#146B45] text-xs font-semibold">
               Holding Matrix
             </span>
+            {isLiveBackend && (
+              <span className="px-2.5 py-0.5 rounded-full bg-[#E8F1EA] border border-[#146B45]/30 text-[#146B45] text-[11px] font-medium flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#146B45] animate-pulse" />
+                Live CoreAdmin ({liveBranches.length} Branch Node{liveBranches.length === 1 ? "" : "s"})
+              </span>
+            )}
           </div>
           <p className="text-sm text-[#66736C] mt-1">
             Manage enterprise holding entities, regional operations, branch nodes, and agricultural field clusters.

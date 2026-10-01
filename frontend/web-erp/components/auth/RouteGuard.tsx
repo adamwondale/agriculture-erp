@@ -1,34 +1,20 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   ROLES,
-  getStoredUser,
   hasPermission,
-  AuthUser,
   DEMO_ACCOUNTS,
   setStoredUser,
+  useCurrentUser,
 } from "@/lib/rbac";
 
 export default function RouteGuard({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
-  const [user, setUser] = useState<AuthUser>(() => getStoredUser());
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const syncUser = () => {
-      setUser(getStoredUser());
-    };
-
-    window.addEventListener("zorisis_auth_change", syncUser);
-    return () => {
-      window.removeEventListener("zorisis_auth_change", syncUser);
-    };
-  }, []);
+  const { user, mounted, roleConfig } = useCurrentUser();
 
   if (!mounted) {
     return <>{children}</>;
@@ -45,7 +31,6 @@ export default function RouteGuard({ children }: { children: React.ReactNode }) 
     return <>{children}</>;
   }
 
-  const roleConfig = ROLES[user.role] || ROLES.super_admin;
   const isAllowed = hasPermission(user.role, pathname);
 
   if (isAllowed) {
@@ -136,7 +121,6 @@ export default function RouteGuard({ children }: { children: React.ReactNode }) 
               onClick={() => {
                 const adminAccount = DEMO_ACCOUNTS[0];
                 setStoredUser(adminAccount);
-                setUser(adminAccount);
                 router.refresh();
               }}
               className="w-full sm:w-auto px-4 py-2 rounded-xl bg-[#E8F1EA] text-[#0B3D2E] text-xs font-semibold hover:bg-[#D4E6D7] transition-all border border-[#146B45]/20 flex items-center justify-center gap-1.5"

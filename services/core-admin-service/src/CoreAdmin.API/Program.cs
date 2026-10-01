@@ -17,6 +17,18 @@ builder.Services.AddScoped<CoreAdmin.API.Services.IAuthService, CoreAdmin.API.Se
 builder.Services.AddHealthChecks();
 builder.Services.AddEndpointsApiExplorer();
 
+// 1b. Configure CORS for Web ERP Next.js and API Gateway
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowWebErp", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:8080")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
+
 // 2. Swagger / OpenAPI configuration
 builder.Services.AddSwaggerGen(c =>
 {
@@ -79,6 +91,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+app.UseCors("AllowWebErp");
 app.UseAuthentication();
 app.UseAuthorization();
 

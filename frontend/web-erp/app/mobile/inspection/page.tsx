@@ -166,7 +166,7 @@ export default function MobileInspectionPage() {
             <div className="space-y-2">
               <label className="text-sm font-semibold text-[#17231D]">Cluster / Station</label>
               <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
-                {["Ada'a Cluster", "Bishoftu Station", "Modjo Hub", "Dukem Field"].map((c) => (
+                {["Adama Cluster", "Bishoftu Station", "Modjo Hub", "Dukem Field"].map((c) => (
                   <button
                     key={c}
                     onClick={() => setFormData({ ...formData, cluster: c })}

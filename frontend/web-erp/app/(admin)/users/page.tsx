@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usersApi } from "@/lib/api";
 
 interface UserItem {
   id: string;
@@ -30,7 +31,7 @@ const INITIAL_USERS: UserItem[] = [
     name: "Selamawit Bekele",
     email: "selamawit.bekele@zorisis.com",
     organization: "East Africa Region",
-    branch: "Ada'a Cluster",
+    branch: "Adama Cluster",
     role: "Farm Manager",
     status: "Active",
     lastLogin: "12m ago",
@@ -91,6 +92,55 @@ export default function UserManagementPage() {
   const [users, setUsers] = useState<UserItem[]>(INITIAL_USERS);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedStatus, setSelectedStatus] = useState<string>("All");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLiveBackend, setIsLiveBackend] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+    const loadUsers = async () => {
+      setIsLoading(true);
+      try {
+        const backendUsers = await usersApi.listUsers({
+          status: selectedStatus !== "All" ? selectedStatus : undefined,
+        });
+
+        if (isMounted && Array.isArray(backendUsers) && backendUsers.length > 0) {
+          const mapped: UserItem[] = backendUsers.map((u) => ({
+            id: u.id,
+            name: u.displayName || u.username,
+            email: u.email,
+            organization: u.department || "Z•ORISIS Holding",
+            branch: u.branchId ? `Branch #${u.branchId.slice(0, 8)}` : "Holding HQ",
+            role: u.roles && u.roles.length > 0 ? u.roles.join(", ") : "System Admin",
+            status:
+              u.status === "Active" || u.status === "Pending" || u.status === "Suspended"
+                ? u.status
+                : "Active",
+            lastLogin: "Active Session",
+          }));
+          setUsers(mapped);
+          setIsLiveBackend(true);
+        } else if (isMounted) {
+          setUsers(INITIAL_USERS);
+          setIsLiveBackend(false);
+        }
+      } catch {
+        if (isMounted) {
+          setUsers(INITIAL_USERS);
+          setIsLiveBackend(false);
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadUsers();
+    return () => {
+      isMounted = false;
+    };
+  }, [selectedStatus]);
 
   const filteredUsers = users.filter((u) => {
     const matchesSearch =
@@ -124,8 +174,18 @@ export default function UserManagementPage() {
               User Management
             </h1>
             <span className="px-3 py-0.5 rounded-full bg-[#E8F1EA] text-[#146B45] text-xs font-semibold">
-              4,820 Total Users
+              {users.length} Users
             </span>
+            {isLiveBackend ? (
+              <span className="px-2.5 py-0.5 rounded-full bg-[#E8F1EA] border border-[#146B45]/30 text-[#146B45] text-[11px] font-medium flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#146B45] animate-pulse" />
+                Live CoreAdmin
+              </span>
+            ) : (
+              <span className="px-2.5 py-0.5 rounded-full bg-[#F7F4EC] border border-[#DDE4DE] text-[#66736C] text-[11px] font-medium">
+                Demo Cluster
+              </span>
+            )}
           </div>
           <p className="text-sm text-[#66736C] mt-1">
             Manage enterprise administrative credentials, assigned roles, security status, and account authorizations.

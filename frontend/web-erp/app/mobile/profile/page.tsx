@@ -1,24 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { getStoredUser, ROLES, AuthUser, DEMO_ACCOUNTS, setStoredUser } from "@/lib/rbac";
+import { useCurrentUser, DEMO_ACCOUNTS, setStoredUser } from "@/lib/rbac";
 
 export default function MobileProfilePage() {
   const router = useRouter();
-  const [user, setUser] = useState<AuthUser>(() => getStoredUser());
+  const { user, roleConfig } = useCurrentUser();
   const [biometricsEnabled, setBiometricsEnabled] = useState(true);
   const [lang, setLang] = useState<"en" | "am">("en");
-  useEffect(() => {
-    const sync = () => setUser(getStoredUser());
-    window.addEventListener("zorisis_auth_change", sync);
-    return () => {
-      window.removeEventListener("zorisis_auth_change", sync);
-    };
-  }, []);
-
-  const roleConfig = ROLES[user.role] || ROLES.super_admin;
 
   const handleLogout = () => {
     router.push("/login");

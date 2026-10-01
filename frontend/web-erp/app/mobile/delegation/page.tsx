@@ -21,7 +21,7 @@ const DELEGATION_HISTORY = [
     from: "Abebe Tesfaye (Admin)",
     validFrom: "Sep 10, 2026",
     validTo: "Sep 19, 2026",
-    scope: "Ada'a Cluster",
+    scope: "Adama Cluster",
     status: "expired",
     daysLeft: 0,
     totalDays: 9,

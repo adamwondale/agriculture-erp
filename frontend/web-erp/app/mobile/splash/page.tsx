@@ -42,11 +42,8 @@ export default function MobileSplashPage() {
         {/* Animated Brand Symbol */}
         <div className="relative w-24 h-24 mb-8 flex items-center justify-center">
           <div className="absolute inset-0 rounded-3xl bg-[#A3F4C3]/40 animate-ping opacity-30"></div>
-          <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#0B3D2E] to-[#062A20] shadow-[0_12px_28px_rgba(11,61,46,0.25)] flex items-center justify-center border border-white/20 transform transition-transform duration-300 hover:scale-105 active:scale-95">
-            <svg className="w-10 h-10 text-[#E8F1EA]" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 5C20 5 11 14 11 23C11 27.97 15.03 32 20 32C24.97 32 29 27.97 29 23C29 14 20 5 20 5Z" fill="currentColor" fillOpacity="0.9" />
-              <path d="M20 12V28M15 20L20 15L25 20" stroke="#062A20" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+          <div className="w-20 h-20 rounded-3xl bg-white shadow-[0_12px_28px_rgba(11,61,46,0.15)] flex items-center justify-center border border-[#DDE4DE] p-2.5 transform transition-transform duration-300 hover:scale-105 active:scale-95">
+            <img src="/logo-mark.png" alt="Z•ORISIS Emblem" className="w-14 h-14 object-contain" />
           </div>
         </div>
 

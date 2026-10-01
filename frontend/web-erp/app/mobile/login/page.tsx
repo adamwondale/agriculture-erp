@@ -28,10 +28,8 @@ export default function MobileLoginPage() {
           href="/mobile"
           className="flex items-center gap-2.5 group"
         >
-          <div className="w-8 h-8 rounded-xl bg-[#0B3D2E] flex items-center justify-center text-[#E8F1EA] shadow-sm transition-transform group-hover:scale-105">
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C12 2 6 8.5 6 14.5C6 17.8 8.7 20.5 12 20.5C15.3 20.5 18 17.8 18 14.5C18 8.5 12 2 12 2Z" />
-            </svg>
+          <div className="w-8 h-8 rounded-xl bg-white border border-[#DDE4DE] p-1 flex items-center justify-center shadow-xs transition-transform group-hover:scale-105">
+            <img src="/logo-mark.png" alt="Z•ORISIS" className="w-6 h-6 object-contain" />
           </div>
           <div>
             <span className="font-bold text-sm text-[#00261B] tracking-tight">Z•ORISIS</span>
