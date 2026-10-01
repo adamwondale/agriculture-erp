@@ -4,6 +4,53 @@ import '../../../core/theme/app_theme.dart';
 import '../../providers/auth_provider.dart';
 import '../auth/welcome_splash_screen.dart';
 
+class _RoleInfo {
+  final String rawRole;
+  final Color badgeColor;
+  final String shortCode;
+
+  const _RoleInfo({
+    required this.rawRole,
+    required this.badgeColor,
+    required this.shortCode,
+  });
+
+  static _RoleInfo fromRaw(String raw) {
+    switch (raw) {
+      case 'SuperAdmin':
+        return const _RoleInfo(
+          rawRole: 'SuperAdmin',
+          badgeColor: Color(0xFF6B21A8),
+          shortCode: 'SA',
+        );
+      case 'FarmManager':
+        return const _RoleInfo(
+          rawRole: 'FarmManager',
+          badgeColor: Color(0xFF166534),
+          shortCode: 'FM',
+        );
+      case 'Agronomist':
+        return const _RoleInfo(
+          rawRole: 'Agronomist',
+          badgeColor: Color(0xFF0369A1),
+          shortCode: 'AG',
+        );
+      case 'FieldOfficer':
+        return const _RoleInfo(
+          rawRole: 'FieldOfficer',
+          badgeColor: Color(0xFF92400E),
+          shortCode: 'FO',
+        );
+      default:
+        return _RoleInfo(
+          rawRole: raw,
+          badgeColor: const Color(0xFF374151),
+          shortCode: raw.length >= 2 ? raw.substring(0, 2).toUpperCase() : raw.toUpperCase(),
+        );
+    }
+  }
+}
+
 class ProfileSecurityScreen extends ConsumerWidget {
   const ProfileSecurityScreen({super.key});
 
@@ -46,9 +93,11 @@ class ProfileSecurityScreen extends ConsumerWidget {
         ? user.email
         : 'operator@zorisis.com';
     final initials = _getInitials(displayName);
-    final primaryRole = user != null && user.roles.isNotEmpty
-        ? _formatRoleName(user.roles.first)
-        : 'Farm Manager';
+    final assignedRoles = user != null && user.roles.isNotEmpty
+        ? user.roles.map(_RoleInfo.fromRaw).toList()
+        : [_RoleInfo.fromRaw('FieldOfficer')];
+    final activeRole = assignedRoles.first;
+    final primaryRole = _formatRoleName(activeRole.rawRole);
     final allRolesFormatted = user != null && user.roles.isNotEmpty
         ? user.roles.map(_formatRoleName).join(', ')
         : 'Farm Manager';
@@ -209,7 +258,7 @@ class ProfileSecurityScreen extends ConsumerWidget {
                                     const SizedBox(width: 4),
                                     Text(
                                       'Active Role: $primaryRole',
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 11,
                                         fontWeight: FontWeight.w600,
                                         color: activeRole.badgeColor,
@@ -617,6 +666,87 @@ class ProfileSecurityScreen extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _showRoleSelectorModal(
+    BuildContext context,
+    WidgetRef ref,
+    _RoleInfo activeRole,
+    List<_RoleInfo> assignedRoles,
+  ) {
+    showModalBottomSheet<void>(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (ctx) {
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: AppColors.borderClean,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Switch Operational Role',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.onSurface,
+                ),
+              ),
+              const SizedBox(height: 12),
+              ...assignedRoles.map((role) {
+                final isActive = role.rawRole == activeRole.rawRole;
+                return ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: CircleAvatar(
+                    backgroundColor: role.badgeColor,
+                    radius: 18,
+                    child: Text(
+                      role.shortCode,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    _formatRoleName(role.rawRole),
+                    style: TextStyle(
+                      fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+                      color: AppColors.onSurface,
+                    ),
+                  ),
+                  trailing: isActive
+                      ? const Icon(Icons.check_circle, color: AppColors.secondary)
+                      : null,
+                  onTap: () {
+                    Navigator.of(ctx).pop();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Switched to ${_formatRoleName(role.rawRole)}'),
+                      ),
+                    );
+                  },
+                );
+              }),
+            ],
+          ),
+        );
+      },
     );
   }
 }
