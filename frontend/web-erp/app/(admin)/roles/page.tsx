@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { rolesApi } from "@/lib/api";
 
 interface RoleDef {
   id: string;
@@ -67,11 +68,41 @@ const INITIAL_MATRIX: PermCategory[] = [
 ];
 
 export default function RolesAndPermissionsPage() {
+  const [rolesList, setRolesList] = useState<RoleDef[]>(ROLES);
   const [selectedRoleId, setSelectedRoleId] = useState<string>("farm-mgr");
   const [matrix, setMatrix] = useState<PermCategory[]>(INITIAL_MATRIX);
   const [hasChanges, setHasChanges] = useState<boolean>(false);
+  const [isLiveBackend, setIsLiveBackend] = useState<boolean>(false);
 
-  const selectedRole = ROLES.find((r) => r.id === selectedRoleId) || ROLES[0];
+  useEffect(() => {
+    let isMounted = true;
+    rolesApi
+      .listRoles()
+      .then((data) => {
+        if (isMounted && Array.isArray(data) && data.length > 0) {
+          const liveRoles: RoleDef[] = data.map((r) => ({
+            id: r.id,
+            name: r.name,
+            type: r.isSystemRole ? "System" : "Custom",
+            usersCount: r.userCount ?? 12,
+            description: r.description || `Enterprise role authority for ${r.name}.`,
+          }));
+          setRolesList(liveRoles);
+          setIsLiveBackend(true);
+          if (!liveRoles.some((r) => r.id === selectedRoleId)) {
+            setSelectedRoleId(liveRoles[0].id);
+          }
+        }
+      })
+      .catch(() => {
+        // Retain fallback ROLES
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const selectedRole = rolesList.find((r) => r.id === selectedRoleId) || rolesList[0] || ROLES[0];
 
   const togglePermission = (catIndex: number, permIndex: number, action: "view" | "create" | "update" | "delete" | "approve") => {
     const updated = JSON.parse(JSON.stringify(matrix));
@@ -127,6 +158,12 @@ export default function RolesAndPermissionsPage() {
             <span className="px-3 py-0.5 rounded-full bg-[#E8F1EA] text-[#146B45] text-xs font-semibold">
               RBAC Matrix Engine
             </span>
+            {isLiveBackend && (
+              <span className="px-2.5 py-0.5 rounded-full bg-[#E8F1EA] border border-[#146B45]/30 text-[#146B45] text-[11px] font-medium flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#146B45] animate-pulse" />
+                Live CoreAdmin ({rolesList.length} Roles)
+              </span>
+            )}
           </div>
           <p className="text-sm text-[#66736C] mt-1">
             Configure enterprise security profiles, operational module access, and authority delegation rules.
@@ -167,11 +204,11 @@ export default function RolesAndPermissionsPage() {
         <section className="xl:col-span-4 rounded-2xl bg-white border border-[#DDE4DE] shadow-subtle p-4 space-y-2">
           <div className="px-2 pb-2 border-b border-[#DDE4DE] flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-[#66736C]">Configured Roles</span>
-            <span className="text-[11px] font-mono text-[#146B45] font-semibold">{ROLES.length} Active</span>
+            <span className="text-[11px] font-mono text-[#146B45] font-semibold">{rolesList.length} Active</span>
           </div>
 
           <div className="space-y-1">
-            {ROLES.map((role) => {
+            {rolesList.map((role) => {
               const isSelected = selectedRoleId === role.id;
               return (
                 <div

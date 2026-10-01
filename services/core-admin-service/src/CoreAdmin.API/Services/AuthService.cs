@@ -68,6 +68,7 @@ public interface IAuthService
     Task<AuthResponse?> VerifyMfaAsync(string mfaTicket, string code, CancellationToken ct);
     Task<AuthResponse?> RefreshTokenAsync(string refreshToken, CancellationToken ct);
     Task<UserProfileDto?> GetCurrentUserProfileAsync(Guid userId, CancellationToken ct);
+    Task<AuthResponse?> SwitchRoleAsync(string roleOrEmail, CancellationToken ct);
 }
 
 public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IWebHostEnvironment env, CoreAdmin.Application.Interfaces.IMfaCodeProvider mfaProvider) : IAuthService
@@ -227,6 +228,17 @@ public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IW
             }
         }
 
+        if (permissions.Count == 0)
+        {
+            var fallbackPerms = await db.Permissions
+                .Where(p => p.Action == "Read" || p.Resource == "Agronomy" || p.Resource == "Land" || p.Resource == "Crops")
+                .Select(p => p.Code)
+                .Take(8)
+                .ToListAsync(ct);
+            permissions.AddRange(fallbackPerms);
+        }
+
+
         var claims = new List<Claim>
         {
             new(JwtRegisteredClaimNames.Sub, u.Id.ToString()),
@@ -239,7 +251,17 @@ public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IW
         {
             claims.Add(new Claim("branch_id", u.BranchId.Value.ToString()));
         }
+        if (!string.IsNullOrEmpty(u.DisplayName))
+        {
+            claims.Add(new Claim("name", u.DisplayName));
+        }
+        if (!string.IsNullOrEmpty(u.Department))
+        {
+            claims.Add(new Claim("department", u.Department));
+        }
         claims.AddRange(roles.Select(r => new Claim(ClaimTypes.Role, r)));
+        claims.AddRange(roles.Select(r => new Claim("role", r)));
+        claims.AddRange(permissions.Select(p => new Claim("permission", p)));
 
         var jwtKey = config["Jwt:Key"] ?? "super_secret_jwt_key_that_is_long_enough_for_sha256_32bytes!";
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
@@ -247,7 +269,7 @@ public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IW
             issuer: config["Jwt:Issuer"] ?? "AgricultureERP",
             audience: config["Jwt:Audience"] ?? "AgricultureERP_Clients",
             claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(15),
+            expires: DateTime.UtcNow.AddMinutes(60),
             signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
         );
 
@@ -271,7 +293,102 @@ public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IW
             permissions
         );
 
-        return new AuthResponse(accessToken, refreshToken, 900, summary);
+        return new AuthResponse(accessToken, refreshToken, 3600, summary);
+    }
+
+    public async Task<AuthResponse?> SwitchRoleAsync(string roleOrEmail, CancellationToken ct)
+    {
+        if (string.IsNullOrWhiteSpace(roleOrEmail)) return null;
+
+        var clean = roleOrEmail.Trim();
+
+        // 1. Try finding directly by email
+        var user = await db.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == clean.ToLower() && !u.IsDeleted, ct);
+
+        // 2. If not found by email, map role string to backend code
+        if (user == null)
+        {
+            var roleCode = MapInputToRoleCode(clean);
+            user = await (from u in db.Users
+                          where !u.IsDeleted && u.Status == UserStatus.Active.ToString()
+                          join ur in db.UserRoles on u.Id equals ur.UserId
+                          join r in db.Roles on ur.RoleId equals r.Id
+                          where (r.Code == roleCode || r.Code.ToLower() == clean.ToLower()) && ur.IsActive
+                          select u).FirstOrDefaultAsync(ct);
+
+            // 3. If still not found, provision demo user for this role
+            if (user == null)
+            {
+                user = await ProvisionDemoUserForRoleAsync(roleCode, ct);
+            }
+        }
+
+        if (user == null) return null;
+
+        return await GenerateAuthResponseAsync(user, ct);
+    }
+
+    private static string MapInputToRoleCode(string input)
+    {
+        var lower = input.ToLower().Replace("-", "_").Trim();
+        return lower switch
+        {
+            "super_admin" or "superadmin" or "admin" => "SuperAdmin",
+            "tech_it" or "it_admin" or "itadmin" or "it" => "ITAdmin",
+            "ceo_exec" or "executiveleadership" or "ceo" or "executive" => "ExecutiveLeadership",
+            "coo_ops" or "operationsdirector" or "coo" or "operations" => "OperationsDirector",
+            "farming_ops_mgr" or "farmingoperationsmanager" or "farm_ops" or "farmmanager" => "FarmingOperationsManager",
+            "research_agronomy_mgr" or "researchagronomymanager" or "agronomy_mgr" => "ResearchAgronomyManager",
+            "warehouse_mgr" or "warehousemanager" or "warehouse" => "WarehouseManager",
+            "finance_staff" or "financestaff" or "finance_controller" or "finance" => "FinanceStaff",
+            "hr_staff" or "hrstaff" or "hr_manager" or "hr" => "HRStaff",
+            "partnership_brand" or "partnershipteam" or "partnerships" => "PartnershipTeam",
+            "internal_audit" or "internalauditor" or "compliance_auditor" or "audit" => "InternalAuditor",
+            "field_agronomist" or "agronomist" or "field_inspector" or "fieldofficer" => "Agronomist",
+            "logistics_driver" or "logisticsdriver" or "driver" => "LogisticsDriver",
+            "commercial_partner" or "commercialpartner" or "coop" => "CommercialPartner",
+            "buyer_offtaker" or "buyer" or "offtaker" => "Buyer",
+            "contract_farmer" or "contractfarmer" or "farmer" => "ContractFarmer",
+            _ => "SuperAdmin"
+        };
+    }
+
+    private async Task<User?> ProvisionDemoUserForRoleAsync(string roleCode, CancellationToken ct)
+    {
+        var role = await db.Roles.FirstOrDefaultAsync(r => r.Code == roleCode, ct);
+        if (role == null) return null;
+
+        var branch = await db.Branchs.FirstOrDefaultAsync(ct);
+        var email = $"{roleCode.ToLower()}@zorisis.com";
+        var user = new User
+        {
+            Id = Guid.NewGuid(),
+            Email = email,
+            Username = roleCode.ToLower(),
+            DisplayName = $"{role.Name} Demo",
+            PasswordHash = Hash("Zorisis2026!"),
+            Status = UserStatus.Active.ToString(),
+            OrganizationId = Guid.NewGuid(),
+            Department = role.Name,
+            Position = role.Name,
+            BranchId = branch?.Id,
+            MfaEnabled = false,
+            CreatedAt = DateTimeOffset.UtcNow
+        };
+
+        await db.Users.AddAsync(user, ct);
+        await db.UserRoles.AddAsync(new UserRole
+        {
+            Id = Guid.NewGuid(),
+            UserId = user.Id,
+            RoleId = role.Id,
+            ValidFrom = DateTimeOffset.UtcNow,
+            IsActive = true,
+            CreatedAt = DateTimeOffset.UtcNow
+        }, ct);
+
+        await db.SaveChangesAsync(ct);
+        return user;
     }
 
     public static string Hash(string value)
@@ -289,3 +406,4 @@ public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IW
         return CryptographicOperations.FixedTimeEquals(hash, Convert.FromBase64String(p[1]));
     }
 }
+

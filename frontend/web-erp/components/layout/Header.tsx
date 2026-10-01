@@ -7,12 +7,13 @@ import { useSidebar } from "./AdminShell";
 import {
   ROLES,
   RoleId,
-  getStoredUser,
+  useCurrentUser,
   setStoredUser,
-  hasPermission,
   AuthUser,
-  DEMO_ACCOUNTS,
 } from "@/lib/rbac";
+import DualDateBadge from "@/components/common/DualDateBadge";
+import JwtClaimsBadge from "@/components/auth/JwtClaimsBadge";
+import JwtClaimsInspector from "@/components/auth/JwtClaimsInspector";
 
 interface HeaderProps {
   title?: string;
@@ -22,7 +23,7 @@ interface HeaderProps {
 interface CommandItem {
   id: string;
   title: string;
-  category: "Core Admin" | "Field Operations" | "Security & Auth";
+  category: "Core Admin" | "Field Operations" | "Security & Auth" | "Farming & Agronomy";
   href: string;
   icon: string;
   badge?: string;
@@ -37,13 +38,16 @@ const COMMAND_ITEMS: CommandItem[] = [
   { id: "overrides", title: "Permission Overrides & Masking", category: "Core Admin", href: "/permissions/overrides", icon: "policy" },
   { id: "delegation", title: "Delegation Management", category: "Core Admin", href: "/delegation", icon: "swap_horiz" },
   { id: "approvals", title: "Workflow Approval Chains", category: "Core Admin", href: "/approvals", icon: "verified", badge: "14 Pending" },
-  { id: "audit", title: "Security Audit Logs", category: "Core Admin", href: "/audit-logs", icon: "receipt_long" },
-  { id: "mobile-home", title: "Field Operations Console", category: "Field Operations", href: "/mobile", icon: "smartphone" },
+  { id: "agronomy-dash", title: "Agronomic Health & Decision Support", category: "Farming & Agronomy", href: "/agronomy/dashboard", icon: "psychiatry" },
+  { id: "farming-dash", title: "Farming Operations Management", category: "Farming & Agronomy", href: "/farming-ops/dashboard", icon: "agriculture" },
+  { id: "crop-plans", title: "Crop Production Plans & BOM", category: "Farming & Agronomy", href: "/farming-ops/crop-plans", icon: "layers" },
+  { id: "soil-tests", title: "Soil Laboratory Fertility Repositories", category: "Farming & Agronomy", href: "/agronomy/soil-tests", icon: "science" },
+  { id: "parcels", title: "Farm Parcels Registry GIS", category: "Farming & Agronomy", href: "/farming-ops/parcels", icon: "polyline" },
+  { id: "mobile-home", title: "Mobile Field Operations Console", category: "Field Operations", href: "/mobile", icon: "smartphone" },
   { id: "inspection", title: "Log Field Crop Inspection", category: "Field Operations", href: "/mobile/inspection", icon: "assignment_turned_in" },
-  { id: "payment", title: "Submit Payment Request", category: "Field Operations", href: "/mobile/payment", icon: "payments" },
+  { id: "payment", title: "Submit Field Payment Request", category: "Field Operations", href: "/mobile/payment", icon: "payments" },
   { id: "mob-delegation", title: "My Field Delegations", category: "Field Operations", href: "/mobile/delegation", icon: "sync_alt" },
   { id: "mob-audit", title: "Personal Signed Audit Trail", category: "Field Operations", href: "/mobile/audit", icon: "fact_check" },
-  { id: "profile", title: "Profile, Sessions & Security", category: "Field Operations", href: "/mobile/profile", icon: "manage_accounts" },
   { id: "mfa", title: "Two-Factor MFA Token Gate", category: "Security & Auth", href: "/mfa", icon: "security" },
   { id: "login", title: "Enterprise Sign In Screen", category: "Security & Auth", href: "/login", icon: "login" },
 ];
@@ -54,20 +58,12 @@ export default function Header({ title, subtitle }: HeaderProps) {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [inspectorOpen, setInspectorOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const [user, setUser] = useState<AuthUser>(() => getStoredUser());
+  const { user, claims, roleConfig, hasPermission } = useCurrentUser();
 
-  useEffect(() => {
-    const syncUser = () => setUser(getStoredUser());
-    window.addEventListener("zorisis_auth_change", syncUser);
-    return () => {
-      window.removeEventListener("zorisis_auth_change", syncUser);
-    };
-  }, []);
-
-  const roleConfig = ROLES[user.role] || ROLES.super_admin;
 
   // Keyboard shortcut for Command Palette (⌘K or Ctrl+K)
   useEffect(() => {
@@ -99,7 +95,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
     const matchesQuery =
       item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.category.toLowerCase().includes(searchQuery.toLowerCase());
-    const isPermitted = hasPermission(user.role, item.href);
+    const isPermitted = hasPermission(item.href);
     return matchesQuery && isPermitted;
   });
 
@@ -123,23 +119,48 @@ export default function Header({ title, subtitle }: HeaderProps) {
             <span className="material-symbols-outlined text-[20px] sm:text-[22px]">menu</span>
           </button>
 
-          <button
-            type="button"
-            onClick={() => setPaletteOpen(true)}
-            className="w-full h-9 sm:h-10 px-2.5 sm:px-3.5 bg-[#F7F4EC] hover:bg-[#E8F1EA] border border-[#DDE4DE]/60 rounded-xl text-xs text-[#66736C] flex items-center justify-between transition-all active:scale-[0.99] text-left min-w-0"
-          >
-            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-              <span className="material-symbols-outlined text-[16px] sm:text-[18px] text-[#66736C] shrink-0">search</span>
-              <span className="truncate text-[11px] sm:text-xs">Search (⌘K)...</span>
-            </div>
-            <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-white border border-[#DDE4DE] text-[#66736C] shadow-xs shrink-0">
-              ⌘K
-            </kbd>
-          </button>
+          <div className="relative w-full">
+            <span className="material-symbols-outlined text-[16px] sm:text-[18px] text-[#66736C] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
+              search
+            </span>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                if (e.target.value.trim() && !paletteOpen) {
+                  setPaletteOpen(true);
+                }
+              }}
+              onFocus={() => {
+                if (searchQuery.trim()) setPaletteOpen(true);
+              }}
+              onClick={() => setPaletteOpen(true)}
+              placeholder="Search console, modules, roles..."
+              className="w-full h-9 sm:h-10 pl-9 pr-8 bg-[#F7F4EC] hover:bg-[#E8F1EA] focus:bg-white border border-[#DDE4DE] focus:border-[#146B45] focus:ring-2 focus:ring-[#146B45]/20 rounded-xl text-xs text-[#17231D] placeholder-[#66736C] transition-all outline-none"
+            />
+            {/* Clear / Close X Button */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSearchQuery("");
+                setPaletteOpen(false);
+              }}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-md hover:bg-[#DDE4DE] text-[#66736C] hover:text-[#00261B] flex items-center justify-center transition-colors cursor-pointer"
+              title="Clear search"
+              aria-label="Clear search"
+            >
+              <span className="material-symbols-outlined text-[15px]">close</span>
+            </button>
+          </div>
         </div>
 
         {/* Right Controls */}
         <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          <DualDateBadge className="hidden md:inline-flex" />
+          <JwtClaimsBadge className="hidden sm:inline-flex" />
+
           {/* Notifications Dropdown Toggle */}
           <div className="relative">
             <button
@@ -263,12 +284,12 @@ export default function Header({ title, subtitle }: HeaderProps) {
 
                 <div className="space-y-1">
                   <Link
-                    href="/mobile/profile"
+                    href="/users"
                     onClick={() => setUserMenuOpen(false)}
                     className="p-2 rounded-lg hover:bg-[#F7F4EC] flex items-center gap-2 text-[#17231D] transition-colors"
                   >
                     <span className="material-symbols-outlined text-[18px] text-[#146B45]">person</span>
-                    <span>Account &amp; Security Profile</span>
+                    <span>Directory &amp; Profile</span>
                   </Link>
                   <Link
                     href="/mfa"
@@ -279,45 +300,22 @@ export default function Header({ title, subtitle }: HeaderProps) {
                     <span>MFA Token Gate</span>
                   </Link>
 
-                  {/* Switch Role Fast Selector for Testing */}
-                  <div className="pt-2 border-t border-[#DDE4DE] mt-1">
-                    <span className="text-[10px] uppercase font-bold text-[#66736C] block mb-1.5 tracking-wider">
-                      Switch Role (Demo Testing)
-                    </span>
-                    <div className="grid grid-cols-1 gap-1">
-                      {DEMO_ACCOUNTS.map((acc) => {
-                        const r = ROLES[acc.role];
-                        const isCurrent = user.role === acc.role;
-                        return (
-                          <button
-                            key={acc.role}
-                            type="button"
-                            onClick={() => {
-                              setStoredUser(acc);
-                              setUser(acc);
-                              setUserMenuOpen(false);
-                              router.push(r.defaultLanding);
-                            }}
-                            className={`p-1.5 rounded-lg flex items-center justify-between text-left transition-colors ${
-                              isCurrent
-                                ? "bg-[#E8F1EA] text-[#0B3D2E] font-bold"
-                                : "hover:bg-[#F7F4EC] text-[#66736C]"
-                            }`}
-                          >
-                            <div className="flex items-center gap-1.5">
-                              <span className="material-symbols-outlined text-[15px]" style={{ color: r.badgeColor }}>
-                                {r.icon}
-                              </span>
-                              <span className="text-[11px]">{r.shortLabel} ({acc.name.split(" ")[0]})</span>
-                            </div>
-                            {isCurrent && (
-                              <span className="material-symbols-outlined text-[14px] text-[#146B45]">check</span>
-                            )}
-                          </button>
-                        );
-                      })}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setUserMenuOpen(false);
+                      setInspectorOpen(true);
+                    }}
+                    className="w-full p-2 rounded-lg hover:bg-[#F7F4EC] flex items-center justify-between text-[#17231D] transition-colors text-left"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="material-symbols-outlined text-[18px] text-[#0B3D2E]">token</span>
+                      <span>Inspect Active JWT</span>
                     </div>
-                  </div>
+                    <span className="text-[10px] font-mono text-[#146B45] font-bold">
+                      {claims?.permissions.length || 0} Claims
+                    </span>
+                  </button>
 
                   <div className="pt-1.5 border-t border-[#DDE4DE] mt-1">
                     <Link
@@ -356,11 +354,25 @@ export default function Header({ title, subtitle }: HeaderProps) {
                 placeholder="Type a screen, command, or workflow..."
                 className="w-full text-xs sm:text-sm font-medium text-[#17231D] placeholder:text-[#66736C]/60 focus:outline-none bg-transparent"
               />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery("")}
+                  className="w-6 h-6 rounded-md hover:bg-[#F7F4EC] text-[#66736C] hover:text-[#00261B] flex items-center justify-center transition-colors cursor-pointer"
+                  title="Clear search query"
+                  aria-label="Clear search query"
+                >
+                  <span className="material-symbols-outlined text-[15px]">backspace</span>
+                </button>
+              )}
               <button
+                type="button"
                 onClick={() => setPaletteOpen(false)}
-                className="px-1.5 py-0.5 rounded text-[11px] font-mono bg-[#F7F4EC] text-[#66736C] hover:bg-[#DDE4DE]"
+                className="w-7 h-7 rounded-lg bg-[#F7F4EC] hover:bg-[#FDE8E8] text-[#66736C] hover:text-[#C94B4B] flex items-center justify-center transition-colors cursor-pointer"
+                title="Close search"
+                aria-label="Close search"
               >
-                ESC
+                <span className="material-symbols-outlined text-[18px]">close</span>
               </button>
             </div>
 
@@ -411,6 +423,9 @@ export default function Header({ title, subtitle }: HeaderProps) {
           </div>
         </div>
       )}
+
+      <JwtClaimsInspector isOpen={inspectorOpen} onClose={() => setInspectorOpen(false)} />
     </>
   );
 }
+

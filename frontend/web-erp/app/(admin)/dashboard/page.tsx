@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { getStoredUser, ROLES, hasPermission, AuthUser } from "@/lib/rbac";
+import { useCurrentUser, hasPermission } from "@/lib/rbac";
 
 interface KpiData {
   title: string;
@@ -106,23 +106,13 @@ const RECENT_ACTIVITIES: ActivityItem[] = [
 ];
 
 export default function AdminDashboardPage() {
-  const [user, setUser] = useState<AuthUser>(() => getStoredUser());
+  const { user, roleConfig } = useCurrentUser();
   const [activityFilter, setActivityFilter] = useState<string>("all");
   const [approvals, setApprovals] = useState([
     { id: "app-1", workflow: "Seed Procurement Advance", amount: "$38,500", requester: "Daniel Kebede", stage: "Stage 2 / Finance", urgency: "High" },
     { id: "app-2", workflow: "Cold-Chain Logistics Lease", amount: "$12,400", requester: "Yonas Teka", stage: "Stage 1 / Operations", urgency: "Normal" },
     { id: "app-3", workflow: "Fertilizer Tender Delegation", amount: "$84,000", requester: "Kinde Gudeta", stage: "Stage 3 / Executive", urgency: "Critical" },
   ]);
-
-  useEffect(() => {
-    const sync = () => setUser(getStoredUser());
-    window.addEventListener("zorisis_auth_change", sync);
-    return () => {
-      window.removeEventListener("zorisis_auth_change", sync);
-    };
-  }, []);
-
-  const roleConfig = ROLES[user.role] || ROLES.super_admin;
 
   const handleApprove = (id: string) => {
     setApprovals(approvals.filter((a) => a.id !== id));
@@ -205,11 +195,11 @@ export default function AdminDashboardPage() {
         {KPIS.map((kpi) => (
           <div
             key={kpi.title}
-            className="p-4 rounded-2xl bg-white border border-[#DDE4DE] shadow-subtle flex flex-col justify-between hover:shadow-card transition-all"
+            className="p-4 rounded-2xl bg-[#F7F4EC] border border-[#E8E3D5] hover:bg-[#FAF8F3] hover:border-[#146B45]/40 shadow-subtle flex flex-col justify-between hover:shadow-card transition-all"
           >
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-semibold text-[#66736C] uppercase tracking-wider">{kpi.title}</span>
-              <span className="w-8 h-8 rounded-xl bg-[#E8F1EA] text-[#0B3D2E] flex items-center justify-center">
+              <span className="w-8 h-8 rounded-xl bg-white border border-[#DDE4DE] text-[#0B3D2E] flex items-center justify-center shadow-2xs">
                 <span className="material-symbols-outlined text-[18px]">{kpi.icon}</span>
               </span>
             </div>
@@ -377,7 +367,7 @@ export default function AdminDashboardPage() {
 
           <div className="p-3.5 rounded-xl bg-[#F7F4EC] border border-[#DDE4DE]">
             <span className="text-[10px] uppercase font-bold text-[#66736C] block">Operational Clusters</span>
-            <span className="font-bold text-sm text-[#00261B]">Ada'a &amp; Bishoftu</span>
+            <span className="font-bold text-sm text-[#00261B]">Adama &amp; Bishoftu</span>
             <span className="text-[11px] text-[#66736C] block mt-1">620 Cooperatives • Teff &amp; Wheat</span>
           </div>
 

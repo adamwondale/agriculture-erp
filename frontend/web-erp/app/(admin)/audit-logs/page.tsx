@@ -49,7 +49,7 @@ const AUDIT_LOGS: AuditLog[] = [
     timestamp: "2026-09-19T10:06:48Z",
     sessionId: "sess_9x2mK7",
     geoLocation: "Addis Ababa, ET",
-    details: { "Assigned Role": "Field Agronomist", "Department": "Oromia Regional Hub", "Branch": "Ada'a Cluster" },
+    details: { "Assigned Role": "Field Agronomist", "Department": "Oromia Regional Hub", "Branch": "Adama Cluster" },
   },
   {
     id: "AL-8819",

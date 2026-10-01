@@ -466,5 +466,80 @@ public static class DatabaseSeeder
             await db.RolePermissions.AddRangeAsync(rolePerms);
             await db.SaveChangesAsync();
         }
+
+        // 7. Ensure All Specification Demo Accounts Exist
+        await SeedSpecificationDemoUsersAsync(db, passwordHasher);
+    }
+
+    private static async Task SeedSpecificationDemoUsersAsync(CoreAdminDbContext db, Func<string, string> passwordHasher)
+    {
+        var branch = await db.Branchs.FirstOrDefaultAsync();
+        var rolesByCode = await db.Roles.ToDictionaryAsync(r => r.Code, r => r.Id);
+        var orgId = Guid.NewGuid();
+
+        var demoSpecs = new (string Email, string Username, string DisplayName, string RoleCode, string Department, string Position)[]
+        {
+            ("abebe.tesfaye@zorisis.com", "at_superadmin", "Abebe Tesfaye", "SuperAdmin", "Executive & Core Systems", "Super Administrator"),
+            ("dawit.haile@zorisis.com", "dh_ceo", "Dawit Haile", "ExecutiveLeadership", "Executive Committee", "Chief Executive Officer"),
+            ("meron.tadesse@zorisis.com", "mt_coo", "Meron Tadesse", "OperationsDirector", "Field Operations & Supply Chain", "Chief Operating Officer"),
+            ("solomon.girma@zorisis.com", "sg_farmops", "Solomon Girma", "FarmingOperationsManager", "Farming Operations", "Farming Operations Manager"),
+            ("dr.alemayehu@zorisis.com", "aw_agronomy", "Dr. Alemayehu Worku", "ResearchAgronomyManager", "Research & Agronomy Advisory", "Chief Research Agronomist"),
+            ("kassahun.bekele@zorisis.com", "kb_warehouse", "Kassahun Bekele", "WarehouseManager", "Warehouse & Silo Logistics", "Central Silo Hub Manager"),
+            ("kinde.gudeta@zorisis.com", "kg_finance", "Kinde Gudeta", "FinanceStaff", "Finance & Treasury", "Senior Financial Controller"),
+            ("tigist.alemu@zorisis.com", "ta_hr", "Tigist Alemu", "HRStaff", "Human Resources & Talent", "HR Operations Lead"),
+            ("helen.mulugeta@zorisis.com", "hm_partnerships", "Helen Mulugeta", "PartnershipTeam", "Partnership & Brand Management", "Partnerships Director"),
+            ("chala.bekele@zorisis.com", "cb_audit", "Chala Bekele", "InternalAuditor", "Risk & Regulatory Audit", "Lead Compliance Auditor"),
+            ("yared.kebede@zorisis.com", "yk_it", "Yared Kebede", "ITAdmin", "Technology & Systems Integration", "Head of Technology & Systems"),
+            ("dagnachew.kebede@zorisis.com", "dk_agronomist", "Dagnachew Kebede", "Agronomist", "Agritech & Crop Inspection", "Senior Extension Agronomist"),
+            ("gemechu.tola@zorisis.com", "gt_partner", "Gemechu Tola", "CommercialPartner", "Oromia Coffee & Grain Farmers Cooperative", "Union Chairman"),
+            ("procurement@globalgrain.com", "mv_buyer", "Marcus Vance", "Buyer", "Global Grain Commodity Offtakers", "Managing Commodity Offtaker"),
+            ("haile.driver@zorisis.com", "hd_driver", "Haile Driver", "LogisticsDriver", "Fleet & Logistics Division", "Lead Fleet Transport Driver"),
+            ("alemu.farmer@zorisis.com", "af_farmer", "Alemu Farmer", "ContractFarmer", "Jimma Outgrower Network", "Lead Outgrower Farmer")
+        };
+
+        foreach (var spec in demoSpecs)
+        {
+            var existingUser = await db.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == spec.Email.ToLower());
+            if (existingUser == null)
+            {
+                var newUser = new User
+                {
+                    Id = Guid.NewGuid(),
+                    Email = spec.Email,
+                    Username = spec.Username,
+                    DisplayName = spec.DisplayName,
+                    PasswordHash = passwordHasher("Zorisis2026!"),
+                    Status = UserStatus.Active.ToString(),
+                    OrganizationId = orgId,
+                    Department = spec.Department,
+                    Position = spec.Position,
+                    BranchId = branch?.Id,
+                    MfaEnabled = false,
+                    CreatedAt = DateTimeOffset.UtcNow
+                };
+                await db.Users.AddAsync(newUser);
+                await db.SaveChangesAsync();
+                existingUser = newUser;
+            }
+
+            if (rolesByCode.TryGetValue(spec.RoleCode, out var roleId))
+            {
+                var hasRole = await db.UserRoles.AnyAsync(ur => ur.UserId == existingUser.Id && ur.RoleId == roleId && ur.IsActive);
+                if (!hasRole)
+                {
+                    await db.UserRoles.AddAsync(new UserRole
+                    {
+                        Id = Guid.NewGuid(),
+                        UserId = existingUser.Id,
+                        RoleId = roleId,
+                        ValidFrom = DateTimeOffset.UtcNow,
+                        IsActive = true,
+                        CreatedAt = DateTimeOffset.UtcNow
+                    });
+                    await db.SaveChangesAsync();
+                }
+            }
+        }
     }
 }
+

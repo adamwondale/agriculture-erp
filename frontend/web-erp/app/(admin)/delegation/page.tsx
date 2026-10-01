@@ -39,7 +39,7 @@ const INITIAL_DELEGATIONS: DelegationItem[] = [
     delegator: "Yonas Teka (Logistics Mgr)",
     delegate: "Mahlet Hale (Silo Dispatcher)",
     role: "Warehouse Allocator",
-    scope: "Ada'a Central Depot",
+    scope: "Adama Central Depot",
     startDate: "2026-08-01",
     endDate: "2026-08-31",
     status: "Expired",

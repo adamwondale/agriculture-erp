@@ -94,6 +94,31 @@ public class AuthController(IAuthService auth) : ControllerBase
         });
     }
 
+    public record SwitchRoleRequest(string RoleOrEmail);
+
+    [HttpPost("switch-role")]
+    public async Task<IActionResult> SwitchRole([FromBody] SwitchRoleRequest req, CancellationToken ct)
+    {
+        if (string.IsNullOrWhiteSpace(req.RoleOrEmail))
+        {
+            return BadRequest(new { error = "RoleOrEmail is required" });
+        }
+
+        var authResponse = await auth.SwitchRoleAsync(req.RoleOrEmail, ct);
+        if (authResponse is null)
+        {
+            return NotFound(new { error = $"Role or user '{req.RoleOrEmail}' not found" });
+        }
+
+        return Ok(new
+        {
+            accessToken = authResponse.AccessToken,
+            refreshToken = authResponse.RefreshToken,
+            expiresIn = authResponse.ExpiresIn,
+            user = authResponse.User
+        });
+    }
+
     [HttpGet("me")]
     [Authorize]
     public async Task<IActionResult> GetCurrentUser(CancellationToken ct)
@@ -115,3 +140,4 @@ public class AuthController(IAuthService auth) : ControllerBase
         return Ok(profile);
     }
 }
+

@@ -11,7 +11,7 @@ const QUICK_ACTIONS = [
 ];
 
 const PENDING_TASKS = [
-  { id: "t1", title: "Q3 Wheat Inspection", location: "Ada'a Cluster · Block 14", due: "Today, 3:00 PM", urgency: "high", icon: "grass" },
+  { id: "t1", title: "Q3 Wheat Inspection", location: "Adama Cluster · Block 14", due: "Today, 3:00 PM", urgency: "high", icon: "grass" },
   { id: "t2", title: "Cooperative Seed Handoff", location: "Bishoftu Station · Gate 2", due: "Today, 5:00 PM", urgency: "normal", icon: "inventory_2" },
   { id: "t3", title: "Payment Authorization", location: "WF-001 · Stage 2 Finance", due: "Overdue — 2h", urgency: "critical", icon: "payments" },
 ];
