@@ -144,6 +144,43 @@ public class AuthControllerTests : IClassFixture<CustomWebApplicationFactory<Pro
     }
 
     [Fact]
+    public async Task VerifyMfa_WithBypassCode_ReturnsUnauthorized()
+    {
+        var email = "bypass_mfa@example.com";
+        var ticket = "test-mfa-ticket-456";
+        var otpCode = "654321";
+        var user = new User
+        {
+            Email = email,
+            Username = "bypass_mfa",
+            PasswordHash = CoreAdmin.API.Services.AuthService.Hash("Pass!"),
+            Status = UserStatus.Active.ToString(),
+            OrganizationId = System.Guid.NewGuid(),
+            MfaEnabled = true,
+            MfaPendingTicket = ticket,
+            MfaPendingCode = otpCode,
+            MfaPendingCodeExpiry = System.DateTimeOffset.UtcNow.AddMinutes(5)
+        };
+
+        var factoryWithData = _factory.WithWebHostBuilder(builder =>
+        {
+            builder.ConfigureServices(services =>
+            {
+                var sp = services.BuildServiceProvider();
+                using var scope = sp.CreateScope();
+                var db = scope.ServiceProvider.GetRequiredService<CoreAdminDbContext>();
+                db.Users.Add(user);
+                db.SaveChanges();
+            });
+        });
+
+        var client = factoryWithData.CreateClient();
+        var response = await client.PostAsJsonAsync("/api/auth/mfa/verify", new { MfaTicket = ticket, Code = "123456" });
+
+        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+    }
+
+    [Fact]
     public async Task RefreshToken_WithValidToken_ReturnsNewTokens()
     {
         var email = "refresh_user@example.com";
