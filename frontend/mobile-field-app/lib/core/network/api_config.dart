@@ -1,22 +1,39 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 
 class ApiConfig {
-  /// Default base URL for Core Admin Service.
-  /// When running on a physical Android device via USB with `adb reverse tcp:5001 tcp:5001`,
-  /// localhost (127.0.0.1:5001) connects directly to your PC's service.
-  /// For Android emulator, 10.0.2.2:5001 is used.
-  /// Can be overridden at build/runtime via `--dart-define=API_BASE_URL=http://...`
-  static String get defaultBaseUrl {
-    const fromEnv = String.fromEnvironment('API_BASE_URL');
-    if (fromEnv.isNotEmpty) return fromEnv;
+  /// Port for API Gateway (default: 8080) or direct CoreAdmin API (5001).
+  static const int gatewayPort = 8080;
+  static const int coreAdminDirectPort = 5001;
 
-    if (Platform.isAndroid) {
-      return 'http://127.0.0.1:5001';
+  static int activePort = coreAdminDirectPort;
+
+  static String get defaultBaseUrl {
+    if (kIsWeb) {
+      return 'http://localhost:$activePort';
     }
-    return 'http://localhost:5001';
+    if (Platform.isAndroid) {
+      // 127.0.0.1 forwards over USB to host PC when reverse port forward is active (`adb reverse tcp:5001 tcp:5001`).
+      return 'http://127.0.0.1:$activePort';
+    }
+    return 'http://localhost:$activePort';
   }
 
   static String baseUrl = defaultBaseUrl;
+
+  static void useGateway() {
+    activePort = gatewayPort;
+    baseUrl = defaultBaseUrl;
+  }
+
+  static void useCoreAdminDirect() {
+    activePort = coreAdminDirectPort;
+    baseUrl = defaultBaseUrl;
+  }
+
+  static void setCustomBaseUrl(String url) {
+    baseUrl = url;
+  }
 
   // Endpoint paths
   static const String loginPath = '/api/auth/login';

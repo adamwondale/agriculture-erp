@@ -37,19 +37,9 @@ class _MfaVerificationScreenState extends ConsumerState<MfaVerificationScreen> {
   @override
   void initState() {
     super.initState();
-    if (widget.devOtpCode != null &&
-        widget.devOtpCode!.length == _otpLength) {
-      for (int i = 0; i < _otpLength; i++) {
-        _controllers[i].text = widget.devOtpCode![i];
-      }
-    }
     _startTimer();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (widget.devOtpCode != null) {
-        _focusNodes[_otpLength - 1].requestFocus();
-      } else {
-        _focusNodes[0].requestFocus();
-      }
+      _focusNodes[0].requestFocus();
     });
   }
 
@@ -322,7 +312,54 @@ class _MfaVerificationScreenState extends ConsumerState<MfaVerificationScreen> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        // Terminal OTP Dispatch Notice Banner
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 10),
+                          margin: const EdgeInsets.only(bottom: 16),
+                          decoration: BoxDecoration(
+                            color: AppColors.surfaceContainerLow,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: AppColors.secondary.withValues(alpha: 0.3),
+                            ),
+                          ),
+                          child: const Row(
+                            children: [
+                              Icon(
+                                Icons.terminal,
+                                size: 22,
+                                color: AppColors.secondary,
+                              ),
+                              SizedBox(width: 10),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'DEVELOPMENT DISPATCH ACTIVE',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 0.8,
+                                        color: AppColors.secondary,
+                                      ),
+                                    ),
+                                    SizedBox(height: 2),
+                                    Text(
+                                      'Your 6-digit MFA OTP has been printed in your CoreAdmin / Gateway terminal. Read the code from the terminal and enter below.',
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: AppColors.onSurfaceVariant,
+                                        height: 1.3,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
 
                         const Text(
                           'Authentication Passcode',
@@ -537,13 +574,15 @@ class _MfaVerificationScreenState extends ConsumerState<MfaVerificationScreen> {
                   const SizedBox(height: 12),
 
                   // Support Helpline Footer
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  const Wrap(
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Icon(Icons.phone, size: 14, color: AppColors.secondary),
                       SizedBox(width: 4),
                       Text(
                         'Support Helpline: 8912 • Secured by Z•ORISIS Protocol',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 11,
                           color: AppColors.textMuted,

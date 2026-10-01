@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // 1. Add Controllers and HealthChecks
 builder.Services.AddControllers();
+builder.Services.AddScoped<CoreAdmin.Application.Interfaces.IMfaCodeProvider, CoreAdmin.Infrastructure.ExternalServices.ConsoleMfaCodeProvider>();
 builder.Services.AddScoped<CoreAdmin.API.Services.IAuthService, CoreAdmin.API.Services.AuthService>();
 builder.Services.AddHealthChecks();
 builder.Services.AddEndpointsApiExplorer();
@@ -83,6 +84,25 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.MapHealthChecks("/health");
+
+// 6. Seed initial development users, roles, and permissions
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<CoreAdminDbContext>();
+    try
+    {
+        if (db.Database.IsRelational())
+        {
+            await db.Database.EnsureCreatedAsync();
+        }
+        await DatabaseSeeder.SeedAsync(db, CoreAdmin.API.Services.AuthService.Hash);
+    }
+    catch (Exception ex)
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogWarning(ex, "Database seeding skipped or encountered an issue during startup.");
+    }
+}
 
 app.Run();
 

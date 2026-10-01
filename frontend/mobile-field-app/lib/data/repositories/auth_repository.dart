@@ -53,7 +53,7 @@ class AuthRepository {
         authResponse: auth,
       );
     } on DioException catch (e) {
-      String message = 'Unable to connect to server. Please check connection.';
+      String message = 'Unable to connect to server at ${ApiConfig.baseUrl}. (${e.message ?? e.type.name})';
       if (e.response?.statusCode == 401) {
         final errData = e.response?.data;
         if (errData is Map && errData['error'] != null) {
@@ -63,9 +63,9 @@ class AuthRepository {
         }
       } else if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.receiveTimeout) {
-        message = 'Connection timed out. Ensure Core Admin Service is running on port 5001.';
-      } else if (e.type == DioExceptionType.connectionError) {
-        message = 'Cannot reach backend at ${ApiConfig.baseUrl}. If on a phone via USB, run "adb reverse tcp:5001 tcp:5001" on PC.';
+        message = 'Connection to ${ApiConfig.baseUrl} timed out. Ensure backend is running.';
+      } else if (e.error != null) {
+        message = 'Connection error (${ApiConfig.baseUrl}): ${e.error}';
       }
       return LoginResult(
         isSuccess: false,

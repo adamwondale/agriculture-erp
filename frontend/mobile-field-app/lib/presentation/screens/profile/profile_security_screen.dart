@@ -1,157 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/auth/user_role.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../providers/auth_provider.dart';
-import '../../providers/role_provider.dart';
 import '../auth/welcome_splash_screen.dart';
 
 class ProfileSecurityScreen extends ConsumerWidget {
   const ProfileSecurityScreen({super.key});
 
-  String _getInitials(String name) {
+  String _getInitials(String? name) {
+    if (name == null || name.trim().isEmpty) return 'FO';
     final parts = name.trim().split(RegExp(r'\s+'));
     if (parts.length >= 2) {
       return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
-    } else if (parts.isNotEmpty && parts[0].isNotEmpty) {
-      return parts[0].substring(0, parts[0].length >= 2 ? 2 : 1).toUpperCase();
     }
-    return 'AG';
+    return parts[0].substring(0, parts[0].length >= 2 ? 2 : 1).toUpperCase();
   }
 
-  void _showRoleSelectorModal(
-    BuildContext context,
-    WidgetRef ref,
-    AgriRole currentRole,
-    List<AgriRole> assignedRoles,
-  ) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
-      builder: (ctx) {
-        return Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-          child: SafeArea(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Container(
-                    width: 40,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: AppColors.outlineVariant,
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  'Switch Operational Context',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                const Text(
-                  'Select an enterprise role to dynamically morph navigation and dashboards:',
-                  style: TextStyle(fontSize: 12, color: AppColors.onSurfaceVariant),
-                ),
-                const SizedBox(height: 16),
-                Flexible(
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    itemCount: AgriRole.values.length,
-                    separatorBuilder: (_, __) => const Divider(height: 8, color: AppColors.borderClean),
-                    itemBuilder: (_, index) {
-                      final role = AgriRole.values[index];
-                      final isCurrent = role == currentRole;
-                      final isAssigned = assignedRoles.contains(role);
-
-                      return ListTile(
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                        leading: Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: role.badgeColor.withValues(alpha: 0.12),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Icon(role.icon, color: role.badgeColor, size: 22),
-                        ),
-                        title: Row(
-                          children: [
-                            Text(
-                              role.title,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: isCurrent ? FontWeight.bold : FontWeight.w600,
-                                color: isCurrent ? role.badgeColor : AppColors.onSurface,
-                              ),
-                            ),
-                            if (isAssigned) ...[
-                              const SizedBox(width: 8),
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                decoration: BoxDecoration(
-                                  color: AppColors.secondaryContainer.withValues(alpha: 0.4),
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                                child: const Text(
-                                  'Assigned',
-                                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.secondary),
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                        subtitle: Text(
-                          role.description,
-                          style: const TextStyle(fontSize: 11, color: AppColors.onSurfaceVariant),
-                        ),
-                        trailing: isCurrent
-                            ? Icon(Icons.check_circle, color: role.badgeColor, size: 22)
-                            : const Icon(Icons.radio_button_unchecked, color: AppColors.outlineVariant, size: 20),
-                        onTap: () {
-                          ref.read(activeRoleProvider.notifier).switchRole(role);
-                          Navigator.pop(ctx);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Switched operational role to ${role.title}'),
-                              backgroundColor: role.badgeColor,
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
+  String _formatRoleName(String rawRole) {
+    switch (rawRole) {
+      case 'Agronomist':
+        return 'Agronomist';
+      case 'FieldOfficer':
+        return 'Field Officer';
+      case 'FarmManager':
+        return 'Farm Manager';
+      case 'SuperAdmin':
+        return 'Super Admin';
+      default:
+        return rawRole.replaceAllMapped(
+          RegExp(r'([A-Z])'),
+          (match) => ' ${match.group(0)}',
+        ).trim();
+    }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authNotifierProvider);
-    final activeRole = ref.watch(activeRoleProvider);
-    final assignedRoles = ref.watch(userRolesProvider);
-
     final user = authState is AuthAuthenticated ? authState.user : null;
-    final displayName = user?.displayName.isNotEmpty == true ? user!.displayName : 'Dawit Kebede';
-    final email = user?.email.isNotEmpty == true ? user!.email : 'dawit.kebede@zorisis.com';
-    final branchScope = user?.department.isNotEmpty == true ? user!.department : 'Jimma Woreda Hub';
+
+    final displayName = user != null && user.displayName.isNotEmpty
+        ? user.displayName
+        : 'Field Operator';
+    final email = user != null && user.email.isNotEmpty
+        ? user.email
+        : 'operator@zorisis.com';
     final initials = _getInitials(displayName);
+    final primaryRole = user != null && user.roles.isNotEmpty
+        ? _formatRoleName(user.roles.first)
+        : 'Farm Manager';
+    final allRolesFormatted = user != null && user.roles.isNotEmpty
+        ? user.roles.map(_formatRoleName).join(', ')
+        : 'Farm Manager';
+    final department = user != null && user.department.isNotEmpty
+        ? user.department
+        : 'Agronomy Operations';
+    final position = user != null && user.position.isNotEmpty
+        ? user.position
+        : 'Field Specialist';
+    final branchScope = user != null && user.branchId != null
+        ? '${user.branchId} • $department'
+        : 'Oromia HQ • Central Region';
+    final clearanceLevel = user != null && user.roles.contains('SuperAdmin')
+        ? 'Level 5'
+        : (user != null && user.roles.contains('FarmManager')
+            ? 'Level 4'
+            : 'Level 3');
+    final permissions = user?.permissions ?? const <String>[];
 
     return Scaffold(
       backgroundColor: AppColors.surface,
@@ -290,11 +205,11 @@ class ProfileSecurityScreen extends ConsumerWidget {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Icon(activeRole.icon, size: 13, color: activeRole.badgeColor),
-                                    const SizedBox(width: 5),
+                                    const Icon(Icons.shield, size: 12, color: AppColors.onSecondaryContainer),
+                                    const SizedBox(width: 4),
                                     Text(
-                                      'Active: ${activeRole.title}',
-                                      style: TextStyle(
+                                      'Active Role: $primaryRole',
+                                      style: const TextStyle(
                                         fontSize: 11,
                                         fontWeight: FontWeight.w600,
                                         color: activeRole.badgeColor,
@@ -323,7 +238,7 @@ class ProfileSecurityScreen extends ConsumerWidget {
                           Container(width: 1, height: 30, color: AppColors.borderClean),
                           _buildTelemetryItem('99.4%', 'Sync Health', AppColors.secondary),
                           Container(width: 1, height: 30, color: AppColors.borderClean),
-                          _buildTelemetryItem(activeRole.shortCode, 'Role Code', activeRole.badgeColor),
+                          _buildTelemetryItem(clearanceLevel, 'Clearance', AppColors.primaryContainer),
                         ],
                       ),
                     ),
@@ -374,7 +289,7 @@ class ProfileSecurityScreen extends ConsumerWidget {
                     _buildSettingsTile(
                       icon: Icons.badge_outlined,
                       title: 'Personal Information',
-                      subtitle: '$displayName • $email',
+                      subtitle: '$displayName • $position',
                       trailing: const Icon(Icons.chevron_right, color: AppColors.onSurfaceVariant),
                       onTap: () {},
                     ),
@@ -431,8 +346,8 @@ class ProfileSecurityScreen extends ConsumerWidget {
                   children: [
                     _buildSettingsTile(
                       icon: Icons.shield_outlined,
-                      title: 'Active Role Scope',
-                      subtitle: activeRole.title,
+                      title: 'Active Role',
+                      subtitle: allRolesFormatted,
                       trailing: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
@@ -486,6 +401,76 @@ class ProfileSecurityScreen extends ConsumerWidget {
                   ],
                 ),
               ),
+              const SizedBox(height: 20),
+
+              // Section 3: Granted Permissions (RBAC)
+              _buildSectionHeader(
+                'Granted Permissions',
+                '${permissions.length} Active',
+                AppColors.secondary,
+              ),
+              const SizedBox(height: 6),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.02),
+                      blurRadius: 8,
+                      offset: const Offset(0, 1),
+                    ),
+                  ],
+                ),
+                child: permissions.isEmpty
+                    ? const Text(
+                        'Standard field operator permissions active.',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: AppColors.onSurfaceVariant,
+                        ),
+                      )
+                    : Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children: permissions.map((perm) {
+                          return Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.surfaceContainerLow,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: AppColors.borderClean,
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(
+                                  Icons.check_circle_outline,
+                                  size: 13,
+                                  color: AppColors.secondary,
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  perm,
+                                  style: const TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.primary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }).toList(),
+                      ),
+              ),
               const SizedBox(height: 24),
 
               // Sign Out Button
@@ -498,7 +483,9 @@ class ProfileSecurityScreen extends ConsumerWidget {
                     if (context.mounted) {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (_) => const WelcomeSplashScreen()),
+                        MaterialPageRoute(
+                          builder: (_) => const WelcomeSplashScreen(),
+                        ),
                         (route) => false,
                       );
                     }
