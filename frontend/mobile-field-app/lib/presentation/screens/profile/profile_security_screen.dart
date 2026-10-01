@@ -102,12 +102,15 @@ class ProfileSecurityScreen extends ConsumerWidget {
               );
             },
           ),
-          const Padding(
-            padding: EdgeInsets.only(right: 16.0),
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
             child: CircleAvatar(
               radius: 16,
-              backgroundColor: AppColors.primaryContainer,
-              child: Icon(Icons.person, color: Colors.white, size: 18),
+              backgroundColor: activeRole.badgeColor,
+              child: Text(
+                initials,
+                style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],
@@ -142,8 +145,8 @@ class ProfileSecurityScreen extends ConsumerWidget {
                             Container(
                               width: 60,
                               height: 60,
-                              decoration: const BoxDecoration(
-                                color: AppColors.primaryContainer,
+                              decoration: BoxDecoration(
+                                color: activeRole.badgeColor,
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
@@ -196,7 +199,7 @@ class ProfileSecurityScreen extends ConsumerWidget {
                               Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                                 decoration: BoxDecoration(
-                                  color: AppColors.secondaryContainer,
+                                  color: activeRole.badgeColor.withValues(alpha: 0.12),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: Row(
@@ -209,7 +212,7 @@ class ProfileSecurityScreen extends ConsumerWidget {
                                       style: const TextStyle(
                                         fontSize: 11,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.onSecondaryContainer,
+                                        color: activeRole.badgeColor,
                                       ),
                                     ),
                                   ],
@@ -231,7 +234,7 @@ class ProfileSecurityScreen extends ConsumerWidget {
                       ),
                       child: Row(
                         children: [
-                          _buildTelemetryItem('12', 'Assigned Parcels', AppColors.primaryContainer),
+                          _buildTelemetryItem('${assignedRoles.length}', 'Assigned Roles', activeRole.badgeColor),
                           Container(width: 1, height: 30, color: AppColors.borderClean),
                           _buildTelemetryItem('99.4%', 'Sync Health', AppColors.secondary),
                           Container(width: 1, height: 30, color: AppColors.borderClean),
@@ -246,18 +249,15 @@ class ProfileSecurityScreen extends ConsumerWidget {
                       width: double.infinity,
                       height: 44,
                       child: ElevatedButton.icon(
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Agronomic role selector opened.')),
-                          );
-                        },
+                        onPressed: () => _showRoleSelectorModal(context, ref, activeRole, assignedRoles),
                         icon: const Icon(Icons.swap_horiz, size: 18),
                         label: const Text(
-                          'Switch Role / Context',
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                          'Switch Role / Operational Context',
+                          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                         ),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
+                          backgroundColor: activeRole.badgeColor,
+                          foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -297,7 +297,7 @@ class ProfileSecurityScreen extends ConsumerWidget {
                     _buildSettingsTile(
                       icon: Icons.translate,
                       title: 'Preferred Language',
-                      subtitle: 'English (US) / Amharic',
+                      subtitle: 'English (US) / Amharic / Afaan Oromoo',
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -308,7 +308,7 @@ class ProfileSecurityScreen extends ConsumerWidget {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: const Text(
-                              'EN/AM',
+                              'EN/AM/OM',
                               style: TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w600,
@@ -351,15 +351,15 @@ class ProfileSecurityScreen extends ConsumerWidget {
                       trailing: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
-                          color: AppColors.secondaryContainer,
+                          color: activeRole.badgeColor.withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: const Text(
-                          'Primary Scope',
+                        child: Text(
+                          activeRole.shortCode,
                           style: TextStyle(
                             fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.onSecondaryContainer,
+                            fontWeight: FontWeight.bold,
+                            color: activeRole.badgeColor,
                           ),
                         ),
                       ),
@@ -368,7 +368,7 @@ class ProfileSecurityScreen extends ConsumerWidget {
                     _buildSettingsTile(
                       icon: Icons.apartment,
                       title: 'Organization',
-                      subtitle: 'Z•ORISIS Holding',
+                      subtitle: 'Z•ORISIS Holding • Agri-ERP',
                       trailing: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
