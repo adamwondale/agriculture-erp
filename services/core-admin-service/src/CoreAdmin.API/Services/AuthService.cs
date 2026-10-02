@@ -241,7 +241,11 @@ public sealed class AuthService(CoreAdminDbContext db, IConfiguration config, IW
         }
         claims.AddRange(roles.Select(r => new Claim(ClaimTypes.Role, r)));
 
-        var jwtKey = config["Jwt:Key"] ?? "super_secret_jwt_key_that_is_long_enough_for_sha256_32bytes!";
+        var jwtKey = config["Jwt:Key"];
+        if (string.IsNullOrWhiteSpace(jwtKey))
+        {
+            throw new InvalidOperationException("JWT signing key 'Jwt:Key' is not configured in application configuration.");
+        }
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
         var token = new JwtSecurityToken(
             issuer: config["Jwt:Issuer"] ?? "AgricultureERP",
