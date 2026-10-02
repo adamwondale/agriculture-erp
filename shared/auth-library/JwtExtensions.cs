@@ -10,7 +10,11 @@ public static class JwtExtensions
 {
     public static IServiceCollection AddSharedJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
-        var jwtKey = configuration["Jwt:Key"] ?? "super-secret-key-at-least-32-chars-long-12345!";
+        var jwtKey = configuration["Jwt:Key"];
+        if (string.IsNullOrWhiteSpace(jwtKey))
+        {
+            throw new InvalidOperationException("JWT signing key 'Jwt:Key' is not configured in application configuration.");
+        }
         var jwtIssuer = configuration["Jwt:Issuer"] ?? "AgricultureErp.CoreAdmin";
         var jwtAudience = configuration["Jwt:Audience"] ?? "AgricultureErp";
 

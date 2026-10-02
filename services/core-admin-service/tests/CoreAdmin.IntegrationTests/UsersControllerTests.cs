@@ -23,6 +23,18 @@ public class UsersControllerTests : IClassFixture<CustomWebApplicationFactory<Pr
     }
 
     [Fact]
+    public void AddSharedJwtAuthentication_WithoutJwtKey_ThrowsInvalidOperationException()
+    {
+        var services = new ServiceCollection();
+        var emptyConfig = new Microsoft.Extensions.Configuration.ConfigurationBuilder().Build();
+
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            Shared.Auth.JwtExtensions.AddSharedJwtAuthentication(services, emptyConfig));
+
+        Assert.Contains("JWT signing key 'Jwt:Key' is not configured", ex.Message);
+    }
+
+    [Fact]
     public async Task List_WithoutToken_ReturnsUnauthorized()
     {
         var client = _factory.CreateClient();
