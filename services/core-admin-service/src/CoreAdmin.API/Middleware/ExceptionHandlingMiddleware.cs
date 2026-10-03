@@ -22,10 +22,12 @@ public class ExceptionHandlingMiddleware
         }
         catch (Exception ex)
         {
+            // Security: Log exception details internally for auditing/debugging,
+            // but sanitize error messages in HTTP responses to prevent exposing sensitive internal information or stack details.
             _logger.LogError(ex, "An unhandled exception occurred in CoreAdmin.API");
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            var response = new { error = ex.Message, service = "CoreAdmin.API" };
+            var response = new { error = "An unexpected error occurred. Please try again later.", service = "CoreAdmin.API" };
             await context.Response.WriteAsync(JsonSerializer.Serialize(response));
         }
     }
