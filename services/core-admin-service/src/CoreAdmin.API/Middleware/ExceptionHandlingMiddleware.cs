@@ -25,7 +25,8 @@ public class ExceptionHandlingMiddleware
             _logger.LogError(ex, "An unhandled exception occurred in CoreAdmin.API");
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            var response = new { error = ex.Message, service = "CoreAdmin.API" };
+            // Return a generic error response to prevent leaking internal exception details or stack traces
+            var response = new { error = "An internal error occurred.", service = "CoreAdmin.API" };
             await context.Response.WriteAsync(JsonSerializer.Serialize(response));
         }
     }
