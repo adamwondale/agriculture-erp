@@ -37,8 +37,67 @@ public class UsersControllerTests : IClassFixture<CustomWebApplicationFactory<Pr
         var email = $"admin_{Guid.NewGuid()}@example.com";
         var user = new User
         {
+            Id = Guid.NewGuid(),
             Email = email,
             Username = "admin",
+            PasswordHash = CoreAdmin.API.Services.AuthService.Hash(password),
+            Status = UserStatus.Active.ToString(),
+            OrganizationId = Guid.NewGuid()
+        };
+
+        var factoryWithData = _factory.WithWebHostBuilder(builder =>
+        {
+            builder.ConfigureServices(services =>
+            {
+                var sp = services.BuildServiceProvider();
+                using var scope = sp.CreateScope();
+                var db = scope.ServiceProvider.GetRequiredService<CoreAdminDbContext>();
+                var superAdminRole = System.Linq.Enumerable.FirstOrDefault(db.Roles, r => r.Code == "SuperAdmin");
+                if (superAdminRole == null)
+                {
+                    superAdminRole = new Role
+                    {
+                        Id = Guid.NewGuid(),
+                        Code = "SuperAdmin",
+                        Name = "Super Administrator",
+                        IsSystemRole = true,
+                        RequiresMfa = true
+                    };
+                    db.Roles.Add(superAdminRole);
+                }
+
+                db.Users.Add(user);
+                db.UserRoles.Add(new UserRole
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = user.Id,
+                    RoleId = superAdminRole.Id,
+                    ValidFrom = DateTimeOffset.UtcNow,
+                    IsActive = true
+                });
+                db.SaveChanges();
+            });
+        });
+
+        var client = factoryWithData.CreateClient();
+        var response = await client.PostAsJsonAsync("/api/auth/login", new { Email = email, Password = password });
+        response.EnsureSuccessStatusCode();
+        var content = await response.Content.ReadFromJsonAsync<System.Text.Json.JsonElement>();
+        var token = content.GetProperty("accessToken").GetString();
+
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        return client;
+    }
+
+    private async Task<HttpClient> GetNonSuperAdminClientAsync()
+    {
+        var password = "SecurePassword123!";
+        var email = $"regular_{Guid.NewGuid()}@example.com";
+        var user = new User
+        {
+            Id = Guid.NewGuid(),
+            Email = email,
+            Username = "regularuser",
             PasswordHash = CoreAdmin.API.Services.AuthService.Hash(password),
             Status = UserStatus.Active.ToString(),
             OrganizationId = Guid.NewGuid()
@@ -64,6 +123,18 @@ public class UsersControllerTests : IClassFixture<CustomWebApplicationFactory<Pr
 
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         return client;
+    }
+
+    [Fact]
+    public async Task Create_AsNonSuperAdmin_ReturnsForbidden()
+    {
+        var client = await GetNonSuperAdminClientAsync();
+
+        var newUserEmail = $"newuser_{Guid.NewGuid()}@example.com";
+        var createRequest = new UsersController.CreateUserRequest(newUserEmail, "newuser", "TempPass123!", false);
+
+        var createResponse = await client.PostAsJsonAsync("/api/admin/users", createRequest);
+        Assert.Equal(HttpStatusCode.Forbidden, createResponse.StatusCode);
     }
 
     [Fact]
