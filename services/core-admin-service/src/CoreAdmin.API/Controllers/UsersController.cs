@@ -129,6 +129,7 @@ public class UsersController(CoreAdminDbContext db) : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "SuperAdmin")]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest req, CancellationToken ct)
     {
         if (string.IsNullOrWhiteSpace(req.Email) || string.IsNullOrWhiteSpace(req.TemporaryPassword))
@@ -214,6 +215,7 @@ public class UsersController(CoreAdminDbContext db) : ControllerBase
     }
 
     [HttpPatch("{id:guid}/activate")]
+    [Authorize(Roles = "SuperAdmin")]
     public async Task<IActionResult> ActivateUser(Guid id, CancellationToken ct)
     {
         var u = await db.Users.FindAsync([id], ct);
