@@ -137,3 +137,21 @@ services:
     networks:
       - agri-infra-network
 
+  # ---------------------------------------------------------------------------
+  # Nginx Reverse Proxy (Unified API & Frontend Dev Gateway with CORS)
+  # ---------------------------------------------------------------------------
+  agri-nginx:
+    image: nginx:alpine
+    container_name: agri-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - agri-core-admin-service
+    networks:
+      - agri-infra-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+

@@ -2,24 +2,32 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 
 class ApiConfig {
-  /// Port for API Gateway (default: 8080) or direct CoreAdmin API (5001).
+  /// Port for Nginx Reverse Proxy (80), API Gateway (8080), or direct CoreAdmin API (5001).
+  static const int nginxPort = 80;
   static const int gatewayPort = 8080;
   static const int coreAdminDirectPort = 5001;
 
-  static int activePort = coreAdminDirectPort;
+  static int activePort = nginxPort;
 
   static String get defaultBaseUrl {
     if (kIsWeb) {
-      return 'http://localhost:$activePort';
+      return activePort == 80 ? 'http://localhost' : 'http://localhost:$activePort';
     }
     if (Platform.isAndroid) {
-      // 127.0.0.1 forwards over USB to host PC when reverse port forward is active (`adb reverse tcp:5001 tcp:5001`).
-      return 'http://127.0.0.1:$activePort';
+      // Android cannot bind ports < 1024 without root. 
+      // If Nginx (port 80) is used, phone calls 127.0.0.1:8080 via `adb reverse tcp:8080 tcp:80`
+      final port = (activePort == 80) ? 8080 : activePort;
+      return 'http://127.0.0.1:$port';
     }
-    return 'http://localhost:$activePort';
+    return activePort == 80 ? 'http://localhost' : 'http://localhost:$activePort';
   }
 
   static String baseUrl = defaultBaseUrl;
+
+  static void useNginx() {
+    activePort = nginxPort;
+    baseUrl = defaultBaseUrl;
+  }
 
   static void useGateway() {
     activePort = gatewayPort;
