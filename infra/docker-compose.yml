@@ -372,3 +372,22 @@ services:
       - rabbitmq
     networks:
       - agri-network
+
+  # ---------------------------------------------------------------------------
+  # Nginx Reverse Proxy (Unified API & Frontend Dev Gateway with CORS)
+  # ---------------------------------------------------------------------------
+  nginx:
+    image: nginx:alpine
+    container_name: agri-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - core-admin-service
+    networks:
+      - agri-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
